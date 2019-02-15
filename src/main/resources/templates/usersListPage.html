@@ -1,0 +1,56 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Список пользователей приложения</title>
+</head>
+<body>
+<th:block th:include="/_menu"></th:block>
+</body>
+<h1>Users list</h1>
+<div>
+    <form th:action="@{/addUser}" th:object="${formCommand}" method="POST">
+        User login:
+        <input type="text" name="userLogin"/>
+        <br/>
+        User password:
+        <input type="text" name="userPassword"/>
+        <br/>
+        <!--<select th:field="*{roleId}">-->
+        <!--<option th:each="role: ${rolesList}"-->
+        <!--th:value="${role.getRoleId()}"-->
+        <!--th:text="${role.getRoleName()}"></option>-->
+        <!--</select>-->
+
+        <li th:each="role: ${rolesList}">
+            <input type="checkbox"
+                   th:field="*{multiCheckboxSelectedValues}"
+                   th:value="${role.roleId}"/>
+
+            <label th:text="${role.roleName}"></label>
+        </li>
+
+        <input type="submit" value="Add"/>
+    </form>
+</div>
+<div>
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Login</th>
+            <th>Password</th>
+            <th>isOnline</th>
+            <th>Roles</th>
+        </tr>
+        <tr th:each="user: ${usersList}">
+            <td th:utext="${user.userId}">...</td>
+            <td th:utext="${user.userLogin}">...</td>
+            <td th:utext="${user.userPassword}">...</td>
+            <td th:utext="${user.isOnline()}">...</td>
+            <td>
+                <ul>
+                    <li th:each="role: ${user.getRolesList()}" th:text="${role.getRoleName()}"></li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+</div>
+</html>
