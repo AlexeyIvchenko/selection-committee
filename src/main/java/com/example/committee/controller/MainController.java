@@ -1,10 +1,9 @@
 package com.example.committee.controller;
 
-import com.example.committee.dao.RoleDAO;
-import com.example.committee.dao.UserDAO;
-import com.example.committee.domain.AppRole;
-import com.example.committee.domain.AppUser;
-import com.example.committee.utils.FormCommand;
+import com.example.committee.domain.employee.AppRole;
+import com.example.committee.domain.employee.AppUser;
+import com.example.committee.service.AppRoleService;
+import com.example.committee.service.AppUserService;
 import com.example.committee.utils.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -12,10 +11,9 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
 import java.util.List;
@@ -23,19 +21,18 @@ import java.util.List;
 @Controller
 public class MainController {
     @Autowired
-    private UserDAO userDAO;
-
+    private AppUserService appUserService;
     @Autowired
-    private RoleDAO roleDAO;
+    private AppRoleService appRoleService;
 
-    @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
+    @GetMapping(value = {"/", "/welcome"})
     public String welcomePage(Model model) {
         model.addAttribute("title", "Welcome");
         model.addAttribute("message", "This is welcome page!");
         return "welcomePage";
     }
 
-    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    @GetMapping(value = "/admin")
     public String adminPage(Model model, Principal principal) {
 
         User loginedUser = (User) ((Authentication) principal).getPrincipal();
@@ -46,42 +43,37 @@ public class MainController {
         return "adminPage";
     }
 
-    @RequestMapping(value = "/usersListPage", method = RequestMethod.GET)
-    public String userListPage(@ModelAttribute("formCommand") FormCommand formCommand, Model model) {
-        List<AppUser> usersList = userDAO.getUsersList();
+    @GetMapping(value = "/usersListPage")
+    public String userListPage(@ModelAttribute("userForm") AppUser user, Model model) {
+        List<AppUser> usersList = appUserService.getAllUsers();
         model.addAttribute("usersList", usersList);
-        List<AppRole> rolesList = roleDAO.getAllRoles();
+        List<AppRole> rolesList = appRoleService.getAllRoles();
         model.addAttribute("rolesList", rolesList);
 
         return "usersListPage";
     }
 
-    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
-    public String addUser(@RequestParam(name = "userLogin") String userLogin,
-                          @RequestParam(name = "userPassword") String userPassword,
-                          @ModelAttribute("formCommand") FormCommand formCommand) {
-        AppUser user = new AppUser(userLogin, new BCryptPasswordEncoder().encode(userPassword), false);
-        userDAO.addUser(user);
-
-        List<Long> roleIdList = formCommand.getMultiCheckboxSelectedValues();
-        Long userId = userDAO.getUserByLogin(userLogin).getUserId();
-        roleDAO.setRolesToUser(userId, roleIdList);
+    @PostMapping(value = "/addUser")
+    public String addUser(@ModelAttribute("userForm") AppUser user) {
+        user.setUserPassword(new BCryptPasswordEncoder().encode(user.getUserPassword()));
+        user.setOnline(false);
+        appUserService.addUser(user);
 
         return "redirect:usersListPage";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @GetMapping(value = "/login")
     public String loginPage(Model model) {
-        return "loginPage";
+        return "loginForm";
     }
 
-    @RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
+    @GetMapping(value = "/logoutSuccessful")
     public String logoutSuccessfulPage(Model model) {
         model.addAttribute("title", "Logout");
         return "logoutSuccessfulPage";
     }
 
-    @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
+    @GetMapping(value = "/userInfo")
     public String userInfo(Model model, Principal principal) {
 
         User loginedUser = (User) ((Authentication) principal).getPrincipal();
@@ -89,10 +81,10 @@ public class MainController {
         String userInfo = WebUtils.toString(loginedUser);
         model.addAttribute("userInfo", userInfo);
 
-        return "userInfoPage";
+        return "userPage";
     }
 
-    @RequestMapping(value = "/403", method = RequestMethod.GET)
+    @GetMapping(value = "/403")
     public String accessDenied(Model model, Principal principal) {
 
         if (principal != null) {

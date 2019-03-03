@@ -1,9 +1,7 @@
 package com.example.committee.service;
 
-import com.example.committee.dao.RoleDAO;
-import com.example.committee.dao.UserDAO;
-import com.example.committee.domain.AppRole;
-import com.example.committee.domain.AppUser;
+import com.example.committee.domain.employee.AppRole;
+import com.example.committee.domain.employee.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,27 +13,25 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
-    private UserDAO userDAO;
-
-    @Autowired
-    private RoleDAO roleDAO;
+    private AppUserService appUserService;
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        AppUser user = this.userDAO.getUserByLogin(userName);
+        AppUser user = this.appUserService.getUserByLogin(userName);
         if (user == null) {
             throw new UsernameNotFoundException("User " + userName + " was not found in the database");
         }
 
-        List<AppRole> roleList = this.roleDAO.getRolesByUserId(user.getUserId());
+        Set<AppRole> roles = this.appUserService.getUserById(user.getUserId()).getRoles();
 
         List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
-        if (roleList != null) {
-            for (AppRole role : roleList) {
+        if (roles != null) {
+            for (AppRole role : roles) {
                 GrantedAuthority authority = new SimpleGrantedAuthority(role.getRoleName());
                 grantList.add(authority);
             }
