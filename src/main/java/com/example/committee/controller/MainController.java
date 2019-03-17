@@ -25,11 +25,16 @@ public class MainController {
     @Autowired
     private AppRoleService appRoleService;
 
-    @GetMapping(value = {"/", "/welcome"})
-    public String welcomePage(Model model) {
-        model.addAttribute("title", "Welcome");
-        model.addAttribute("message", "This is welcome page!");
-        return "welcomePage";
+    @GetMapping(value = "/userInfo")
+    public String userInfoPage(Model model, Principal principal) {
+        if (principal == null) {
+            return "login";
+        }
+        User loginedUser = (User) ((Authentication) principal).getPrincipal();
+        String userInfo = WebUtils.toString(loginedUser);
+        model.addAttribute("userInfo", userInfo);
+
+        return "userInfo";
     }
 
     @GetMapping(value = "/admin")
@@ -40,10 +45,10 @@ public class MainController {
         String userInfo = WebUtils.toString(loginedUser);
         model.addAttribute("userInfo", userInfo);
 
-        return "adminPage";
+        return "/adminPage";
     }
 
-    @GetMapping(value = "/usersListPage")
+    @GetMapping(value = "/admin/usersListPage")
     public String userListPage(@ModelAttribute("userForm") AppUser user, Model model) {
         List<AppUser> usersList = appUserService.getAllUsers();
         model.addAttribute("usersList", usersList);
@@ -53,18 +58,18 @@ public class MainController {
         return "usersListPage";
     }
 
-    @PostMapping(value = "/addUser")
+    @PostMapping(value = "/admin/addUser")
     public String addUser(@ModelAttribute("userForm") AppUser user) {
         user.setUserPassword(new BCryptPasswordEncoder().encode(user.getUserPassword()));
         user.setOnline(false);
         appUserService.addUser(user);
 
-        return "redirect:usersListPage";
+        return "redirect:/admin/usersListPage";
     }
 
-    @GetMapping(value = "/login")
+    @GetMapping(value = {"/", "/login"})
     public String loginPage(Model model) {
-        return "loginForm";
+        return "login";
     }
 
     @GetMapping(value = "/logoutSuccessful")
@@ -73,15 +78,9 @@ public class MainController {
         return "logoutSuccessfulPage";
     }
 
-    @GetMapping(value = "/userInfo")
+    @GetMapping(value = "/main")
     public String userInfo(Model model, Principal principal) {
-
-        User loginedUser = (User) ((Authentication) principal).getPrincipal();
-
-        String userInfo = WebUtils.toString(loginedUser);
-        model.addAttribute("userInfo", userInfo);
-
-        return "userPage";
+        return "main";
     }
 
     @GetMapping(value = "/403")

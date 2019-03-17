@@ -8,7 +8,7 @@
 </head>
 <body>
 <h2>Анкета работника завода</h2>
-<form th:action="@{/addRecruit}" class="form-horizontal" th:object="${recruitForm}" method="POST">
+<form th:action="@{/user/addRecruit}" class="form-horizontal" th:object="${recruitForm}" method="POST">
     <div class="form-group">
         <label class="control-label col-xs-3" for="recruitSurname">Фамилия:</label>
         <div class="col-xs-9">
@@ -219,5 +219,6 @@
         </div>
     </div>
 </form>
+
 </body>
 </html>

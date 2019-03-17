@@ -11,11 +11,9 @@
     <span th:utext="${#request.userPrincipal.name}"></span>
 </h3>
 <b>This is protected page!</b>
-<a th:href="@{/usersListPage}">UsersList</a>
+<a th:href="@{/admin/usersListPage}">UsersList</a>
 
 <br/><br/>
-
-<div th:if="${userInfo != null}" th:utext="${userInfo}"></div>
 
 </body>
 

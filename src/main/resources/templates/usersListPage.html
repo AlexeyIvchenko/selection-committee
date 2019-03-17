@@ -14,7 +14,7 @@
 <th:block th:include="/_menu"></th:block>
 <h1>Users list</h1>
 <div>
-    <form th:action="@{/addUser}" th:object="${userForm}" method="POST">
+    <form th:action="@{/admin/addUser}" th:object="${userForm}" method="POST">
         User login:
         <input type="text" name="userLogin" th:field="*{userLogin}"/>
         <br/>

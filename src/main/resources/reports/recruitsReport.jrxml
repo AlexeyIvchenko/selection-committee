@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="84feeac3-d1f7-4503-84bf-fc3fa153df55">
+    <subDataset name="dataset1" uuid="56941862-eb58-4a5e-b6c4-088a0f72a2bb">
+        <field name="city" class="java.lang.String">
+            <fieldDescription><![CDATA[_THIS]]></fieldDescription>
+        </field>
+    </subDataset>
+    <field name="recruitId" class="java.lang.Long"/>
+    <field name="surname" class="java.lang.String"/>
+    <field name="sex" class="java.lang.Boolean"/>
+    <field name="address" class="com.example.committee.domain.location.Address"/>
+    <title>
+        <band height="140" splitType="Stretch">
+            <staticText>
+                <reportElement x="138" y="28" width="258" height="20" uuid="f2127f63-b8c9-42e3-9e2f-54168dc12d0c"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" isBold="true" isItalic="true"/>
+                </textElement>
+                <text><![CDATA[Рекрут]]></text>
+            </staticText>
+        </band>
+    </title>
+    <detail>
+        <band height="70" splitType="Stretch">
+            <staticText>
+                <reportElement x="0" y="0" width="100" height="20" uuid="9956cc80-93d1-4fa2-bc73-8a39b6bb6c54"/>
+                <box>
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="1.0"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" isBold="true" isItalic="true" isUnderline="false"/>
+                </textElement>
+                <text><![CDATA[Id рекрута]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="0" y="20" width="100" height="20" uuid="e39f21d6-cc63-4eed-b9ca-a969588182e2"/>
+                <box>
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="1.0"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" isBold="true" isItalic="true" isUnderline="false"/>
+                </textElement>
+                <text><![CDATA[Фамилия]]></text>
+            </staticText>
+            <textField>
+                <reportElement stretchType="RelativeToTallestObject" x="100" y="0" width="100" height="20" uuid="5e7fd6df-c2e8-46ad-bede-49c8ded35107"/>
+                <box leftPadding="10">
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="1.0"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement>
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{recruitId}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement stretchType="RelativeToTallestObject" x="100" y="20" width="100" height="20" uuid="51b33611-df12-438b-9dff-969a7fbc4f4d"/>
+                <box leftPadding="10">
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="1.0"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement>
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{surname}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="0" y="40" width="100" height="20" uuid="8549d57f-5986-4a37-948f-022dc3af82f0"/>
+                <box>
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="1.0"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" isBold="true" isItalic="true" isUnderline="false"/>
+                </textElement>
+                <text><![CDATA[Пол]]></text>
+            </staticText>
+            <textField>
+                <reportElement stretchType="RelativeToTallestObject" x="100" y="40" width="100" height="20" uuid="23ba2962-0170-4287-834e-fa51c6fc2efc"/>
+                <box leftPadding="10">
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="1.0"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement>
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{sex}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="227" y="0" width="100" height="20" uuid="4ee5e419-3a55-4210-bfd8-3eddd751afb1"/>
+                <box>
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="1.0"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" isBold="true" isItalic="true" isUnderline="false"/>
+                </textElement>
+                <text><![CDATA[Улица]]></text>
+            </staticText>
+            <textField>
+                <reportElement stretchType="RelativeToTallestObject" x="327" y="0" width="100" height="20" uuid="23ba2962-0170-4287-834e-fa51c6fc2efc"/>
+                <box leftPadding="10">
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="1.0"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement>
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{address}.getStreetName()]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+</jasperReport>

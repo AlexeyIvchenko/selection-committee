@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/security/tags">
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="/"></a>
@@ -11,13 +11,20 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="/main">Main page</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/userInfo">User Info</a>
+                <a class="nav-link" href="/userInfo">My info</a>
             </li>
+
             <li class="nav-item">
-                <a class="nav-link" href="/admin">Admin</a>
+                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                    <a class="nav-link" href="/admin">Admin</a>
+                </sec:authorize>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/user/recruitForm">User</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" th:if="${#request.userPrincipal != null}" th:href="@{/logout}">Logout</a>

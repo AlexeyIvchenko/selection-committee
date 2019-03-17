@@ -9,6 +9,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
+import org.thymeleaf.spring5.SpringTemplateEngine;
 
 @Configuration
 @EnableWebSecurity
@@ -33,21 +36,34 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable();
 
-        http.authorizeRequests().antMatchers("/", "/login", "/logout").permitAll();
+        http.authorizeRequests().antMatchers("/", "/login", "/logout").permitAll()
 
-        http.authorizeRequests().antMatchers("/userInfo").access("hasAuthority('ROLE_USER')");
+                .antMatchers("/user/**").access("hasAuthority('ROLE_USER')")
 
-        http.authorizeRequests().antMatchers("/admin").access("hasAuthority('ROLE_ADMIN')");
+                .antMatchers("/admin/**").access("hasAuthority('ROLE_ADMIN')")
 
-        http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
+                .and().exceptionHandling().accessDeniedPage("/403");
 
         http.authorizeRequests().and().formLogin()//
                 .loginProcessingUrl("/j_spring_security_check")
                 .loginPage("/login")//
-                .defaultSuccessUrl("/userAccountInfo")//
+                .defaultSuccessUrl("/main")//
                 .failureUrl("/login?error=true")//
                 .usernameParameter("username")//
                 .passwordParameter("password")
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/logoutSuccessful");
+    }
+
+    @Bean
+    public TemplateEngine templateEngine(){
+        SpringTemplateEngine springTemplateEngine = new SpringTemplateEngine();
+        springTemplateEngine.setDialect(new SpringSecurityDialect());
+        springTemplateEngine.setEnableSpringELCompiler(true);
+        return springTemplateEngine;
+    }
+
+    @Bean
+    public SpringSecurityDialect springSecurityDialect(){
+        return new SpringSecurityDialect();
     }
 }

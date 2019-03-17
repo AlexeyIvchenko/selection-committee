@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.sql.Date;
+import javax.servlet.http.HttpServletResponse;
+import java.io.InputStream;
 import java.util.List;
 
 @Controller
@@ -30,7 +31,7 @@ public class RecruitController {
     @Autowired
     private CityService cityService;
 
-    @GetMapping("/recruitForm")
+    @GetMapping("/user/recruitForm")
     public String showRecruitForm(@ModelAttribute("recruitForm") Recruit recruitForm, Model model) {
         List<Nationality> nationalitiesList = nationalityService.getAllNationalities();
         List<Region> regionsList = regionService.getAllRegions();
@@ -47,9 +48,10 @@ public class RecruitController {
         return "recruitForm";
     }
 
-    @PostMapping("/addRecruit")
+    @PostMapping("/user/addRecruit")
     public String addRecruit(@ModelAttribute("recruitForm") Recruit recruit) {
         recruitService.addRecruit(recruit);
         return "redirect:recruitForm";
     }
+
 }
