@@ -9,9 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
-import org.thymeleaf.spring5.SpringTemplateEngine;
 
 @Configuration
 @EnableWebSecurity
@@ -54,16 +52,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/logoutSuccessful");
     }
 
-    @Bean
-    public TemplateEngine templateEngine(){
-        SpringTemplateEngine springTemplateEngine = new SpringTemplateEngine();
-        springTemplateEngine.setDialect(new SpringSecurityDialect());
-        springTemplateEngine.setEnableSpringELCompiler(true);
-        return springTemplateEngine;
-    }
-
-    @Bean
-    public SpringSecurityDialect springSecurityDialect(){
-        return new SpringSecurityDialect();
-    }
+//    @Bean
+//    public SpringSecurityDialect springSecurityDialect(){
+//        SpringSecurityDialect dialect = new SpringSecurityDialect();
+//        return dialect;
+//    }
 }
