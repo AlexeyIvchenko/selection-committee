@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <!--<link rel="stylesheet" href="./css/bootstrap.min.css"/>-->
-    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
+    <link href="../static/css/bootstrap.min.css" th:href="@{/static/css/bootstrap.min.css}" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Список пользователей приложения</title>
 </head>
@@ -30,30 +29,34 @@
     </li>
     <input type="submit" value="Add"/>
 </form>
+
+<div class="container">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <tr class="active">
+                <th>Id</th>
+                <th>Login</th>
+                <th>Password</th>
+                <th>isOnline</th>
+                <th>Roles</th>
+            </tr>
+            <tr th:each="user: ${usersList}">
+                <td th:utext="${user.userId}">...</td>
+                <td th:utext="${user.userLogin}">...</td>
+                <td th:utext="${user.userPassword}">...</td>
+                <td th:utext="${user.isOnline()}">...</td>
+                <td>
+                    <ul>
+                        <li th:each="role: ${user.getRoles()}" th:text="${role.getRoleName()}"></li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>
-<div>
-    <table border="1">
-        <tr>
-            <th>Id</th>
-            <th>Login</th>
-            <th>Password</th>
-            <th>isOnline</th>
-            <th>Roles</th>
-        </tr>
-        <tr th:each="user: ${usersList}">
-            <td th:utext="${user.userId}">...</td>
-            <td th:utext="${user.userLogin}">...</td>
-            <td th:utext="${user.userPassword}">...</td>
-            <td th:utext="${user.isOnline()}">...</td>
-            <td>
-                <ul>
-                    <li th:each="role: ${user.getRoles()}" th:text="${role.getRoleName()}"></li>
-                </ul>
-            </td>
-        </tr>
-    </table>
-</div>
+
 </body>
+
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/popper.min.js"></script>

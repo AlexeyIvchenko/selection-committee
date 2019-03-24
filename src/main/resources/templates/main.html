@@ -1,10 +1,8 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
     <title>User Info</title>
-
-    <link rel="stylesheet" href="css/bootstrap.min.css"/>
-
 </head>
 <body>
 <th:block th:include="/_menu"></th:block>
@@ -12,11 +10,23 @@
 <!--<p sec:authorize="hasRole('ROLE_ADMIN')">-->
 <!--Hello-->
 <!--</p>-->
+<div class="container" style="background-color: #c1e2b3">
+    <div class="row">
+        <div class="col-md-4" style="background-color: darkorange">Left</div>
+        <div class="col-md-4" style="background-color: blueviolet">Center</div>
+        <div class="col-md-4" style="background-color: seagreen">Right</div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        Ваши вопросы
+    </div>
+</div>
 
 </body>
 
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/popper.min.js"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/js/popper.js}"></script>
 
 </html>
