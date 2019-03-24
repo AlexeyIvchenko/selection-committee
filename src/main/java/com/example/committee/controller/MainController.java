@@ -55,7 +55,7 @@ public class MainController {
         List<AppRole> rolesList = appRoleService.getAllRoles();
         model.addAttribute("rolesList", rolesList);
 
-        return "usersListPage";
+        return "/usersListPage";
     }
 
     @PostMapping(value = "/admin/addUser")

@@ -1,72 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Список пользователей приложения</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <title>Title</title>
 </head>
 <body>
 <th:block th:include="/_menu"></th:block>
-<h1>Users list</h1>
-<div>
-    <form th:action="@{/admin/addUser}" th:object="${userForm}" method="POST">
-        User login:
-        <input type="text" name="userLogin" th:field="*{userLogin}"/>
-        <br/>
-        User password:
-        <input type="text" name="userPassword"/>
-        <br/>
-        <!--<select th:field="*{roleId}">-->
-            <!--<option th:each="role: ${rolesList}"-->
-                    <!--th:value="${role.getRoleId()}"-->
-                    <!--th:text="${role.getRoleName()}"></option>-->
-        <!--</select>-->
 
-        <li th:each="role: ${rolesList}">
-            <input type="checkbox"
-                   th:field="*{roles}"
-                   th:value="${role.roleId}"/>
-            <label th:text="${role.roleName}"></label>
-        </li>
-        <input type="submit" value="Add"/>
-    </form>
-</div>
-<div>
-    <table border="1">
-        <tr>
-            <th>Id</th>
-            <th>Login</th>
-            <th>Password</th>
-            <th>isOnline</th>
-            <th>Roles</th>
-        </tr>
-        <tr th:each="user: ${usersList}">
-            <td th:utext="${user.userId}">...</td>
-            <td th:utext="${user.userLogin}">...</td>
-            <td th:utext="${user.userPassword}">...</td>
-            <td th:utext="${user.isOnline()}">...</td>
-            <td>
-                <ul>
-                    <li th:each="role: ${user.getRoles()}" th:text="${role.getRoleName()}"></li>
-                </ul>
-            </td>
-        </tr>
-    </table>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
-        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-        crossorigin="anonymous"></script>
 </body>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/popper.min.js"></script>
 </html>
