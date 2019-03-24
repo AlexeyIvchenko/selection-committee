@@ -1,91 +1,91 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/security/tags">
 <body>
-<!--<nav class="navbar navbar-expand-lg navbar-light bg-light">-->
-    <!--&lt;!&ndash;<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"&ndash;&gt;-->
-            <!--&lt;!&ndash;aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">&ndash;&gt;-->
-        <!--&lt;!&ndash;<span class="navbar-toggler-icon"></span>&ndash;&gt;-->
-    <!--&lt;!&ndash;</button>&ndash;&gt;-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"-->
+            <!--aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+        <!--<span class="navbar-toggler-icon"></span>-->
+    <!--</button>-->
 
-    <!--&lt;!&ndash; Классы navbar и navbar-default (базовые классы меню) &ndash;&gt;-->
-    <!--<nav class="navbar navbar-default">-->
-        <!--&lt;!&ndash; Контейнер (определяет ширину Navbar) &ndash;&gt;-->
-        <!--<div class="container">-->
-            <!--&lt;!&ndash; Заголовок &ndash;&gt;-->
-            <!--<div class="navbar-header">-->
-                <!--&lt;!&ndash; Кнопка «Гамбургер» отображается только в мобильном виде (предназначена для открытия основного содержимого Navbar) &ndash;&gt;-->
-                <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main">-->
-                    <!--<span class="icon-bar"></span>-->
-                    <!--<span class="icon-bar"></span>-->
-                    <!--<span class="icon-bar"></span>-->
-                <!--</button>-->
-                <!--&lt;!&ndash; Бренд или название сайта (отображается в левой части меню) &ndash;&gt;-->
-                <!--<a class="navbar-brand" href="#">Brand</a>-->
-            <!--</div>-->
-            <!--&lt;!&ndash; Основная часть меню (может содержать ссылки, формы и другие элементы) &ndash;&gt;-->
-            <!--<div class="collapse navbar-collapse" id="navbar-main">-->
-                <!--&lt;!&ndash; Содержимое основной части &ndash;&gt;-->
+    <!-- Классы navbar и navbar-default (базовые классы меню) -->
+    <nav class="navbar navbar-default">
+        <!-- Контейнер (определяет ширину Navbar) -->
+        <div class="container">
+            <!-- Заголовок -->
+            <div class="navbar-header">
+                <!-- Кнопка «Гамбургер» отображается только в мобильном виде (предназначена для открытия основного содержимого Navbar) -->
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- Бренд или название сайта (отображается в левой части меню) -->
+                <a class="navbar-brand" href="#">Brand</a>
+            </div>
+            <!-- Основная часть меню (может содержать ссылки, формы и другие элементы) -->
+            <div class="collapse navbar-collapse" id="navbar-main">
+                <!-- Содержимое основной части -->
 
-                <!--<ul class="nav navbar-nav">-->
-                    <!--<li><a href="/main">Главная</a></li>-->
-                    <!--<li><a href="/userInfo">Моя информация</a></li>-->
-                    <!--<li><a href="/user/recruitForm">Пользователю</a></li>-->
-                    <!--<li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/admin">Администратору</a></li>-->
-                    <!--<li><a th:if="${#request.userPrincipal != null}" th:href="@{/logout}">Выход</a></li>-->
+                <ul class="nav navbar-nav">
+                    <li><a href="/main">Главная</a></li>
+                    <li><a href="/userInfo">Моя информация</a></li>
+                    <li><a href="/user/recruitForm">Пользователю</a></li>
+                    <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/admin">Администратору</a></li>
+                    <li><a th:if="${#request.userPrincipal != null}" th:href="@{/logout}">Выход</a></li>
 
-                    <!--&lt;!&ndash; Выпадающий список &ndash;&gt;-->
-                    <!--<li class="dropdown">-->
-                        <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown">Раздел <span class="caret"></span></a>-->
-                        <!--<ul class="dropdown-menu">-->
-                            <!--<li><a href="#">Ссылка</a></li>-->
-                            <!--<li><a href="#">Ссылка</a></li>-->
-                            <!--<li role="separator" class="divider"></li>-->
-                            <!--<li><a href="#">Ссылка</a></li>-->
-                        <!--</ul>-->
-                    <!--</li>-->
-                <!--</ul>-->
+                    <!-- Выпадающий список -->
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Раздел <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Ссылка</a></li>
+                            <li><a href="#">Ссылка</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Ссылка</a></li>
+                        </ul>
+                    </li>
+                </ul>
 
-                <!--&lt;!&ndash; Блок, расположенный справа &ndash;&gt;-->
-                <!--<ul class="nav navbar-nav navbar-right">-->
-                    <!--&lt;!&ndash; Ссылка &ndash;&gt;-->
-                    <!--<li><a href="#">Ссылка</a></li>-->
-                    <!--&lt;!&ndash; Выпадающий список &ndash;&gt;-->
-                    <!--<li class="dropdown">-->
-                        <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown">Раздел <span class="caret"></span></a>-->
-                        <!--<ul class="dropdown-menu">-->
-                            <!--<li><a href="#">Ссылка</a></li>-->
-                            <!--<li><a href="#">Ссылка</a></li>-->
-                        <!--</ul>-->
-                    <!--</li>-->
-                <!--</ul>-->
+                <!-- Блок, расположенный справа -->
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- Ссылка -->
+                    <li><a href="#">Ссылка</a></li>
+                    <!-- Выпадающий список -->
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Раздел <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Ссылка</a></li>
+                            <li><a href="#">Ссылка</a></li>
+                        </ul>
+                    </li>
+                </ul>
 
-            <!--</div>-->
-        <!--</div>-->
-    <!--</nav>-->
-<!--</nav>-->
-
-<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+            </div>
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="about.php">About</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="contact.php">Contact</a></li>
-            </ul>
-        </div>
-    </div>
+    </nav>
 </nav>
+
+<!--<nav class="navbar navbar-inverse navbar-static-top" role="navigation">-->
+    <!--<div class="container">-->
+        <!--<div class="navbar-header">-->
+            <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">-->
+                <!--<span class="sr-only">Toggle navigation</span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+        <!--</div>-->
+
+        <!--&lt;!&ndash; Collect the nav links, forms, and other content for toggling &ndash;&gt;-->
+        <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+            <!--<ul class="nav navbar-nav">-->
+                <!--<li><a href="index.php">Home</a></li>-->
+                <!--<li><a href="about.php">About</a></li>-->
+                <!--<li><a href="#portfolio">Portfolio</a></li>-->
+                <!--<li><a href="#">Blog</a></li>-->
+                <!--<li><a href="contact.php">Contact</a></li>-->
+            <!--</ul>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</nav>-->
 </body>
 </html>
