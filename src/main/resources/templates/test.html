@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--<link rel="stylesheet" href="./css/bootstrap.min.css"/>-->
+    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Список пользователей приложения</title>
+</head>
+<body>
+<th:block th:include="/_menu"></th:block>
+
+<form th:action="@{/admin/addUser}" th:object="${userForm}" method="POST">
+    User login:
+    <input type="text" name="userLogin" th:field="*{userLogin}"/>
+    <br/>
+    User password:
+    <input type="text" name="userPassword"/>
+    <br/>
+    <!--<select th:field="*{roleId}">-->
+    <!--<option th:each="role: ${rolesList}"-->
+    <!--th:value="${role.getRoleId()}"-->
+    <!--th:text="${role.getRoleName()}"></option>-->
+    <!--</select>-->
+
+    <li th:each="role: ${rolesList}">
+        <input type="checkbox"
+               th:field="*{roles}"
+               th:value="${role.roleId}"/>
+        <label th:text="${role.roleName}"></label>
+    </li>
+    <input type="submit" value="Add"/>
+</form>
+</div>
+<div>
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Login</th>
+            <th>Password</th>
+            <th>isOnline</th>
+            <th>Roles</th>
+        </tr>
+        <tr th:each="user: ${usersList}">
+            <td th:utext="${user.userId}">...</td>
+            <td th:utext="${user.userLogin}">...</td>
+            <td th:utext="${user.userPassword}">...</td>
+            <td th:utext="${user.isOnline()}">...</td>
+            <td>
+                <ul>
+                    <li th:each="role: ${user.getRoles()}" th:text="${role.getRoleName()}"></li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+</html>

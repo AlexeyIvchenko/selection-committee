@@ -48,14 +48,24 @@ public class MainController {
         return "/adminPage";
     }
 
-    @GetMapping(value = "/admin/usersListPage")
-    public String userListPage(@ModelAttribute("userForm") AppUser user, Model model) {
+    @GetMapping(value = {"/admin/test"})
+    public String getTest(@ModelAttribute("userForm") AppUser user, Model model) {
         List<AppUser> usersList = appUserService.getAllUsers();
         model.addAttribute("usersList", usersList);
         List<AppRole> rolesList = appRoleService.getAllRoles();
         model.addAttribute("rolesList", rolesList);
 
-        return "/usersListPage";
+        return "test";
+    }
+
+    @GetMapping(value = {"/test"})
+    public String getTest2(@ModelAttribute("userForm") AppUser user, Model model) {
+        List<AppUser> usersList = appUserService.getAllUsers();
+        model.addAttribute("usersList", usersList);
+        List<AppRole> rolesList = appRoleService.getAllRoles();
+        model.addAttribute("rolesList", rolesList);
+
+        return "test";
     }
 
     @PostMapping(value = "/admin/addUser")

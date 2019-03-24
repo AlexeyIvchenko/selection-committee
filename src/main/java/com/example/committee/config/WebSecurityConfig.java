@@ -38,7 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers("/user/**").access("hasAuthority('ROLE_USER')")
 
-                .antMatchers("/admin/**").access("hasAuthority('ROLE_ADMIN')")
+                //.antMatchers("/admin/**").access("hasAuthority('ROLE_ADMIN')")
 
                 .and().exceptionHandling().accessDeniedPage("/403");
 
