@@ -29,4 +29,8 @@ public class AppUserService {
     public void addUser(AppUser user) {
         this.appUserRepository.save(user);
     }
+
+    public void deleteUserById(Long userId) {
+        this.appUserRepository.deleteById(userId);
+    }
 }

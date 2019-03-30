@@ -19,6 +19,8 @@ public class AppRole {
     private Long roleId;
     @Column(name = "role_name")
     private String roleName;
+    @Column(name = "role_description")
+    private String roleDescription;
     @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
     private Set<AppUser> users = new HashSet<>();
 }

@@ -11,9 +11,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
@@ -45,27 +43,24 @@ public class MainController {
         String userInfo = WebUtils.toString(loginedUser);
         model.addAttribute("userInfo", userInfo);
 
-        return "/adminPage";
+        return "adminPage";
     }
 
-    @GetMapping(value = {"/admin/test"})
-    public String getTest(@ModelAttribute("userForm") AppUser user, Model model) {
+    @GetMapping(value = {"/admin/usersListPage"})
+    public String getUsersListPage(@ModelAttribute("userForm") AppUser user, Model model) {
         List<AppUser> usersList = appUserService.getAllUsers();
         model.addAttribute("usersList", usersList);
         List<AppRole> rolesList = appRoleService.getAllRoles();
         model.addAttribute("rolesList", rolesList);
 
-        return "test";
+        return "usersListPage";
     }
 
-    @GetMapping(value = {"/test"})
-    public String getTest2(@ModelAttribute("userForm") AppUser user, Model model) {
-        List<AppUser> usersList = appUserService.getAllUsers();
-        model.addAttribute("usersList", usersList);
-        List<AppRole> rolesList = appRoleService.getAllRoles();
-        model.addAttribute("rolesList", rolesList);
+    @GetMapping(value = "/admin/deleteUser")
+    public String deleteUser(@RequestParam(name = "userId") Long userId) {
+        appUserService.deleteUserById(userId);
+        return "redirect:/admin/usersListPage";
 
-        return "test";
     }
 
     @PostMapping(value = "/admin/addUser")
