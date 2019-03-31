@@ -31,27 +31,27 @@ public class RecruitController {
     @Autowired
     private CityService cityService;
 
-    @GetMapping("/user/recruitForm")
+    @GetMapping("/user/recruitQuestionary")
     public String showRecruitForm(@ModelAttribute("recruitForm") Recruit recruitForm, Model model) {
         List<Nationality> nationalitiesList = nationalityService.getAllNationalities();
         List<Region> regionsList = regionService.getAllRegions();
         List<Office> officesList = officeService.getAllOffices();
         List<City> citiesList = cityService.getAllCities();
-        List<Integer> examYearsList = DateWorker.getValidExamYears();
+        //List<Integer> examYearsList = DateWorker.getValidExamYears();
 
         model.addAttribute("nationalitiesList", nationalitiesList);
         model.addAttribute("regionsList", regionsList);
         model.addAttribute("officesList", officesList);
         model.addAttribute("citiesList", citiesList);
-        model.addAttribute("validExamYears", examYearsList);
+        //model.addAttribute("validExamYears", examYearsList);
 
-        return "recruitForm";
+        return "recruitQuestionary";
     }
 
     @PostMapping("/user/addRecruit")
     public String addRecruit(@ModelAttribute("recruitForm") Recruit recruit) {
         recruitService.addRecruit(recruit);
-        return "redirect:recruitForm";
+        return "redirect:/user/recruitQuestionary";
     }
 
 }

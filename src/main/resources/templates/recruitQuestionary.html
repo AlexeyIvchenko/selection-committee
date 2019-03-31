@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link th:href="@{/css/bootstrapValidator.min.css}" rel="stylesheet">
+    <link th:href="@{/css/jquery-editable-select.min.css}" rel="stylesheet">
+
+
+    <meta charset="UTF-8">
+    <title>Добавление анкетных данных абитуриента</title>
+</head>
+
+<body>
+<th:block th:include="/_menu"></th:block>
+
+<div class="w3-content" style="max-width:1600px">
+
+    <!-- Grid -->
+    <div class="w3-row w3-padding w3-border">
+
+        <!-- Blog entries -->
+        <div class="w3-col l12 s12">
+
+            <!-- Blog entry -->
+            <div class="w3-container w3-white w3-margin w3-padding-large">
+
+                <div class="select-boxes">
+
+                    <div class="container">
+                        <div class="col-lg-9">
+
+                            <form class="form-horizontal" th:action="@{/user/addRecruit}" th:object="${recruitForm}"
+                                  method="post" id="registerForm">
+                                <fieldset>
+                                    <legend> Общая информация</legend>
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Фамилия</label>
+                                        <div class="col-md-6  inputGroupContainer">
+                                            <div class="input-group"> <span class="input-group-addon"><i
+                                                    class="glyphicon glyphicon-user"></i></span>
+                                                <input name="recruitSurname" placeholder="Фамилия" class="form-control"
+                                                       type="text" th:field="*{surname}" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Имя</label>
+                                        <div class="col-md-6  inputGroupContainer">
+                                            <div class="input-group"> <span class="input-group-addon"><i
+                                                    class="glyphicon glyphicon-user"></i></span>
+                                                <input name="recruitName" placeholder="Имя" class="form-control"
+                                                       type="text" th:field="*{name}" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Отчество</label>
+                                        <div class="col-md-6  inputGroupContainer">
+                                            <div class="input-group"> <span class="input-group-addon"><i
+                                                    class="glyphicon glyphicon-user"></i></span>
+                                                <input name="secondName" placeholder="Не обязательный пункт"
+                                                       class="form-control" th:field="*{secondName}" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Дата рождения</label>
+                                        <div class="col-md-6  inputGroupContainer">
+                                            <div class="input-group"> <span class="input-group-addon"><i
+                                                    class="glyphicon glyphicon-user"></i></span>
+                                                <input name="birthday" placeholder="Тут должен быть формат даты"
+                                                       class="form-control" th:field="*{birthday}" type="date" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Пол</label>
+                                        <div class="col-md-6  inputGroupContainer">
+                                            <div class="input-group">
+                                                <label class="radio-inline">
+                                                    <input name="sex" type="radio" value="true" required>Мужской
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input name="sex" type="radio" value="false" required>Женский
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Семейное положение</label>
+                                        <div class="col-md-6  inputGroupContainer">
+                                            <div class="input-group">
+                                                <label class="radio-inline">
+                                                    <input name="familyStatus" type="radio" value="true"
+                                                           required>Женат (замужем)
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input name="familyStatus" type="radio" value="false"
+                                                           required>Не женат (не замужем)
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Национальность</label>
+                                        <div class="col-md-6  inputGroupContainer">
+                                            <div class="input-group"> <span class="input-group-addon"><i
+                                                    class="glyphicon glyphicon-user"></i></span>
+
+                                                <select name="nationality" class="form-control"
+                                                        th:field="*{nationality}"
+                                                        required>
+                                                    <option th:each="nationality: ${nationalitiesList}"
+                                                            th:value="${nationality.getNationalityId()}"
+                                                            th:text="${nationality.getNationalityName()}"></option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <legend> Место жительства</legend>
+
+                                    <!-- <div class="form-group">
+                                        <label class="col-md-4 control-label">Phone</label>
+                                        <div class="col-md-6  inputGroupContainer">
+                                            <div class="input-group"> <span class="input-group-addon"><i
+                                                        class="glyphicon glyphicon-earphone"></i></span>
+                                                <input name="phone" placeholder="(000)000-0000" class="form-control"
+                                                    type="text">
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <br>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Город</label>
+                                        <div class="col-md-6  inputGroupContainer">
+                                            <div class="input-group"> <span class="input-group-addon"><i
+                                                    class="glyphicon glyphicon-home"></i></span>
+
+                                                <select name="city" class="form-control editable-select"
+                                                        th:field="*{address.city}" required>
+                                                    <option th:each="city: ${citiesList}"
+                                                            th:value="${city.getCityId()}"
+                                                            th:text="${city.getCityName()}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Деревня/село</label>
+                                        <div class="col-md-6  inputGroupContainer">
+                                            <div class="input-group"> <span class="input-group-addon"><i
+                                                    class="glyphicon glyphicon-home"></i></span>
+                                                <input name="villageName" placeholder="Не обязательный параметр"
+                                                       class="form-control" th:field="*{address.villageName}"
+                                                       type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Улица</label>
+                                        <div class="col-md-6  inputGroupContainer">
+                                            <div class="input-group"> <span class="input-group-addon"><i
+                                                    class="glyphicon glyphicon-home"></i></span>
+                                                <input name="streetName" placeholder="Улица" class="form-control"
+                                                       th:field="*{address.streetName}" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Дом</label>
+                                        <div class="col-md-6  inputGroupContainer">
+                                            <div class="input-group"> <span class="input-group-addon"><i
+                                                    class="glyphicon glyphicon-home"></i></span>
+                                                <input name="houseNumber" placeholder="Номер дома"
+                                                       class="form-control" th:field="*{address.houseNumber}"
+                                                       type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Корпус</label>
+                                        <div class="col-md-6  inputGroupContainer">
+                                            <div class="input-group"> <span class="input-group-addon"><i
+                                                    class="glyphicon glyphicon-home"></i></span>
+                                                <input name="blockNumber" placeholder="Не обязательный параметр"
+                                                       class="form-control" th:field="*{address.blockNumber}"
+                                                       type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Квартира</label>
+                                        <div class="col-md-6  inputGroupContainer">
+                                            <div class="input-group"> <span class="input-group-addon"><i
+                                                    class="glyphicon glyphicon-home"></i></span>
+                                                <input name="apartmentNumber" placeholder="Не обязательный параметр"
+                                                       class="form-control" th:field="*{address.apartmentNumber}"
+                                                       type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Военкомат</label>
+                                        <div class="col-md-6  inputGroupContainer">
+                                            <div class="input-group"> <span class="input-group-addon"><i
+                                                    class="glyphicon glyphicon-home"></i></span>
+
+                                                <select name="office" class="form-control"
+                                                        th:field="*{office}" required>
+                                                    <option th:each="office: ${officesList}"
+                                                            th:value="${office.getOfficeId()}"
+                                                            th:text="${office.getOfficeName()}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">About </label>
+                                        <div class="col-md-6  inputGroupContainer">
+                                            <div class="input-group"> <span class="input-group-addon"><i
+                                                    class="glyphicon glyphicon-pencil"></i></span>
+                                                <textarea class="form-control" name="comment"
+                                                          placeholder="About "></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <legend> Паспортные данные</legend>
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Паспорт</label>
+                                        <div class="col-md-6  inputGroupContainer">
+                                            <div class="input-group"> <span class="input-group-addon"><i
+                                                    class="glyphicon glyphicon-user"></i></span>
+                                                <input name="passportNumber" placeholder="Серия и номер"
+                                                       class="form-control mask-passport-number"
+                                                       th:field="*{passport.passportNumber}" type="text" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Кем выдан</label>
+                                        <div class="col-md-6  inputGroupContainer">
+                                            <div class="input-group"> <span class="input-group-addon"><i
+                                                    class="glyphicon glyphicon-user"></i></span>
+                                                <input name="passportIssuedBy" placeholder="Кем выдан"
+                                                       class="form-control" type="text"
+                                                       th:field="*{passport.passportIssuedBy}" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Дата выдачи</label>
+                                        <div class="col-md-6  inputGroupContainer">
+                                            <div class="input-group"> <span class="input-group-addon"><i
+                                                    class="glyphicon glyphicon-user"></i></span>
+                                                <input name="passportDate" class="form-control" type="date"
+                                                       th:field="*{passport.passportDate}"
+                                                       required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Button -->
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label"></label>
+                                        <div class="col-md-4">
+                                            <button type="submit" class="btn btn-warning">Send <span
+                                                    class="glyphicon glyphicon-send"></span></button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script th:src="@{/js/jquery.js}" src="../static/js/jquery.js" type="text/javascript"></script>
+<script th:src="@{/js/bootstrap.js}" src="../static/js/bootstrap.js" type="text/javascript"></script>
+<script th:src="@{/js/popper.js}" src="../static/js/popper.js" type="text/javascript"></script>
+
+
+<script th:src="@{/js/bootstrapValidator.min.js}" src="../static/js/bootstrapValidator.min.js"
+        type="text/javascript"></script>
+<script th:src="@{/js/jquery-editable-select.min.js}" src="../static/js/jquery-editable-select.min.js"
+        type="text/javascript"></script>
+<script th:src="@{/js/jquery.maskedinput.min.js}" src="../static/js/jquery.maskedinput.min.js" type="text/javascript"></script>
+<script th:src="@{/js/recruitValidation.js}" src="../static/js/recruitValidation.js" type="text/javascript"></script>
+
+
+</html>
