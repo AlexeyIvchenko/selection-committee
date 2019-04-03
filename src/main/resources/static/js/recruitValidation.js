@@ -1,10 +1,4 @@
 $(document).ready(function () {
-    $('.editable-select').editableSelect({
-        effects: 'slide',
-        duration: 200
-    });
-
-    $('.editable-select').siblings('.es-list').find('li.selected').data('value');
 
     $('#registerForm').bootstrapValidator({
         message: 'This value is not valid',

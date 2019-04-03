@@ -6,17 +6,18 @@ import com.example.committee.domain.location.Region;
 import com.example.committee.domain.personal.Nationality;
 import com.example.committee.domain.personal.Recruit;
 import com.example.committee.service.*;
+import com.example.committee.utils.CascadingSelectHelper;
 import com.example.committee.utils.DateWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class RecruitController {
@@ -32,7 +33,7 @@ public class RecruitController {
     private CityService cityService;
 
     @GetMapping("/user/recruitQuestionary")
-    public String showRecruitForm(@ModelAttribute("recruitForm") Recruit recruitForm, Model model) {
+    public String showRecruitForm(@ModelAttribute("recruitForm") Recruit recruitForm, @ModelAttribute("cascadingSelectHelper") CascadingSelectHelper cascadingSelectHelper, Model model) {
         List<Nationality> nationalitiesList = nationalityService.getAllNationalities();
         List<Region> regionsList = regionService.getAllRegions();
         List<Office> officesList = officeService.getAllOffices();
