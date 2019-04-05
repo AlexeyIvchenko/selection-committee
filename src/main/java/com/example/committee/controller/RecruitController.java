@@ -65,4 +65,19 @@ public class RecruitController {
         List<City> citiesList = cityService.getAllCitiesInRegion(region);
         return citiesList;
     }
+
+    @GetMapping(value = "/user/recruitsListPage")
+    public String getRecruitsListPage(Model model) {
+        List<Recruit> recruitsList = recruitService.getAllRecruits();
+        model.addAttribute("recruitsList", recruitsList);
+        return "recruitsListPage";
+    }
+
+    @GetMapping(value = "/user/deleteRecruit")
+    public String deleteRecruit(@RequestParam(name = "recruitId") Long recruitId) {
+        recruitService.deleteRecruitById(recruitId);
+        return "redirect:/user/recruitsListPage";
+    }
+
+
 }

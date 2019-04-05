@@ -19,7 +19,7 @@ public class RecruitService {
         this.recruitRepository = recruitRepository;
     }
 
-    public List<Recruit> findAll() {
+    public List<Recruit> getAllRecruits() {
         return recruitRepository.findAll();
     }
 
@@ -29,6 +29,10 @@ public class RecruitService {
 
     public void addRecruit(Recruit recruit) {
         this.recruitRepository.save(recruit);
+    }
+
+    public void deleteRecruitById(Long recruitId) {
+        this.recruitRepository.deleteById(recruitId);
     }
 
     public JRDataSource getDataSource() {

@@ -38,15 +38,15 @@ public class Recruit {
     @Column(name = "recruit_family_status")
     private boolean familyStatus;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "recruit_nationality_id")
     private Nationality nationality;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "recruit_office_id")
     private Office office;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "recruit_address_id")
     private Address address;
 

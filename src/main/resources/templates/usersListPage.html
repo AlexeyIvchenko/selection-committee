@@ -107,14 +107,6 @@
                         </ul>
                     </td>
 
-                    <!--<td>-->
-                    <!--<form id="form2" th:action="@{/deleteUser}" method="POST">-->
-                    <!--<input type="hidden" name="userId" th:value="${user.userId}"/>-->
-                    <!--<button class="btn btn-primary" type="submit"><i class="icon-user icon-white"></i>Удалить-->
-                    <!--</button>-->
-                    <!--</form>-->
-                    <!--</td>-->
-
                     <td>
                         <a th:href="@{/admin/deleteUser(userId=${user.userId})}"
                            class="btn btn-danger delete" )>Удалить</a>
