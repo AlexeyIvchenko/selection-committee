@@ -1,6 +1,7 @@
 package com.example.committee.service;
 
 import com.example.committee.domain.location.City;
+import com.example.committee.domain.location.Region;
 import com.example.committee.repository.CityRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,5 +17,9 @@ public class CityService {
 
     public List<City> getAllCities() {
         return this.cityRepository.findAll();
+    }
+
+    public List<City> getAllCitiesInRegion(Region region) {
+        return this.cityRepository.findCitiesByRegion(region);
     }
 }

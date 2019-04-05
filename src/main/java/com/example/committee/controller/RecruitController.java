@@ -33,12 +33,15 @@ public class RecruitController {
     private CityService cityService;
 
     @GetMapping("/user/recruitQuestionary")
-    public String showRecruitForm(@ModelAttribute("recruitForm") Recruit recruitForm, @ModelAttribute("cascadingSelectHelper") CascadingSelectHelper cascadingSelectHelper, Model model) {
+    public String showRecruitForm(@ModelAttribute("recruitForm") Recruit recruitForm, @ModelAttribute("selectRegion") Region region, @ModelAttribute("selectCity") City city, Model model) {
         List<Nationality> nationalitiesList = nationalityService.getAllNationalities();
         List<Region> regionsList = regionService.getAllRegions();
         List<Office> officesList = officeService.getAllOffices();
         List<City> citiesList = cityService.getAllCities();
         //List<Integer> examYearsList = DateWorker.getValidExamYears();
+
+        CascadingSelectHelper cascadingSelectHelper = new CascadingSelectHelper();
+        model.addAttribute("cascadingSelectHelper", cascadingSelectHelper);
 
         model.addAttribute("nationalitiesList", nationalitiesList);
         model.addAttribute("regionsList", regionsList);
@@ -55,4 +58,11 @@ public class RecruitController {
         return "redirect:/user/recruitQuestionary";
     }
 
+    @RequestMapping(value = "/cities", method = RequestMethod.GET)
+    public @ResponseBody
+    List<City> findAllCities(@RequestParam(value = "regionId", required = true) Long regionId) {
+        Region region = regionService.getRegionById(regionId);
+        List<City> citiesList = cityService.getAllCitiesInRegion(region);
+        return citiesList;
+    }
 }

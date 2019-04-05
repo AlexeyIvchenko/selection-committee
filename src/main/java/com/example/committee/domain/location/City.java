@@ -2,6 +2,7 @@ package com.example.committee.domain.location;
 
 import com.example.committee.domain.location.Address;
 import com.example.committee.domain.location.Region;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,9 +23,11 @@ public class City {
     private String cityName;
 
     @OneToMany (mappedBy = "city", fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<Address> addresses;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "region_id")
+    @JsonIgnore
     private Region region;
 }

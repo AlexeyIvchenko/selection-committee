@@ -149,7 +149,9 @@
                                             <div class="input-group"> <span class="input-group-addon"><i
                                                     class="glyphicon glyphicon-home"></i></span>
 
-                                                <select name="region" class="form-control" required>
+                                                <select th:value="${cascadingSelectHelper.region}" id="region"
+                                                        name="region" class="form-control" required>
+                                                    <option disabled="disabled" selected="selected">zdarova</option>
                                                     <option th:each="region: ${regionsList}"
                                                             th:value="${region.getRegionId()}"
                                                             th:text="${region.getRegionName()}"></option>
@@ -161,18 +163,27 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">Город</label>
                                         <div class="col-md-6  inputGroupContainer">
-                                            <div class="input-group"> <span class="input-group-addon"><i
-                                                    class="glyphicon glyphicon-home"></i></span>
-
-                                                <select name="city" class="form-control"
-                                                        th:field="*{address.city}" required>
-                                                    <option th:each="city: ${citiesList}"
-                                                            th:value="${city.getCityId()}"
-                                                            th:text="${city.getCityName()}"></option>
-                                                </select>
+                                            <div id="regionDiv" class="input-group">
+                                                <!--Блок кода генерируется с помощью jquery при выборе области-->
                                             </div>
                                         </div>
                                     </div>
+
+                                    <!--<div class="form-group">-->
+                                        <!--<label class="col-md-4 control-label">Город</label>-->
+                                        <!--<div id="inputGroupContainer1" class="col-md-6  inputGroupContainer">-->
+                                            <!--<div class="input-group"> <span class="input-group-addon"><i-->
+                                                    <!--class="glyphicon glyphicon-home"></i></span>-->
+
+                                                <!--<select name="city" class="form-control"-->
+                                                        <!--th:field="*{address.city}" required>-->
+                                                    <!--<option th:each="city: ${citiesList}"-->
+                                                            <!--th:value="${city.getCityId()}"-->
+                                                            <!--th:text="${city.getCityName()}"></option>-->
+                                                <!--</select>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
 
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">Деревня/село</label>

@@ -17,4 +17,8 @@ public class RegionService {
     public List<Region> getAllRegions() {
         return this.regionRepository.findAll();
     }
+
+    public Region getRegionById(Long regionId) {
+        return this.regionRepository.findById(regionId).orElse(null);
+    }
 }

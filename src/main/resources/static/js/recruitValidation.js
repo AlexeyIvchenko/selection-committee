@@ -1,5 +1,28 @@
 $(document).ready(function () {
 
+    $('#region').change(
+        function () {
+            $.getJSON("http://localhost:8000/cities", {
+                regionId: $(this).val(),
+                ajax: 'true'
+            }, function (data) {
+                var html = '<span class="input-group-addon"><i' +
+                    ' class="glyphicon glyphicon-home"></i></span>';
+                html += '<select name="address.city" class="form-control"' +
+                    ' required id="address.city" data-bv-field="address.city">';
+                var len = data.length;
+                for (var i = 0; i < len; i++) {
+                    html += '<option value="';
+                    html += data[i].cityId;
+                    html += '">';
+                    html += data[i].cityName;
+                    html += '</option>';
+                }
+                html += '</select>';
+                $('#regionDiv').html(html);
+            });
+        });
+
     $('#registerForm').bootstrapValidator({
         message: 'This value is not valid',
         feedbackIcons: {
@@ -95,15 +118,15 @@ $(document).ready(function () {
                     notEmpty: {
                         message: 'Поле не может быть пустым'
                     },
-                    stringLength: {
-                        min: 2,
-                        max: 20,
-                        message: 'Название города должно содержать от 2 до 20 символов'
-                    },
-                    regexp: {
-                        regexp: /^[А-ЯA-Z][а-яa-zА-ЯA-Z\-]{0,}(\s[А-ЯA-Z][а-яa-zА-ЯA-Z\-]{1,})?$/,
-                        message: 'Название города может содержать только буквы и знак "-"'
-                    }
+                    // stringLength: {
+                    //     min: 2,
+                    //     max: 20,
+                    //     message: 'Название города должно содержать от 2 до 20 символов'
+                    // },
+                    // regexp: {
+                    //     regexp: /^[А-ЯA-Z][а-яa-zА-ЯA-Z\-]{0,}(\s[А-ЯA-Z][а-яa-zА-ЯA-Z\-]{1,})?$/,
+                    //     message: 'Название города может содержать только буквы и знак "-"'
+                    // }
                 }
             },
             villageName: {
