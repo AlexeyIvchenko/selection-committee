@@ -8,7 +8,7 @@
 
 
     <meta charset="UTF-8">
-    <title>Добавление анкетных данных абитуриента</title>
+    <title>Редактирование анкетных данных абитуриента</title>
 </head>
 
 <body>
@@ -30,9 +30,9 @@
                     <div class="container">
                         <div class="col-lg-9">
 
-                            <form id="registerForm" class="form-horizontal" th:action="@{/user/addRecruit}"
-                                  th:object="${recruitForm}"
-                                  method="post">
+                            <form id="editForm" class="form-horizontal"
+                                  th:action="@{/user/editRecruit/{recruitId}(recruitId=${recruit.recruitId})}"
+                                  th:object="${recruit}" method="post">
                                 <fieldset>
                                     <legend> Общая информация</legend>
 
@@ -87,10 +87,10 @@
                                         <div class="col-md-6  inputGroupContainer">
                                             <div class="input-group">
                                                 <label class="radio-inline">
-                                                    <input name="sex" type="radio" value="true" required>Мужской
+                                                    <input th:field="*{sex}" type="radio" value="true" required>Мужской
                                                 </label>
                                                 <label class="radio-inline">
-                                                    <input name="sex" type="radio" value="false" required>Женский
+                                                    <input th:field="*{sex}" type="radio" value="false" required>Женский
                                                 </label>
                                             </div>
                                         </div>
@@ -101,11 +101,11 @@
                                         <div class="col-md-6  inputGroupContainer">
                                             <div class="input-group">
                                                 <label class="radio-inline">
-                                                    <input name="familyStatus" type="radio" value="true"
+                                                    <input th:field="*{familyStatus}" type="radio" value="true"
                                                            required>Женат (замужем)
                                                 </label>
                                                 <label class="radio-inline">
-                                                    <input name="familyStatus" type="radio" value="false"
+                                                    <input th:field="*{familyStatus}" type="radio" value="false"
                                                            required>Не женат (не замужем)
                                                 </label>
                                             </div>
@@ -132,59 +132,21 @@
 
                                     <legend> Место жительства</legend>
 
-                                    <!-- <div class="form-group">
-                                        <label class="col-md-4 control-label">Phone</label>
-                                        <div class="col-md-6  inputGroupContainer">
-                                            <div class="input-group"> <span class="input-group-addon"><i
-                                                        class="glyphicon glyphicon-earphone"></i></span>
-                                                <input name="phone" placeholder="(000)000-0000" class="form-control"
-                                                    type="text">
-                                            </div>
-                                        </div>
-                                    </div> -->
-                                    <br>
-
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label">Область</label>
-                                        <div class="col-md-6  inputGroupContainer">
+                                        <label class="col-md-4 control-label">Город</label>
+                                        <div id="inputGroupContainer1" class="col-md-6  inputGroupContainer">
                                             <div class="input-group"> <span class="input-group-addon"><i
                                                     class="glyphicon glyphicon-home"></i></span>
 
-                                                <select th:value="${cascadingSelectHelper.region}" id="region"
-                                                        name="region" class="form-control" required>
-                                                    <option disabled="disabled" selected="selected">...</option>
-                                                    <option th:each="region: ${regionsList}"
-                                                            th:value="${region.getRegionId()}"
-                                                            th:text="${region.getRegionName()}"></option>
+                                                <select name="city" class="form-control"
+                                                        th:field="*{address.city}" required>
+                                                    <option th:each="city: ${citiesList}"
+                                                            th:value="${city.getCityId()}"
+                                                            th:text="${city.getCityName()}"></option>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label">Город</label>
-                                        <div class="col-md-6  inputGroupContainer">
-                                            <div id="regionDiv" class="input-group">
-                                                <!--Блок кода генерируется с помощью jquery при выборе области-->
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!--<div class="form-group">-->
-                                    <!--<label class="col-md-4 control-label">Город</label>-->
-                                    <!--<div id="inputGroupContainer1" class="col-md-6  inputGroupContainer">-->
-                                    <!--<div class="input-group"> <span class="input-group-addon"><i-->
-                                    <!--class="glyphicon glyphicon-home"></i></span>-->
-
-                                    <!--<select name="city" class="form-control"-->
-                                    <!--th:field="*{address.city}" required>-->
-                                    <!--<option th:each="city: ${citiesList}"-->
-                                    <!--th:value="${city.getCityId()}"-->
-                                    <!--th:text="${city.getCityName()}"></option>-->
-                                    <!--</select>-->
-                                    <!--</div>-->
-                                    <!--</div>-->
-                                    <!--</div>-->
 
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">Деревня/село</label>

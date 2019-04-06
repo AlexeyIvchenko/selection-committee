@@ -17,4 +17,8 @@ public class PassportService {
     public void addPassport(Passport passport) {
         this.passportRepository.save(passport);
     }
+
+    public Passport getPassportByRecruitId(Long recruitId) {
+        return this.passportRepository.findPassportByRecruitRecruitId(recruitId);
+    }
 }

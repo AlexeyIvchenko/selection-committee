@@ -4,6 +4,7 @@ import com.example.committee.domain.request.Request;
 import com.example.committee.domain.location.Address;
 import com.example.committee.domain.location.Office;
 import lombok.*;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -29,7 +30,7 @@ public class Recruit {
     @Column(name = "recruit_birthday")
     private Date birthday;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "recruit_passport_id")
     private Passport passport;
 
@@ -46,7 +47,7 @@ public class Recruit {
     @JoinColumn(name = "recruit_office_id")
     private Office office;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "recruit_address_id")
     private Address address;
 

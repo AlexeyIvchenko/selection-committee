@@ -1,29 +1,9 @@
 $(document).ready(function () {
 
-    $('#region').change(
-        function () {
-            $.getJSON("http://localhost:8000/cities", {
-                regionId: $(this).val(),
-                ajax: 'true'
-            }, function (data) {
-                var html = '<span class="input-group-addon"><i' +
-                    ' class="glyphicon glyphicon-home"></i></span>';
-                html += '<select name="address.city" class="form-control"' +
-                    ' required id="address.city" data-bv-field="address.city">';
-                var len = data.length;
-                for (var i = 0; i < len; i++) {
-                    html += '<option value="';
-                    html += data[i].cityId;
-                    html += '">';
-                    html += data[i].cityName;
-                    html += '</option>';
-                }
-                html += '</select>';
-                $('#regionDiv').html(html);
-            });
-        });
-
     $('#registerForm').bootstrapValidator({
+        rules: {
+            "passport.passportDate": "passportDate"
+        },
         message: 'This value is not valid',
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
@@ -31,7 +11,7 @@ $(document).ready(function () {
             validating: 'glyphicon glyphicon-refresh'
         },
         fields: {
-            recruitSurname: {
+            surname: {
                 message: 'Фамилия введена некорректно',
                 validators: {
                     notEmpty: {
@@ -48,7 +28,7 @@ $(document).ready(function () {
                     }
                 }
             },
-            recruitName: {
+            name: {
                 message: 'Имя введено некорректно',
                 validators: {
                     notEmpty: {
@@ -112,12 +92,13 @@ $(document).ready(function () {
                     }
                 }
             },
+
             city: {
                 message: 'Название города введено некорректно',
                 validators: {
                     notEmpty: {
                         message: 'Поле не может быть пустым'
-                    },
+                    }
                     // stringLength: {
                     //     min: 2,
                     //     max: 20,
@@ -218,9 +199,32 @@ $(document).ready(function () {
                         message: 'Дата выдачи пасспорта не соответствует шаблону'
                     }
                 }
-            },
+            }
         }
     });
+
+    $('#region').change(
+        function () {
+            $.getJSON("http://localhost:8000/cities", {
+                regionId: $(this).val(),
+                ajax: 'true'
+            }, function (data) {
+                var html = '<span class="input-group-addon"><i' +
+                    ' class="glyphicon glyphicon-home"></i></span>';
+                html += '<select name="address.city" class="form-control"' +
+                    ' required id="address.city" data-bv-field="address.city">';
+                var len = data.length;
+                for (var i = 0; i < len; i++) {
+                    html += '<option value="';
+                    html += data[i].cityId;
+                    html += '">';
+                    html += data[i].cityName;
+                    html += '</option>';
+                }
+                html += '</select>';
+                $('#regionDiv').html(html);
+            });
+        });
 
     $('.mask-passport-number').mask('99 99 999999');
 });

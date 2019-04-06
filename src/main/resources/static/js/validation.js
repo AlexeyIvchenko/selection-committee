@@ -71,18 +71,4 @@ $(document).ready(function () {
     });
 
     $('.delete').bootstrap_confirm_delete();
-
-
-
-    // var deleteId = -1;
-    // $('#submitBtn').click(function () {
-    //     deleteId = $("#submitBtn").parent().children('#userId').val();
-    //     $('#deleteId').text(deleteId);
-    //     $('#deleteId').html(deleteId);
-    // });
-    //
-    // $('#submit').click(function () {
-    //     alert(deleteId);
-    //     $('#form2').submit();
-    // });
 });

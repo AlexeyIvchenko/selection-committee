@@ -1,6 +1,8 @@
 package com.example.committee.service;
 
+import com.example.committee.domain.personal.Passport;
 import com.example.committee.domain.personal.Recruit;
+import com.example.committee.repository.PassportRepository;
 import com.example.committee.repository.RecruitRepository;
 import net.sf.jasperreports.charts.JRDataRange;
 import net.sf.jasperreports.engine.JRDataSource;
@@ -15,8 +17,12 @@ public class RecruitService {
     @Autowired
     private final RecruitRepository recruitRepository;
 
-    public RecruitService(RecruitRepository recruitRepository) {
+    @Autowired
+    private final PassportRepository passportRepository;
+
+    public RecruitService(RecruitRepository recruitRepository, PassportRepository passportRepository) {
         this.recruitRepository = recruitRepository;
+        this.passportRepository = passportRepository;
     }
 
     public List<Recruit> getAllRecruits() {
@@ -29,6 +35,11 @@ public class RecruitService {
 
     public void addRecruit(Recruit recruit) {
         this.recruitRepository.save(recruit);
+    }
+
+    public void updateRecruit(Recruit recruit) {
+        this.passportRepository.save(recruit.getPassport());
+
     }
 
     public void deleteRecruitById(Long recruitId) {
