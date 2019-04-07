@@ -55,10 +55,14 @@
                                class="btn btn-warning btn-xs glyphicon glyphicon-education" )></a>
                         </td>
 
-                        <td>
+                        <td th:if="${recruit.requests==null}">
                             <a th:href="@{/user/requestsPage/{recruitId}(recruitId=${recruit.recruitId})}"
                                class="btn btn-warning btn-xs glyphicon glyphicon-star" )></a>
                         </td>
+                        <td th:unless="${recruit.requests==null}">
+                            <a href="#" class="btn btn-success btn-xs glyphicon glyphicon-star" )></a>
+                        </td>
+
 
                         <td>
                             <a th:href="@{/user/deleteRecruit(recruitId=${recruit.recruitId})}"

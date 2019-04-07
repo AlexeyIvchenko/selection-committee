@@ -18,4 +18,8 @@ public class FacultyService {
     public List<Faculty> getAllFacultiesInMilitaryEducation(MilitaryEducation education) {
         return this.facultyRepository.findFacultiesByEducation(education);
     }
+
+    public List<Faculty> getAllFaculties() {
+        return this.facultyRepository.findAll();
+    }
 }

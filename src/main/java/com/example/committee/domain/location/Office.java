@@ -2,6 +2,7 @@ package com.example.committee.domain.location;
 
 import com.example.committee.domain.location.Region;
 import com.example.committee.domain.personal.Recruit;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -21,6 +22,7 @@ public class Office {
     @Column(name = "office_name")
     private String officeName;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "office", fetch = FetchType.LAZY)
     private Set<Recruit> recruits;
 

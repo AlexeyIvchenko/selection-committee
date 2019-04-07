@@ -388,7 +388,7 @@ $(document).ready(function () {
     });
 
 
-    $('#education').change(
+    $('#region').change(
         function () {
             $.getJSON("http://localhost:8000/cities", {
                 regionId: $(this).val(),
@@ -411,10 +411,10 @@ $(document).ready(function () {
             });
         });
 
-    $('#region').change(
+    $('#education').change(
         function () {
             $.getJSON("http://localhost:8000/user/faculties", {
-                regionId: $(this).val(),
+                educationId: $(this).val(),
                 ajax: 'true'
             }, function (data) {
                 var html = '<span class="input-group-addon"><i' +

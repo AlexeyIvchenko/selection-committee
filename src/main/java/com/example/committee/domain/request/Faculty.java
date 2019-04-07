@@ -1,5 +1,6 @@
 package com.example.committee.domain.request;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,6 +39,7 @@ public class Faculty {
     @Column(name = "score_literature")
     private short scoreLiterature;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "faculty", fetch = FetchType.EAGER)
     private Set<Specialty> specialties;
 

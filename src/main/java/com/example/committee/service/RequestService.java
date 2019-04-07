@@ -24,4 +24,9 @@ public class RequestService {
     public List<Request> getAllRequestsByRecruitId(Long recruitId) {
         return this.requestRepository.findAllRequestByRecruitRecruitId(recruitId);
     }
+
+    public void addRequest(Request request) {
+        this.requestRepository.save(request);
+
+    }
 }
