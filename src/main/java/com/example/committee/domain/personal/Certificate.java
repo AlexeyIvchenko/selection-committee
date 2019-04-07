@@ -33,11 +33,15 @@ public class Certificate {
     private short scoreForeignLang;
     @Column(name = "score_physicalculture")
     private short scorePhysicalCulture;
-    @Column (name = "education_institution")
+    @Column(name = "education_institution")
     private String educationInstitution;
-    @Column (name = "graduation_year")
-    private short graduation_year;
+    @Column(name = "graduation_year")
+    private short graduationYear;
 
-    @OneToOne (mappedBy = "certificate")
+    @OneToOne(mappedBy = "certificate")
     private Recruit recruit;
+
+    public Certificate(Long certificateId) {
+        this.certificateId = certificateId;
+    }
 }

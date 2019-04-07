@@ -37,11 +37,6 @@ public class RecruitService {
         this.recruitRepository.save(recruit);
     }
 
-    public void updateRecruit(Recruit recruit) {
-        this.passportRepository.save(recruit.getPassport());
-
-    }
-
     public void deleteRecruitById(Long recruitId) {
         this.recruitRepository.deleteById(recruitId);
     }

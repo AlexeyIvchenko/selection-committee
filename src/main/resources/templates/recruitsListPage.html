@@ -30,6 +30,8 @@
                         <th>Дата рождения</th>
                         <th>Город</th>
                         <th class="col-md-1 col-xs-1">Ред</th>
+                        <th class="col-md-1 col-xs-1">Аттестат+ЕГЭ</th>
+                        <th class="col-md-1 col-xs-1">Заявка</th>
                         <th class="col-md-1 col-xs-1">Удалить</th>
 
                     </tr>
@@ -49,6 +51,16 @@
                         </td>
 
                         <td>
+                            <a th:href="@{/user/recruitEducationPage/{recruitId}(recruitId=${recruit.recruitId})}"
+                               class="btn btn-warning btn-xs glyphicon glyphicon-education" )></a>
+                        </td>
+
+                        <td>
+                            <a th:href="@{/user/requestsPage/{recruitId}(recruitId=${recruit.recruitId})}"
+                               class="btn btn-warning btn-xs glyphicon glyphicon-star" )></a>
+                        </td>
+
+                        <td>
                             <a th:href="@{/user/deleteRecruit(recruitId=${recruit.recruitId})}"
                                class="btn btn-danger btn-xs glyphicon glyphicon-trash delete" )></a>
                         </td>
@@ -63,6 +75,8 @@
                         <th>Дата рождения</th>
                         <th>Город</th>
                         <th class="col-md-1 col-xs-1">Ред</th>
+                        <th class="col-md-1 col-xs-1">Аттестат+ЕГЭ</th>
+                        <th class="col-md-1 col-xs-1">Заявка</th>
                         <th class="col-md-1 col-xs-1">Удалить</th>
 
                     </tr>

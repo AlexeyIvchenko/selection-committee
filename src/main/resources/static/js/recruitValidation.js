@@ -1,9 +1,6 @@
 $(document).ready(function () {
 
     $('#registerForm').bootstrapValidator({
-        rules: {
-            "passport.passportDate": "passportDate"
-        },
         message: 'This value is not valid',
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
@@ -203,7 +200,195 @@ $(document).ready(function () {
         }
     });
 
-    $('#region').change(
+    $('#examForm').bootstrapValidator({
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            scoreMath: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
+                        message: 'Введите корректное кол-во баллов'
+                    }
+                }
+            },
+            scoreRusLang: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
+                        message: 'Введите корректное кол-во баллов'
+                    }
+                }
+            },
+            scorePhysics: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
+                        message: 'Введите корректное кол-во баллов'
+                    }
+                }
+            },
+            scoreForeignLang: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
+                        message: 'Введите корректное кол-во баллов'
+                    }
+                }
+            },
+            scoreHistory: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
+                        message: 'Введите корректное кол-во баллов'
+                    }
+                }
+            },
+            scoreSocial: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
+                        message: 'Введите корректное кол-во баллов'
+                    }
+                }
+            },
+            scoreLiterature: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
+                        message: 'Введите корректное кол-во баллов'
+                    }
+                }
+            },
+
+        }
+    });
+
+    $('#certificateForm').bootstrapValidator({
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            scoreMath: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
+                        message: 'Введите корректное кол-во баллов'
+                    }
+                }
+            },
+            scoreRusLang: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
+                        message: 'Введите корректное кол-во баллов'
+                    }
+                }
+            },
+            scorePhysics: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
+                        message: 'Введите корректное кол-во баллов'
+                    }
+                }
+            },
+            scoreForeignLang: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
+                        message: 'Введите корректное кол-во баллов'
+                    }
+                }
+            },
+            scorePhysicalCulture: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
+                        message: 'Введите корректное кол-во баллов'
+                    }
+                }
+            },
+            scoreHistory: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
+                        message: 'Введите корректное кол-во баллов'
+                    }
+                }
+            },
+            scoreSocial: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
+                        message: 'Введите корректное кол-во баллов'
+                    }
+                }
+            },
+            scoreLiterature: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
+                        message: 'Введите корректное кол-во баллов'
+                    }
+                }
+            },
+
+        }
+    });
+
+
+    $('#education').change(
         function () {
             $.getJSON("http://localhost:8000/cities", {
                 regionId: $(this).val(),
@@ -226,5 +411,30 @@ $(document).ready(function () {
             });
         });
 
+    $('#region').change(
+        function () {
+            $.getJSON("http://localhost:8000/user/faculties", {
+                regionId: $(this).val(),
+                ajax: 'true'
+            }, function (data) {
+                var html = '<span class="input-group-addon"><i' +
+                    ' class="glyphicon glyphicon-home"></i></span>';
+                html += '<select name="firstPriority" class="form-control"' +
+                    ' required id="firstPriority" data-bv-field="firstPriority">';
+                var len = data.length;
+                for (var i = 0; i < len; i++) {
+                    html += '<option value="';
+                    html += data[i].facultyId;
+                    html += '">';
+                    html += data[i].facultyName;
+                    html += '</option>';
+                }
+                html += '</select>';
+                $('#educationDiv').html(html);
+            });
+        });
+
     $('.mask-passport-number').mask('99 99 999999');
+    $('.mask-certificate-number').mask('999 9999 9999999');
+    $('.mask-year').mask('9999');
 });
