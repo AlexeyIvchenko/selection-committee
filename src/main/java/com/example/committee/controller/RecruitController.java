@@ -77,7 +77,6 @@ public class RecruitController {
     @GetMapping(value = "/user/recruitsListPage")
     public String getRecruitsListPage(Model model) {
         List<Recruit> recruitsList = recruitService.getAllRecruits();
-        //TODO: Проверить есть ли у рекрутов список реквестов и почему они по умолчанию не null?!?!?!
         model.addAttribute("recruitsList", recruitsList);
         return "recruitsListPage";
     }

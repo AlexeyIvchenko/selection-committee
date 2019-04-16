@@ -3,11 +3,15 @@ package com.example.committee.utils;
 import java.util.*;
 
 public class DateWorker {
-    private static int getCurrentYear() {
+    public static int getCurrentYear() {
         Calendar calendar = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
         calendar.setTime(new Date());
 
         return calendar.get(Calendar.YEAR);
+    }
+
+    public static java.sql.Date getCurrentDate() {
+        return new java.sql.Date(new Date().getTime());
     }
 
     public static List<Integer> getValidExamYears() {

@@ -22,4 +22,8 @@ public class FacultyService {
     public List<Faculty> getAllFaculties() {
         return this.facultyRepository.findAll();
     }
+
+    public Faculty getFacultyById(short facultyId) {
+        return this.facultyRepository.findById(facultyId).orElse(null);
+    }
 }

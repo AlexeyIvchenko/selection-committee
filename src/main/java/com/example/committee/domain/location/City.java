@@ -22,12 +22,12 @@ public class City {
     @Column(name = "city_name")
     private String cityName;
 
-    @OneToMany (mappedBy = "city", fetch = FetchType.LAZY)
     @JsonIgnore
+    @OneToMany(mappedBy = "city", fetch = FetchType.LAZY)
     private Set<Address> addresses;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "region_id")
-    @JsonIgnore
     private Region region;
 }

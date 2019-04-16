@@ -2,6 +2,7 @@ package com.example.committee.domain.request;
 
 import com.example.committee.domain.request.Faculty;
 import com.example.committee.domain.request.Request;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,9 +25,12 @@ public class Specialty {
     @Column(name = "specialty_name")
     private String specialtyName;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "specialty", fetch = FetchType.LAZY)
     private Set<Request> requests;
 
+
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "faculty_id")
     private Faculty faculty;

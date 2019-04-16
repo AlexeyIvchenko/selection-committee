@@ -26,6 +26,7 @@ public class Office {
     @OneToMany(mappedBy = "office", fetch = FetchType.LAZY)
     private Set<Recruit> recruits;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "region_id")
     private Region region;

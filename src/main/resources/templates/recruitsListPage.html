@@ -55,11 +55,11 @@
                                class="btn btn-warning btn-xs glyphicon glyphicon-education" )></a>
                         </td>
 
-                        <td th:if="${recruit.requests==null}">
+                        <td th:if="${recruit.requests.size()==0}">
                             <a th:href="@{/user/requestsPage/{recruitId}(recruitId=${recruit.recruitId})}"
                                class="btn btn-warning btn-xs glyphicon glyphicon-star" )></a>
                         </td>
-                        <td th:unless="${recruit.requests==null}">
+                        <td th:if="${recruit.requests.size()!=0}">
                             <a href="#" class="btn btn-success btn-xs glyphicon glyphicon-star" )></a>
                         </td>
 
@@ -80,7 +80,7 @@
                         <th>Город</th>
                         <th class="col-md-1 col-xs-1">Ред</th>
                         <th class="col-md-1 col-xs-1">Аттестат+ЕГЭ</th>
-                        <th class="col-md-1 col-xs-1">Заявка</th>
+                        <th class="col-md-1 col-xs-1">Заявление</th>
                         <th class="col-md-1 col-xs-1">Удалить</th>
 
                     </tr>

@@ -1,6 +1,7 @@
 package com.example.committee.utils;
 
 import com.example.committee.domain.request.Request;
+import com.example.committee.domain.request.Specialty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,8 +11,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class ThreeFacultiesRequest {
-    private Request firstPriority;
-    private Request secondPriority;
-    private Request thirdPriority;
+public class ThreeSpecialtiesRequest {
+    private Specialty firstPriority;
+    private Specialty secondPriority;
+    private Specialty thirdPriority;
 }

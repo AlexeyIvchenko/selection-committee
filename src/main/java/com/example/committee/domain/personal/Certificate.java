@@ -1,6 +1,7 @@
 package com.example.committee.domain.personal;
 
 import com.example.committee.domain.personal.Recruit;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,6 +39,7 @@ public class Certificate {
     @Column(name = "graduation_year")
     private short graduationYear;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "certificate")
     private Recruit recruit;
 

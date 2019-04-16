@@ -43,6 +43,7 @@ public class Faculty {
     @OneToMany(mappedBy = "faculty", fetch = FetchType.EAGER)
     private Set<Specialty> specialties;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "military_education_id")
     private MilitaryEducation education;

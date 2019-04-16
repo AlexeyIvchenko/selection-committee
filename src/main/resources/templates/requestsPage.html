@@ -30,41 +30,31 @@
                     <div class="container">
                         <div class="col-lg-9">
 
-                            <form id="registerForm" class="form-horizontal"
-                                  th:action="@{user/addRequests/{recruitId}(recruitId=${recruitId})}"
-                                  th:object="${tfr}" method="post">
+                            <form id="requestsForm" class="form-horizontal" th:action="@{/user/addRequests}"
+                                  th:object="${tsr}" method="post">
                                 <fieldset>
                                     <legend>Первый приоритет</legend>
 
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label">Образование</label>
+                                        <label class="col-md-4 control-label">Факультет</label>
                                         <div class="col-md-6  inputGroupContainer">
                                             <div class="input-group"> <span class="input-group-addon"><i
                                                     class="glyphicon glyphicon-home"></i></span>
 
-                                                <select th:value="${cascadingSelectHelper.militaryEducation}"
-                                                        id="education1" name="education1" class="form-control" required>
-                                                    <option disabled="disabled" selected="selected">...</option>
-                                                    <option th:each="education: ${militaryEducationList}"
-                                                            th:value="${education.getEducationId()}"
-                                                            th:text="${education.getEducationName()}"></option>
+                                                <select name="faculty1" id="faculty1" class="form-control"required>
+                                                    <option th:each="faculty: ${facultyList}"
+                                                            th:value="${faculty.getFacultyId()}"
+                                                            th:text="${faculty.getFacultyName()}"></option>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label">Направление</label>
+                                        <label class="col-md-4 control-label">Специальность</label>
                                         <div class="col-md-6  inputGroupContainer">
-                                            <div class="input-group"> <span class="input-group-addon"><i
-                                                    class="glyphicon glyphicon-home"></i></span>
-
-                                                <select name="city" class="form-control"
-                                                        th:field="*{firstPriority}" required>
-                                                    <option th:each="faculty: ${facultyList}"
-                                                            th:value="${faculty.getFacultyId()}"
-                                                            th:text="${faculty.getFacultyId()}"></option>
-                                                </select>
+                                            <div id="specialtyDiv1" class="input-group">
+                                                <!--Блок кода генерируется с помощью jquery при выборе образования-->
                                             </div>
                                         </div>
                                     </div>
@@ -72,34 +62,25 @@
                                     <legend>Второй приоритет</legend>
 
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label">Образование</label>
+                                        <label class="col-md-4 control-label">Факультет</label>
                                         <div class="col-md-6  inputGroupContainer">
                                             <div class="input-group"> <span class="input-group-addon"><i
                                                     class="glyphicon glyphicon-home"></i></span>
 
-                                                <select th:value="${cascadingSelectHelper.militaryEducation}"
-                                                        id="education2" name="education2" class="form-control" required>
-                                                    <option disabled="disabled" selected="selected">...</option>
-                                                    <option th:each="education: ${militaryEducationList}"
-                                                            th:value="${education.getEducationId()}"
-                                                            th:text="${education.getEducationName()}"></option>
+                                                <select name="faculty2" id="faculty2" class="form-control"required>
+                                                    <option th:each="faculty: ${facultyList}"
+                                                            th:value="${faculty.getFacultyId()}"
+                                                            th:text="${faculty.getFacultyName()}"></option>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label">Направление</label>
+                                        <label class="col-md-4 control-label">Специальность</label>
                                         <div class="col-md-6  inputGroupContainer">
-                                            <div class="input-group"> <span class="input-group-addon"><i
-                                                    class="glyphicon glyphicon-home"></i></span>
-
-                                                <select name="city" class="form-control"
-                                                        th:field="*{secondPriority}" required>
-                                                    <option th:each="faculty: ${facultyList}"
-                                                            th:value="${faculty.getFacultyId()}"
-                                                            th:text="${faculty.getFacultyId()}"></option>
-                                                </select>
+                                            <div id="specialtyDiv2" class="input-group">
+                                                <!--Блок кода генерируется с помощью jquery при выборе образования-->
                                             </div>
                                         </div>
                                     </div>
@@ -107,46 +88,30 @@
                                     <legend>Третий приоритет</legend>
 
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label">Образование</label>
+                                        <label class="col-md-4 control-label">Факультет</label>
                                         <div class="col-md-6  inputGroupContainer">
                                             <div class="input-group"> <span class="input-group-addon"><i
                                                     class="glyphicon glyphicon-home"></i></span>
 
-                                                <select th:value="${cascadingSelectHelper.militaryEducation}"
-                                                        id="education3" name="education3" class="form-control" required>
-                                                    <option disabled="disabled" selected="selected">...</option>
-                                                    <option th:each="education: ${militaryEducationList}"
-                                                            th:value="${education.getEducationId()}"
-                                                            th:text="${education.getEducationName()}"></option>
+                                                <select name="faculty3" id="faculty3" class="form-control"required>
+                                                    <option th:each="faculty: ${facultyList}"
+                                                            th:value="${faculty.getFacultyId()}"
+                                                            th:text="${faculty.getFacultyName()}"></option>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label">Направление</label>
+                                        <label class="col-md-4 control-label">Специальность</label>
                                         <div class="col-md-6  inputGroupContainer">
-                                            <div class="input-group"> <span class="input-group-addon"><i
-                                                    class="glyphicon glyphicon-home"></i></span>
-
-                                                <select name="city" class="form-control"
-                                                        th:field="*{thirdPriority}" required>
-                                                    <option th:each="faculty: ${facultyList}"
-                                                            th:value="${faculty.getFacultyId()}"
-                                                            th:text="${faculty.getFacultyId()}"></option>
-                                                </select>
+                                            <div id="specialtyDiv3" class="input-group">
+                                                <!--Блок кода генерируется с помощью jquery при выборе образования-->
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!--<div class="form-group">-->
-                                    <!--<label class="col-md-4 control-label">Направление</label>-->
-                                    <!--<div class="col-md-6  inputGroupContainer">-->
-                                    <!--<div id="educationDiv" class="input-group">-->
-                                    <!--&lt;!&ndash;Блок кода генерируется с помощью jquery при выборе образования&ndash;&gt;-->
-                                    <!--</div>-->
-                                    <!--</div>-->
-                                    <!--</div>-->
+                                    <input type="hidden" id="recruitId" name="recruitId" th:value="${recruitId}">
 
                                     <!-- Button -->
                                     <div class="form-group">

@@ -411,10 +411,10 @@ $(document).ready(function () {
             });
         });
 
-    $('#education').change(
+    $('#faculty1').change(
         function () {
-            $.getJSON("http://localhost:8000/user/faculties", {
-                educationId: $(this).val(),
+            $.getJSON("http://localhost:8000/user/specialties", {
+                facultyId: $(this).val(),
                 ajax: 'true'
             }, function (data) {
                 var html = '<span class="input-group-addon"><i' +
@@ -424,13 +424,59 @@ $(document).ready(function () {
                 var len = data.length;
                 for (var i = 0; i < len; i++) {
                     html += '<option value="';
-                    html += data[i].facultyId;
+                    html += data[i].specialtyId;
                     html += '">';
-                    html += data[i].facultyName;
+                    html += data[i].specialtyName;
                     html += '</option>';
                 }
                 html += '</select>';
-                $('#educationDiv').html(html);
+                $('#specialtyDiv1').html(html);
+            });
+        });
+
+    $('#faculty2').change(
+        function () {
+            $.getJSON("http://localhost:8000/user/specialties", {
+                facultyId: $(this).val(),
+                ajax: 'true'
+            }, function (data) {
+                var html = '<span class="input-group-addon"><i' +
+                    ' class="glyphicon glyphicon-home"></i></span>';
+                html += '<select name="secondPriority" class="form-control"' +
+                    ' required id="secondPriority" data-bv-field="secondPriority">';
+                var len = data.length;
+                for (var i = 0; i < len; i++) {
+                    html += '<option value="';
+                    html += data[i].specialtyId;
+                    html += '">';
+                    html += data[i].specialtyName;
+                    html += '</option>';
+                }
+                html += '</select>';
+                $('#specialtyDiv2').html(html);
+            });
+        });
+
+    $('#faculty3').change(
+        function () {
+            $.getJSON("http://localhost:8000/user/specialties", {
+                facultyId: $(this).val(),
+                ajax: 'true'
+            }, function (data) {
+                var html = '<span class="input-group-addon"><i' +
+                    ' class="glyphicon glyphicon-home"></i></span>';
+                html += '<select name="thirdPriority" class="form-control"' +
+                    ' required id="thirdPriority" data-bv-field="thirdPriority">';
+                var len = data.length;
+                for (var i = 0; i < len; i++) {
+                    html += '<option value="';
+                    html += data[i].specialtyId;
+                    html += '">';
+                    html += data[i].specialtyName;
+                    html += '</option>';
+                }
+                html += '</select>';
+                $('#specialtyDiv3').html(html);
             });
         });
 
