@@ -100,11 +100,11 @@ public class RecruitController {
         model.addAttribute("officesList", officesList);
         model.addAttribute("citiesList", citiesList);
 
-        return "recruitInfoEditPage";
+        return "editRecruitInfoPage";
     }
 
     @PostMapping("user/editRecruit/{recruitId}")
-    public String editRecruitInfo(@PathVariable("recruitId") Long recruitId, @Valid Recruit recruit, BindingResult result, Model model) {
+    public String editRecruitInfo(@PathVariable("recruitId") Long recruitId, @Valid Recruit recruit) {
         Passport editedPassport = recruit.getPassport();
         editedPassport.setPassportId(recruitId);
         passportService.addPassport(editedPassport);
@@ -136,14 +136,14 @@ public class RecruitController {
     }
 
     @PostMapping("/user/editExam/{recruitId}")
-    public String editEducationInfo(@PathVariable("recruitId") Long recruitId, @Valid Exam exam, Model model) {
+    public String editEducationInfo(@PathVariable("recruitId") Long recruitId, @Valid Exam exam) {
         exam.setExamId(examService.getExamByRecruitId(recruitId).getExamId());
         examService.addExam(exam);
         return "redirect:/user/recruitsListPage";
     }
 
     @PostMapping("/user/editCertificate/{recruitId}")
-    public String editEducationInfo(@PathVariable("recruitId") Long recruitId, @Valid Certificate certificate, Model model) {
+    public String editEducationInfo(@PathVariable("recruitId") Long recruitId, @Valid Certificate certificate) {
         certificate.setCertificateId(certificateService.getCertificateByRecruitId(recruitId).getCertificateId());
         certificateService.addCertificate(certificate);
         return "redirect:/user/recruitsListPage";

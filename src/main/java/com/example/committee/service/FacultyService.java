@@ -2,6 +2,7 @@ package com.example.committee.service;
 
 import com.example.committee.domain.request.Faculty;
 import com.example.committee.domain.request.MilitaryEducation;
+import com.example.committee.domain.request.Specialty;
 import com.example.committee.repository.FacultyRepository;
 import org.springframework.stereotype.Service;
 

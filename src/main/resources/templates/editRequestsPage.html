@@ -30,7 +30,8 @@
                     <div class="container">
                         <div class="col-lg-9">
 
-                            <form id="requestsForm" class="form-horizontal" th:action="@{/user/addRequests}"
+                            <form id="requestsForm" class="form-horizontal"
+                                  th:action="@{/user/editRecruitRequests/{recruitId}(recruitId=${recruitId})}"
                                   th:object="${tsr}" method="post">
                                 <fieldset>
                                     <legend>Первый приоритет</legend>
@@ -42,7 +43,8 @@
                                                     class="glyphicon glyphicon-home"></i></span>
 
                                                 <select name="firstPriorityFaculty" id="firstPriorityFaculty"
-                                                        class="form-control" required>
+                                                        class="form-control"
+                                                        th:field="*{firstPriorityFaculty}" required>
                                                     <option th:each="faculty: ${facultyList}"
                                                             th:value="${faculty.getFacultyId()}"
                                                             th:text="${faculty.getFacultyName()}"></option>
@@ -55,9 +57,10 @@
                                         <label class="col-md-4 control-label">Специальность</label>
                                         <div class="col-md-6  inputGroupContainer">
                                             <div id="specialtyDiv1" class="input-group">
-                                                <select name="firstPriority" id="firstPriority" class="form-control"
+                                                <select name="firstPriority" class="form-control"
+                                                        th:field="*{firstPriority}"
                                                         required>
-                                                    <option th:each="specialty: ${firstFacultySpecialtiesList}"
+                                                    <option th:each="specialty: ${specialtiesList}"
                                                             th:value="${specialty.getSpecialtyId()}"
                                                             th:text="${specialty.getSpecialtyName()}"></option>
                                                 </select>
@@ -74,7 +77,8 @@
                                                     class="glyphicon glyphicon-home"></i></span>
 
                                                 <select name="secondPriorityFaculty" id="secondPriorityFaculty"
-                                                        class="form-control" required>
+                                                        class="form-control"
+                                                        th:field="*{secondPriorityFaculty}" required>
                                                     <option th:each="faculty: ${facultyList}"
                                                             th:value="${faculty.getFacultyId()}"
                                                             th:text="${faculty.getFacultyName()}"></option>
@@ -87,9 +91,10 @@
                                         <label class="col-md-4 control-label">Специальность</label>
                                         <div class="col-md-6  inputGroupContainer">
                                             <div id="specialtyDiv2" class="input-group">
-                                                <select name="secondPriority" id="secondPriority" class="form-control"
+                                                <select name="secondPriority" class="form-control"
+                                                        th:field="*{secondPriority}"
                                                         required>
-                                                    <option th:each="specialty: ${firstFacultySpecialtiesList}"
+                                                    <option th:each="specialty: ${specialtiesList}"
                                                             th:value="${specialty.getSpecialtyId()}"
                                                             th:text="${specialty.getSpecialtyName()}"></option>
                                                 </select>
@@ -106,7 +111,8 @@
                                                     class="glyphicon glyphicon-home"></i></span>
 
                                                 <select name="thirdPriorityFaculty" id="thirdPriorityFaculty"
-                                                        class="form-control" required>
+                                                        class="form-control"
+                                                        th:field="*{thirdPriorityFaculty}" required>
                                                     <option th:each="faculty: ${facultyList}"
                                                             th:value="${faculty.getFacultyId()}"
                                                             th:text="${faculty.getFacultyName()}"></option>
@@ -119,9 +125,10 @@
                                         <label class="col-md-4 control-label">Специальность</label>
                                         <div class="col-md-6  inputGroupContainer">
                                             <div id="specialtyDiv3" class="input-group">
-                                                <select name="thirdPriority" id="thirdPriority" class="form-control"
+                                                <select name="thirdPriority" class="form-control"
+                                                        th:field="*{thirdPriority}"
                                                         required>
-                                                    <option th:each="specialty: ${firstFacultySpecialtiesList}"
+                                                    <option th:each="specialty: ${specialtiesList}"
                                                             th:value="${specialty.getSpecialtyId()}"
                                                             th:text="${specialty.getSpecialtyName()}"></option>
                                                 </select>

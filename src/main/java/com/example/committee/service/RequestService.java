@@ -27,6 +27,5 @@ public class RequestService {
 
     public void addRequest(Request request) {
         this.requestRepository.save(request);
-
     }
 }

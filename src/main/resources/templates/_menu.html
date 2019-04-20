@@ -21,6 +21,14 @@
                     <li><a th:if="${#request.userPrincipal != null}" href="/user/recruitQuestionary">Добавить
                     абитуриента</a></li>
                     <li><a th:if="${#request.userPrincipal != null}" href="/user/recruitsListPage">Список абитуриентов</a></li>
+                    <li sec:authorize="hasRole('ROLE_USER')" class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Учебные роты<span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/user/companyCreatePage">Формирование учебных рот</a></li>
+                            <li><a href="#">Список учебных рот</a></li>
+                        </ul>
+                    </li>
                 </ul>
 
                 <!-- Блок, расположенный справа -->

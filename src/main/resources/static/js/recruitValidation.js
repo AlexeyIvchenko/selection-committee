@@ -411,17 +411,19 @@ $(document).ready(function () {
             });
         });
 
-    $('#faculty1').change(
+    $('#firstPriorityFaculty').change(
         function () {
             $.getJSON("http://localhost:8000/user/specialties", {
                 facultyId: $(this).val(),
                 ajax: 'true'
             }, function (data) {
+                $('#specialtyDiv1').html('');
                 var html = '<span class="input-group-addon"><i' +
                     ' class="glyphicon glyphicon-home"></i></span>';
                 html += '<select name="firstPriority" class="form-control"' +
                     ' required id="firstPriority" data-bv-field="firstPriority">';
                 var len = data.length;
+                html+='<option>...</option>';
                 for (var i = 0; i < len; i++) {
                     html += '<option value="';
                     html += data[i].specialtyId;
@@ -434,17 +436,19 @@ $(document).ready(function () {
             });
         });
 
-    $('#faculty2').change(
+    $('#secondPriorityFaculty').change(
         function () {
             $.getJSON("http://localhost:8000/user/specialties", {
                 facultyId: $(this).val(),
                 ajax: 'true'
             }, function (data) {
+                $('#specialtyDiv2').html('');
                 var html = '<span class="input-group-addon"><i' +
                     ' class="glyphicon glyphicon-home"></i></span>';
                 html += '<select name="secondPriority" class="form-control"' +
                     ' required id="secondPriority" data-bv-field="secondPriority">';
                 var len = data.length;
+                html+='<option>...</option>';
                 for (var i = 0; i < len; i++) {
                     html += '<option value="';
                     html += data[i].specialtyId;
@@ -457,17 +461,19 @@ $(document).ready(function () {
             });
         });
 
-    $('#faculty3').change(
+    $('#thirdPriorityFaculty').change(
         function () {
             $.getJSON("http://localhost:8000/user/specialties", {
                 facultyId: $(this).val(),
                 ajax: 'true'
             }, function (data) {
+                $('#specialtyDiv3').html('');
                 var html = '<span class="input-group-addon"><i' +
                     ' class="glyphicon glyphicon-home"></i></span>';
                 html += '<select name="thirdPriority" class="form-control"' +
                     ' required id="thirdPriority" data-bv-field="thirdPriority">';
                 var len = data.length;
+                html+='<option>...</option>';
                 for (var i = 0; i < len; i++) {
                     html += '<option value="';
                     html += data[i].specialtyId;
