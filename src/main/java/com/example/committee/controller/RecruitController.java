@@ -10,7 +10,6 @@ import com.example.committee.utils.CascadingSelectHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -59,10 +58,7 @@ public class RecruitController {
 
     @PostMapping("/user/addRecruit")
     public String addRecruit(@ModelAttribute("recruitForm") Recruit recruit) {
-        recruit.setExam(new Exam(recruit.getRecruitId()));
-        recruit.setCertificate(new Certificate(recruit.getRecruitId()));
         recruitService.addRecruit(recruit);
-
         return "redirect:/user/recruitQuestionary";
     }
 
@@ -100,10 +96,10 @@ public class RecruitController {
         model.addAttribute("officesList", officesList);
         model.addAttribute("citiesList", citiesList);
 
-        return "editRecruitInfoPage";
+        return "editInfoPage";
     }
 
-    @PostMapping("user/editRecruit/{recruitId}")
+    @PostMapping("/user/editRecruit/{recruitId}")
     public String editRecruitInfo(@PathVariable("recruitId") Long recruitId, @Valid Recruit recruit) {
         Passport editedPassport = recruit.getPassport();
         editedPassport.setPassportId(recruitId);
@@ -119,33 +115,6 @@ public class RecruitController {
         recruit.setCertificate(certificate);
 
         recruitService.addRecruit(recruit);
-        return "redirect:/user/recruitsListPage";
-    }
-
-    @GetMapping(value = "/user/recruitEducationPage/{recruitId}")
-    public String getRecruitEducationPage(@PathVariable("recruitId") Long recruitId, Model model) {
-        Exam exam = examService.getExamByRecruitId(recruitId);
-        model.addAttribute("exam", exam);
-
-        Certificate certificate = certificateService.getCertificateByRecruitId(recruitId);
-        model.addAttribute("certificate", certificate);
-
-        model.addAttribute("recruitId", recruitId);
-
-        return "recruitEducationPage";
-    }
-
-    @PostMapping("/user/editExam/{recruitId}")
-    public String editEducationInfo(@PathVariable("recruitId") Long recruitId, @Valid Exam exam) {
-        exam.setExamId(examService.getExamByRecruitId(recruitId).getExamId());
-        examService.addExam(exam);
-        return "redirect:/user/recruitsListPage";
-    }
-
-    @PostMapping("/user/editCertificate/{recruitId}")
-    public String editEducationInfo(@PathVariable("recruitId") Long recruitId, @Valid Certificate certificate) {
-        certificate.setCertificateId(certificateService.getCertificateByRecruitId(recruitId).getCertificateId());
-        certificateService.addCertificate(certificate);
         return "redirect:/user/recruitsListPage";
     }
 }

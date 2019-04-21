@@ -18,7 +18,7 @@
 <th:block th:include="/_menu"></th:block>
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-10">
             <div class="table-responsive">
                 <table id="facultyTable" class="table table-hover table-sm">
                     <thead>
@@ -42,39 +42,6 @@
                     </tbody>
                 </table>
             </div>
-            <hr/>
-            <div th:text="${requestsCountMessage}">
-            </div>
-            <form class="form-horizontal"
-                  th:action="@{/user/createCompanies/{facultyId}(facultyId=${facultyId})}"
-                  th:object="${companyCreateHelper}" method="post">
-
-                <div class="form-group">
-                    <label class="col-md-4 control-label">Количество рот для факультета</label>
-                    <div class="col-md-6  inputGroupContainer">
-                        <div class="input-group"> <span class="input-group-addon"><i
-                                class="glyphicon glyphicon-user"></i></span>
-
-                            <select name="companiesCount" class="form-control"
-                                    th:field="*{companiesCount}"
-                                    required>
-                                <option th:value="1" th:text="1"></option>
-                                <option th:value="2" th:text="2"></option>
-                                <option th:value="3" th:text="2"></option>
-                            </select>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-4 control-label"></label>
-                    <div class="col-md-4">
-                        <button type="submit" class="btn btn-warning">Распределить абитуриентов <span
-                                class="glyphicon glyphicon-send"></span></button>
-                    </div>
-                </div>
-            </form>
-
         </div>
         <div class="col-md-2">
 

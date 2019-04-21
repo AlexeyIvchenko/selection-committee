@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-public class RecruitRequestController {
+public class RequestController {
     @Autowired
     private RecruitService recruitService;
     @Autowired
@@ -49,15 +49,15 @@ public class RecruitRequestController {
 
     @PostMapping("/user/addRequests")
     public String addRequests(@ModelAttribute("tfr") ThreeSpecialtiesRequest threeSpecialtiesRequest, @RequestParam(value = "recruitId") Long recruitId) {
-        Recruit trueRecruit = recruitService.findById(recruitId);
+        Recruit selectedRecruit = recruitService.findById(recruitId);
         Specialty firstPrioritySpecialty = threeSpecialtiesRequest.getFirstPriority();
         Specialty secondPrioritySpecialty = threeSpecialtiesRequest.getSecondPriority();
         Specialty thirdPrioritySpecialty = threeSpecialtiesRequest.getThirdPriority();
 
         Date currentDate = DateWorker.getCurrentDate();
-        Request firstPriorityRequest = new Request(trueRecruit, firstPrioritySpecialty, (short) 1, currentDate);
-        Request secondPriorityRequest = new Request(trueRecruit, secondPrioritySpecialty, (short) 2, currentDate);
-        Request thirdPriorityRequest = new Request(trueRecruit, thirdPrioritySpecialty, (short) 3, currentDate);
+        Request firstPriorityRequest = new Request(selectedRecruit, firstPrioritySpecialty, (short) 1, currentDate);
+        Request secondPriorityRequest = new Request(selectedRecruit, secondPrioritySpecialty, (short) 2, currentDate);
+        Request thirdPriorityRequest = new Request(selectedRecruit, thirdPrioritySpecialty, (short) 3, currentDate);
 
         requestService.addRequest(firstPriorityRequest);
         requestService.addRequest(secondPriorityRequest);

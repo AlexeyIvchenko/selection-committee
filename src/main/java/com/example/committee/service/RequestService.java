@@ -28,4 +28,8 @@ public class RequestService {
     public void addRequest(Request request) {
         this.requestRepository.save(request);
     }
+
+    public List<Request> getRequestsByPriorityAndSpecialty_Faculty_FacultyId(short priority, short facultyId) {
+        return this.requestRepository.findRequestsByPriorityAndSpecialty_Faculty_FacultyId(priority, facultyId);
+    }
 }

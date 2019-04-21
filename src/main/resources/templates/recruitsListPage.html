@@ -50,10 +50,16 @@
                                class="btn btn-primary btn-xs glyphicon glyphicon-edit" )></a>
                         </td>
 
-                        <td>
-                            <a th:href="@{/user/recruitEducationPage/{recruitId}(recruitId=${recruit.recruitId})}"
+
+                        <td th:if="${recruit.exam==null||recruit.certificate==null}">
+                            <a th:href="@{/user/educationPage/{recruitId}(recruitId=${recruit.recruitId})}"
                                class="btn btn-warning btn-xs glyphicon glyphicon-education" )></a>
                         </td>
+                        <td th:if="${recruit.exam!=null&&recruit.certificate!=null}">
+                            <a th:href="@{/user/editEducationPage/{recruitId}(recruitId=${recruit.recruitId})}"
+                               class="btn btn-success btn-xs glyphicon glyphicon-education" )></a>
+                        </td>
+
 
                         <td th:if="${recruit.requests.size()==0}">
                             <a th:href="@{/user/requestsPage/{recruitId}(recruitId=${recruit.recruitId})}"
@@ -63,7 +69,6 @@
                             <a th:href="@{/user/editRequestsPage/{recruitId}(recruitId=${recruit.recruitId})}"
                                class="btn btn-success btn-xs glyphicon glyphicon-edit" )></a>
                         </td>
-
 
                         <td>
                             <a th:href="@{/user/deleteRecruit(recruitId=${recruit.recruitId})}"

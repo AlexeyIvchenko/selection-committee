@@ -62,4 +62,12 @@ public class Recruit {
 
     @OneToMany(mappedBy = "recruit", fetch = FetchType.EAGER)
     private List<Request> requests;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "recruit_entrance_test_id")
+    private ExtranceTest extranceTest;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "recruit_platoon_id")
+    private Platoon platoon;
 }
