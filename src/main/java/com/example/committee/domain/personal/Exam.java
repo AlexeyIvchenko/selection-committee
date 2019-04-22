@@ -1,6 +1,5 @@
 package com.example.committee.domain.personal;
 
-import com.example.committee.domain.personal.Recruit;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

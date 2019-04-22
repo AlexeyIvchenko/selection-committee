@@ -3,24 +3,21 @@ package com.example.committee.controller;
 import com.example.committee.domain.personal.Certificate;
 import com.example.committee.domain.personal.Exam;
 import com.example.committee.domain.personal.Recruit;
-import com.example.committee.service.*;
+import com.example.committee.service.CertificateService;
+import com.example.committee.service.ExamService;
+import com.example.committee.service.RecruitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class EducationController {
     @Autowired
     private RecruitService recruitService;
-    @Autowired
-    private RequestService requestService;
-    @Autowired
-    private FacultyService facultyService;
-    @Autowired
-    private SpecialtyService specialtyService;
     @Autowired
     private ExamService examService;
     @Autowired
@@ -45,51 +42,24 @@ public class EducationController {
         Recruit selectedRecruit = recruitService.findById(recruitId);
         if (selectedRecruit.getExam() != null) {
             exam.setExamId(selectedRecruit.getExam().getExamId());
-            examService.addExam(exam);
         } else {
             selectedRecruit.setExam(exam);
             exam.setRecruit(selectedRecruit);
-            examService.addExam(exam);
         }
-
+        examService.addExam(exam);
         return "redirect:/user/recruitsListPage";
     }
 
     @PostMapping("/user/addCertificate/{recruitId}")
     public String addCertificate(@ModelAttribute("certificate") Certificate certificate, @PathVariable("recruitId") Long recruitId) {
         Recruit selectedRecruit = recruitService.findById(recruitId);
-        selectedRecruit.setCertificate(certificate);
-        certificate.setRecruit(selectedRecruit);
+        if (selectedRecruit.getCertificate() != null) {
+            certificate.setCertificateId(selectedRecruit.getCertificate().getCertificateId());
+        } else {
+            selectedRecruit.setCertificate(certificate);
+            certificate.setRecruit(selectedRecruit);
+        }
         certificateService.addCertificate(certificate);
         return "redirect:/user/recruitsListPage";
     }
-
-    @GetMapping(value = "/user/editEducationPage/{recruitId}")
-    public String getEditEducationPage(@PathVariable("recruitId") Long recruitId, Model model) {
-        Exam exam = examService.getExamByRecruitId(recruitId);
-        model.addAttribute("exam", exam);
-
-        Certificate certificate = certificateService.getCertificateByRecruitId(recruitId);
-        model.addAttribute("certificate", certificate);
-
-        model.addAttribute("recruitId", recruitId);
-
-        return "editEducationPage";
-    }
-
-    @PostMapping("/user/editExam/{recruitId}")
-    public String editEducationInfo(@PathVariable("recruitId") Long recruitId, @ModelAttribute("exam") Exam exam) {
-        exam.setExamId(examService.getExamByRecruitId(recruitId).getExamId());
-        examService.addExam(exam);
-        return "redirect:/user/recruitsListPage";
-    }
-
-    @PostMapping("/user/editCertificate/{recruitId}")
-    public String editEducationInfo(@PathVariable("recruitId") Long recruitId, @ModelAttribute("certificate") Certificate certificate) {
-        certificate.setCertificateId(certificateService.getCertificateByRecruitId(recruitId).getCertificateId());
-        certificateService.addCertificate(certificate);
-        return "redirect:/user/recruitsListPage";
-    }
-
-
 }

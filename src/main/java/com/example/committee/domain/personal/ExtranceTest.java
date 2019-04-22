@@ -20,13 +20,13 @@ public class ExtranceTest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long extranceTestId;
     @Column(name = "run100m")
-    private short run100m;
+    private byte run100m;
     @Column(name = "run3km")
-    private short run3km;
+    private byte run3km;
     @Column(name = "horizontal_bar")
-    private short horizontal_bar;
+    private byte horizontal_bar;
     @Column(name = "prof_group")
-    private short prof_group;
+    private byte prof_group;
 
     @JsonIgnore
     @OneToOne(mappedBy = "extranceTest")
