@@ -387,6 +387,60 @@ $(document).ready(function () {
         }
     });
 
+    $('#extranceTestForm').bootstrapValidator({
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            hbResult: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^(100|[1-9]?[0-9])$/,
+                        message: 'Введите корректное кол-во подтягиваний к турнику (0-100)'
+                    }
+                }
+            },
+            run100mResult: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^\d+(,\d+)?$/,
+                        message: 'Введите корректное время'
+                    }
+                }
+            },
+            run3kmResult: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^\d+(,\d+)?$/,
+                        message: 'Введите корректное время'
+                    }
+                }
+            },
+            prof_group: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^[1-4]$/,
+                        message: 'Введите корректное время'
+                    }
+                }
+            },
+        }
+    });
+
 
     $('#region').change(
         function () {
@@ -423,7 +477,7 @@ $(document).ready(function () {
                 html += '<select name="firstPriority" class="form-control"' +
                     ' required id="firstPriority" data-bv-field="firstPriority">';
                 var len = data.length;
-                html+='<option>...</option>';
+                html += '<option>...</option>';
                 for (var i = 0; i < len; i++) {
                     html += '<option value="';
                     html += data[i].specialtyId;
@@ -448,7 +502,7 @@ $(document).ready(function () {
                 html += '<select name="secondPriority" class="form-control"' +
                     ' required id="secondPriority" data-bv-field="secondPriority">';
                 var len = data.length;
-                html+='<option>...</option>';
+                html += '<option>...</option>';
                 for (var i = 0; i < len; i++) {
                     html += '<option value="';
                     html += data[i].specialtyId;
@@ -473,7 +527,7 @@ $(document).ready(function () {
                 html += '<select name="thirdPriority" class="form-control"' +
                     ' required id="thirdPriority" data-bv-field="thirdPriority">';
                 var len = data.length;
-                html+='<option>...</option>';
+                html += '<option>...</option>';
                 for (var i = 0; i < len; i++) {
                     html += '<option value="';
                     html += data[i].specialtyId;

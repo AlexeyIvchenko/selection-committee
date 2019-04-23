@@ -31,4 +31,8 @@ public class Platoon {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "company_id")
     private Company company;
+
+    public Platoon(String platoonName) {
+        this.platoonName = platoonName;
+    }
 }

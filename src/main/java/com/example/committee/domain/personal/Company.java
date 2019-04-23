@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -27,5 +28,5 @@ public class Company {
 
     @JsonIgnore
     @OneToMany(mappedBy = "company", fetch = FetchType.LAZY)
-    private Set<Platoon> platoons;
+    private List<Platoon> platoons;
 }

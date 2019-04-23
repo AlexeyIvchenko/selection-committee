@@ -1,11 +1,11 @@
 package com.example.committee.controller;
 
+import com.example.committee.domain.personal.Company;
+import com.example.committee.domain.personal.Platoon;
+import com.example.committee.domain.personal.Recruit;
 import com.example.committee.domain.request.Faculty;
 import com.example.committee.domain.request.Request;
-import com.example.committee.service.FacultyService;
-import com.example.committee.service.RecruitService;
-import com.example.committee.service.RequestService;
-import com.example.committee.service.SpecialtyService;
+import com.example.committee.service.*;
 import com.example.committee.utils.CompanyCreateHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -27,7 +27,7 @@ public class CompanyController {
     @Autowired
     private FacultyService facultyService;
     @Autowired
-    private SpecialtyService specialtyService;
+    private CompanyService companyService;
 
     @GetMapping(value = "/user/facultiesPage")
     public String getFacultiesPage(Model model) {
@@ -49,7 +49,7 @@ public class CompanyController {
     }
 
     private String createRequestsCountMessage(short facultyId) {
-        List<Request> requests = requestService.getRequestsByPriorityAndSpecialty_Faculty_FacultyId((short) 1, (short) 1);
+        List<Request> requests = requestService.getRequestsByPriorityAndSpecialty_Faculty_FacultyId((short) 1, facultyId);
         Faculty currentFaculty = facultyService.getFacultyById(facultyId);
 
         StringBuilder stringBuilder = new StringBuilder();
@@ -60,6 +60,14 @@ public class CompanyController {
     @PostMapping("/user/createCompanies/{facultyId}")
     public String createCompaniesInFaculty(@ModelAttribute("companyCreateHelper") CompanyCreateHelper companyCreateHelper, @PathVariable("facultyId") short facultyId) {
         System.out.println("формируем " + companyCreateHelper.getCompaniesCount() + " роты");
+        List<Request> requests = requestService.getRequestsByPriorityAndSpecialty_Faculty_FacultyId((short) 1, facultyId);
+        //Получаем список абитуриентов с 1 приоритетом на факультет
+        List<Recruit> recruitsList = new ArrayList<>();
+        for (int i = 0; i < requests.size(); i++) {
+            recruitsList.add(requests.get(i).getRecruit());
+        }
+        //TODO: Добавить факультет и год в роту, чтобы можно было доставать взвода по ротам.
+
         return "redirect:/user/facultiesPage";
     }
 

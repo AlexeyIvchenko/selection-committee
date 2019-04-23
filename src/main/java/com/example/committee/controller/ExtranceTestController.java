@@ -38,10 +38,12 @@ public class ExtranceTestController {
             byte hbResult = hbStandartService.getResultByScore(recruitExtranceTest.getHorizontal_bar());
             double run100Result = run100StandartService.getResultByScore(recruitExtranceTest.getRun100m());
             double run3Result = run3StandartService.getResultByScore(recruitExtranceTest.getRun3km());
+            byte prof_group = recruitExtranceTest.getProf_group();
 
             eth.setHbResult(hbResult);
             eth.setRun100mResult(run100Result);
             eth.setRun3kmResult(run3Result);
+            eth.setProf_group(prof_group);
             model.addAttribute("extranceTestHelper", eth);
         }
         model.addAttribute("recruitId", recruitId);
@@ -56,17 +58,20 @@ public class ExtranceTestController {
         byte hbScore = hbStandartService.getScoreByResult(extranceTestHelper.getHbResult());
         byte run100Score = run100StandartService.getScoreByResult(extranceTestHelper.getRun100mResult());
         byte run3Score = run3StandartService.getScoreByResult(extranceTestHelper.getRun3kmResult());
+        byte prof_group = extranceTestHelper.getProf_group();
 
         if (recruitExtranceTest != null) {
             recruitExtranceTest.setExtranceTestId(selectedRecruit.getExtranceTest().getExtranceTestId());
             recruitExtranceTest.setHorizontal_bar(hbScore);
             recruitExtranceTest.setRun100m(run100Score);
             recruitExtranceTest.setRun3km(run3Score);
+            recruitExtranceTest.setProf_group(prof_group);
         } else {
             recruitExtranceTest = new ExtranceTest();
             recruitExtranceTest.setHorizontal_bar(hbScore);
             recruitExtranceTest.setRun100m(run100Score);
             recruitExtranceTest.setRun3km(run3Score);
+            recruitExtranceTest.setProf_group(prof_group);
 
             selectedRecruit.setExtranceTest(recruitExtranceTest);
             recruitExtranceTest.setRecruit(selectedRecruit);
@@ -74,6 +79,4 @@ public class ExtranceTestController {
         extranceTestService.addExtranceTest(recruitExtranceTest);
         return "redirect:/user/recruitsListPage";
     }
-
-    //TODO: Доделать группу профотбора
 }
