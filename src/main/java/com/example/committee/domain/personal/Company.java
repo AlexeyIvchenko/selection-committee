@@ -1,6 +1,6 @@
 package com.example.committee.domain.personal;
 
-import com.example.committee.domain.location.Office;
+import com.example.committee.domain.request.Faculty;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,10 +22,20 @@ public class Company {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long companyId;
 
-    @Column(name = "company_name")
-    private String companyName;
+    @Column(name = "company_number")
+    private short companyNumber;
+
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "faculty_id")
+    private Faculty ownerFaculty;
+
+    @Column(name = "create_year")
+    private short createYear;
 
     @JsonIgnore
     @OneToMany(mappedBy = "company", fetch = FetchType.LAZY)
     private List<Platoon> platoons;
+
+
 }

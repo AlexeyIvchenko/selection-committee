@@ -4,6 +4,8 @@ import com.example.committee.domain.personal.Company;
 import com.example.committee.repository.CompanyRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CompanyService {
 
@@ -15,5 +17,9 @@ public class CompanyService {
 
     public void addCompany(Company company) {
         this.companyRepository.save(company);
+    }
+
+    public List<Company> getCompaniesByFacultyAndYear(short facultyId, short year) {
+        return this.companyRepository.findByOwnerFacultyFacultyIdAndCreateYear(facultyId, year);
     }
 }

@@ -20,8 +20,9 @@ public class Platoon {
     @Column(name = "platoon_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long platoonId;
-    @Column(name = "platoon_name")
-    private String platoonName;
+
+    @Column(name = "platoon_number")
+    private short platoonNumber;
 
     @JsonIgnore
     @OneToMany(mappedBy = "platoon", fetch = FetchType.EAGER)
@@ -32,7 +33,11 @@ public class Platoon {
     @JoinColumn(name = "company_id")
     private Company company;
 
-    public Platoon(String platoonName) {
-        this.platoonName = platoonName;
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(platoonNumber).append(" ").append("взвод ").append(company.getCompanyNumber()).append(" ")
+                .append(" роты ").append("факультета ").append(company.getOwnerFaculty().getFacultyName());
+        return sb.toString();
     }
 }
