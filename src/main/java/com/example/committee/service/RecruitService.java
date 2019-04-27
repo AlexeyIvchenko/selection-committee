@@ -1,6 +1,7 @@
 package com.example.committee.service;
 
 import com.example.committee.domain.personal.Passport;
+import com.example.committee.domain.personal.Platoon;
 import com.example.committee.domain.personal.Recruit;
 import com.example.committee.repository.PassportRepository;
 import com.example.committee.repository.RecruitRepository;
@@ -17,12 +18,8 @@ public class RecruitService {
     @Autowired
     private final RecruitRepository recruitRepository;
 
-    @Autowired
-    private final PassportRepository passportRepository;
-
-    public RecruitService(RecruitRepository recruitRepository, PassportRepository passportRepository) {
+    public RecruitService(RecruitRepository recruitRepository) {
         this.recruitRepository = recruitRepository;
-        this.passportRepository = passportRepository;
     }
 
     public List<Recruit> getAllRecruits() {
@@ -39,6 +36,10 @@ public class RecruitService {
 
     public void deleteRecruitById(Long recruitId) {
         this.recruitRepository.deleteById(recruitId);
+    }
+
+    public List<Recruit> getRecruitsByPlatoonsList(List<Platoon> platoons) {
+        return this.recruitRepository.findAllByPlatoonIn(platoons);
     }
 
     public JRDataSource getDataSource() {

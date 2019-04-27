@@ -540,6 +540,31 @@ $(document).ready(function () {
             });
         });
 
+    $('#facultyCompanies').change(
+        function () {
+            $.getJSON("http://localhost:8000/user/specialties", {
+                facultyId: $(this).val(),
+                ajax: 'true'
+            }, function (data) {
+                $('#specialtyDiv3').html('');
+                var html = '<span class="input-group-addon"><i' +
+                    ' class="glyphicon glyphicon-home"></i></span>';
+                html += '<select name="thirdPriority" class="form-control"' +
+                    ' required id="thirdPriority" data-bv-field="thirdPriority">';
+                var len = data.length;
+                html += '<option>...</option>';
+                for (var i = 0; i < len; i++) {
+                    html += '<option value="';
+                    html += data[i].specialtyId;
+                    html += '">';
+                    html += data[i].specialtyName;
+                    html += '</option>';
+                }
+                html += '</select>';
+                $('#specialtyDiv3').html(html);
+            });
+        });
+
     $('.mask-passport-number').mask('99 99 999999');
     $('.mask-certificate-number').mask('999 9999 9999999');
     $('.mask-year').mask('9999');

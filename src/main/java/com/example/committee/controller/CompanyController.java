@@ -11,10 +11,7 @@ import com.example.committee.utils.DateWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,6 +65,8 @@ public class CompanyController {
         createPlatoonsByFacultyAndYear(facultyId, (short) DateWorker.getCurrentYear());
         //распределям абитуриентов по взводам
         distributeRecruits(facultyId, (short) DateWorker.getCurrentYear());
+
+
         return "redirect:/user/facultiesPage";
     }
 
@@ -114,6 +113,28 @@ public class CompanyController {
                 j++;
             }
         }
+    }
+
+    @GetMapping(value = "/user/recruitsDistributionPage")
+    public String getRecruitsDistributionPage(Model model) {
+        List<Company> companies = companyService.getCompaniesByFacultyAndYear((short) 1, (short) DateWorker.getCurrentYear());
+        List<Platoon> platoons = platoonService.getPlatoonsByCompaniesList(companies);
+        List<Recruit> recruits = recruitService.getRecruitsByPlatoonsList(platoons);
+        model.addAttribute("recruitsList", recruits);
+
+        List<Faculty> facultyList = facultyService.getAllFaculties();
+        model.addAttribute("facultyList", facultyList);
+        return "recruitsDistributionPage";
+    }
+
+    @RequestMapping(value = "/user/recruitsInCompanies", method = RequestMethod.GET)
+    public @ResponseBody
+    List<Recruit> findRecruitsInByFacultyCompanies(@RequestParam(value = "facultyId", required = true) short facultyId) {
+        //TODO: доделать каскадное обновление таблицы по выпадающему списку
+    }
+
+    {
+
     }
 
 
