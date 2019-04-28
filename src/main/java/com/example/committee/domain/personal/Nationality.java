@@ -1,6 +1,8 @@
 package com.example.committee.domain.personal;
 
 import com.example.committee.domain.personal.Recruit;
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -20,6 +22,7 @@ public class Nationality {
     @Column(name = "nationality_name")
     private String nationalityName;
 
-    @OneToMany (mappedBy = "nationality", fetch = FetchType.LAZY)
+    @JsonIgnore
+    @OneToMany(mappedBy = "nationality", fetch = FetchType.LAZY)
     private Set<Recruit> recruits;
 }

@@ -8,6 +8,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -60,5 +61,13 @@ public class Recruit {
     private Certificate certificate;
 
     @OneToMany(mappedBy = "recruit", fetch = FetchType.EAGER)
-    private Set<Request> requests;
+    private List<Request> requests;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "recruit_entrance_test_id")
+    private ExtranceTest extranceTest;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "recruit_platoon_id")
+    private Platoon platoon;
 }

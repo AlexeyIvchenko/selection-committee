@@ -1,6 +1,7 @@
 package com.example.committee.domain.location;
 
 import com.example.committee.domain.location.Region;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,7 @@ public class MilitaryDistrict {
     private short districtId;
     private String districtName;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "militaryDistrict", fetch = FetchType.LAZY)
     private Set<Region> regions;
 }

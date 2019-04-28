@@ -4,15 +4,12 @@ import com.example.committee.domain.location.Address;
 import com.example.committee.domain.location.City;
 import com.example.committee.domain.location.Office;
 import com.example.committee.domain.location.Region;
-import com.example.committee.domain.personal.Nationality;
-import com.example.committee.domain.personal.Passport;
-import com.example.committee.domain.personal.Recruit;
+import com.example.committee.domain.personal.*;
 import com.example.committee.service.*;
 import com.example.committee.utils.CascadingSelectHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -34,9 +31,13 @@ public class RecruitController {
     private PassportService passportService;
     @Autowired
     private AddressService addressService;
+    @Autowired
+    private ExamService examService;
+    @Autowired
+    private CertificateService certificateService;
 
     @GetMapping("/user/recruitQuestionary")
-    public String showRecruitForm(@ModelAttribute("recruitForm") Recruit recruitForm, @ModelAttribute("selectRegion") Region region, @ModelAttribute("selectCity") City city, Model model) {
+    public String showRecruitForm(@ModelAttribute("recruitForm") Recruit recruitForm, Model model) {
         List<Nationality> nationalitiesList = nationalityService.getAllNationalities();
         List<Region> regionsList = regionService.getAllRegions();
         List<Office> officesList = officeService.getAllOffices();
@@ -52,7 +53,7 @@ public class RecruitController {
         model.addAttribute("citiesList", citiesList);
         //model.addAttribute("validExamYears", examYearsList);
 
-        return "recruitQuestionary";
+        return "recruitQuestionaryPage";
     }
 
     @PostMapping("/user/addRecruit")
@@ -95,33 +96,25 @@ public class RecruitController {
         model.addAttribute("officesList", officesList);
         model.addAttribute("citiesList", citiesList);
 
-        return "recruitInfoEditPage";
+        return "editInfoPage";
     }
 
-    @PostMapping("user/editRecruit/{recruitId}")
-    public String editRecruitInfo(@PathVariable("recruitId") Long recruitId, @Valid Recruit recruit, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            recruit.setRecruitId(recruitId);
-            return "recruitInfoEditPage";
-        }
-        Passport passport = passportService.getPassportByRecruitId(recruitId);
-        passport.setPassportNumber(recruit.getPassport().getPassportNumber());
-        passport.setPassportIssuedBy(recruit.getPassport().getPassportIssuedBy());
-        passport.setPassportDate(recruit.getPassport().getPassportDate());
-        recruit.setPassport(passport);
+    @PostMapping("/user/editRecruit/{recruitId}")
+    public String editRecruitInfo(@PathVariable("recruitId") Long recruitId, @Valid Recruit recruit) {
+        Passport editedPassport = recruit.getPassport();
+        editedPassport.setPassportId(recruitId);
+        passportService.addPassport(editedPassport);
 
-        Address address = addressService.getAddressByRecruitId(recruitId);
-        address.setCity(recruit.getAddress().getCity());
-        address.setStreetName(recruit.getAddress().getStreetName());
-        address.setVillageName(recruit.getAddress().getVillageName());
-        address.setHouseNumber(recruit.getAddress().getHouseNumber());
-        address.setBlockNumber(recruit.getAddress().getBlockNumber());
-        address.setApartmentNumber(recruit.getAddress().getApartmentNumber());
-        recruit.setAddress(address);
+        Address editedAddress = recruit.getAddress();
+        editedAddress.setAddressId(recruitId);
+        addressService.addAddress(editedAddress);
+
+        Exam exam = examService.getExamByRecruitId(recruitId);
+        recruit.setExam(exam);
+        Certificate certificate = certificateService.getCertificateByRecruitId(recruitId);
+        recruit.setCertificate(certificate);
 
         recruitService.addRecruit(recruit);
         return "redirect:/user/recruitsListPage";
     }
-
-
 }

@@ -1,5 +1,6 @@
 package com.example.committee.domain.location;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,13 +20,16 @@ public class Region {
     @Column(name = "region_name")
     private String regionName;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "region", fetch = FetchType.LAZY)
     private Set<City> cities;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "military_district_id")
     private MilitaryDistrict militaryDistrict;
 
+    @JsonIgnore
     @OneToMany (mappedBy = "region", fetch = FetchType.LAZY)
     private Set<Office> offices;
 }

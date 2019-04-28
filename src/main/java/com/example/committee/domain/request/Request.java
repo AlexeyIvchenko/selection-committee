@@ -34,4 +34,10 @@ public class Request {
     @Column(name = "request_date")
     private Date requestDate;
 
+    public Request(Recruit recruit, Specialty specialty, short priority, Date requestDate) {
+        this.recruit = recruit;
+        this.specialty = specialty;
+        this.priority = priority;
+        this.requestDate = requestDate;
+    }
 }

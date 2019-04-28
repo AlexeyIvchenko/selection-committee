@@ -18,7 +18,7 @@
 <th:block th:include="/_menu"></th:block>
 <div class="container">
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="table-responsive">
                 <table id="recruitsTable" class="table table-hover table-sm">
                     <thead>
@@ -29,7 +29,10 @@
                         <th>Отчество</th>
                         <th>Дата рождения</th>
                         <th>Город</th>
-                        <th class="col-md-1 col-xs-1">Ред</th>
+                        <th class="col-md-1 col-xs-1">Ред.</th>
+                        <th class="col-md-1 col-xs-1">Аттестат+ЕГЭ</th>
+                        <th class="col-md-1 col-xs-1">Вст. исп.</th>
+                        <th class="col-md-1 col-xs-1">Заявка</th>
                         <th class="col-md-1 col-xs-1">Удалить</th>
 
                     </tr>
@@ -48,6 +51,35 @@
                                class="btn btn-primary btn-xs glyphicon glyphicon-edit" )></a>
                         </td>
 
+
+                        <td th:if="${recruit.exam==null||recruit.certificate==null}">
+                            <a th:href="@{/user/educationPage/{recruitId}(recruitId=${recruit.recruitId})}"
+                               class="btn btn-warning btn-xs glyphicon glyphicon-education" )></a>
+                        </td>
+                        <td th:if="${recruit.exam!=null&&recruit.certificate!=null}">
+                            <a th:href="@{/user/educationPage/{recruitId}(recruitId=${recruit.recruitId})}"
+                               class="btn btn-success btn-xs glyphicon glyphicon-education" )></a>
+                        </td>
+
+                        <td th:if="${recruit.extranceTest==null}">
+                            <a th:href="@{/user/extranceTestPage/{recruitId}(recruitId=${recruit.recruitId})}"
+                               class="btn btn-warning btn-xs glyphicon glyphicon-screenshot" )></a>
+                        </td>
+                        <td th:if="${recruit.extranceTest!=null}">
+                            <a th:href="@{/user/extranceTestPage/{recruitId}(recruitId=${recruit.recruitId})}"
+                               class="btn btn-success btn-xs glyphicon glyphicon-screenshot" )></a>
+                        </td>
+
+
+                        <td th:if="${recruit.requests.size()==0}">
+                            <a th:href="@{/user/requestsPage/{recruitId}(recruitId=${recruit.recruitId})}"
+                               class="btn btn-warning btn-xs glyphicon glyphicon-star" )></a>
+                        </td>
+                        <td th:if="${recruit.requests.size()!=0}">
+                            <a th:href="@{/user/editRequestsPage/{recruitId}(recruitId=${recruit.recruitId})}"
+                               class="btn btn-success btn-xs glyphicon glyphicon-star" )></a>
+                        </td>
+
                         <td>
                             <a th:href="@{/user/deleteRecruit(recruitId=${recruit.recruitId})}"
                                class="btn btn-danger btn-xs glyphicon glyphicon-trash delete" )></a>
@@ -63,6 +95,9 @@
                         <th>Дата рождения</th>
                         <th>Город</th>
                         <th class="col-md-1 col-xs-1">Ред</th>
+                        <th class="col-md-1 col-xs-1">Аттестат+ЕГЭ</th>
+                        <th class="col-md-1 col-xs-1">Вст. исп.</th>
+                        <th class="col-md-1 col-xs-1">Заявка</th>
                         <th class="col-md-1 col-xs-1">Удалить</th>
 
                     </tr>

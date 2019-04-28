@@ -1,6 +1,7 @@
 package com.example.committee.domain.location;
 
 import com.example.committee.domain.personal.Recruit;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,6 +36,7 @@ public class Address {
     @Column(name = "apartment_number")
     private int apartmentNumber;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "address")
     private Recruit recruit;
 }

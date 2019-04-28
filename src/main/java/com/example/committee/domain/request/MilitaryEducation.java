@@ -1,6 +1,7 @@
 package com.example.committee.domain.request;
 
 import com.example.committee.domain.request.Faculty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,8 @@ public class MilitaryEducation {
     private short educationId;
     @Column(name = "education_name")
     private String educationName;
-    @OneToMany (mappedBy = "education", fetch = FetchType.EAGER)
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "education", fetch = FetchType.EAGER)
     private Set<Faculty> faculties;
 }

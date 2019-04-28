@@ -1,9 +1,6 @@
 $(document).ready(function () {
 
     $('#registerForm').bootstrapValidator({
-        rules: {
-            "passport.passportDate": "passportDate"
-        },
         message: 'This value is not valid',
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
@@ -203,6 +200,248 @@ $(document).ready(function () {
         }
     });
 
+    $('#examForm').bootstrapValidator({
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            scoreMath: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
+                        message: 'Введите корректное кол-во баллов'
+                    }
+                }
+            },
+            scoreRusLang: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
+                        message: 'Введите корректное кол-во баллов'
+                    }
+                }
+            },
+            scorePhysics: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
+                        message: 'Введите корректное кол-во баллов'
+                    }
+                }
+            },
+            scoreForeignLang: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
+                        message: 'Введите корректное кол-во баллов'
+                    }
+                }
+            },
+            scoreHistory: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
+                        message: 'Введите корректное кол-во баллов'
+                    }
+                }
+            },
+            scoreSocial: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
+                        message: 'Введите корректное кол-во баллов'
+                    }
+                }
+            },
+            scoreLiterature: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
+                        message: 'Введите корректное кол-во баллов'
+                    }
+                }
+            },
+
+        }
+    });
+
+    $('#certificateForm').bootstrapValidator({
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            scoreMath: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
+                        message: 'Введите корректное кол-во баллов'
+                    }
+                }
+            },
+            scoreRusLang: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
+                        message: 'Введите корректное кол-во баллов'
+                    }
+                }
+            },
+            scorePhysics: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
+                        message: 'Введите корректное кол-во баллов'
+                    }
+                }
+            },
+            scoreForeignLang: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
+                        message: 'Введите корректное кол-во баллов'
+                    }
+                }
+            },
+            scorePhysicalCulture: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
+                        message: 'Введите корректное кол-во баллов'
+                    }
+                }
+            },
+            scoreHistory: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
+                        message: 'Введите корректное кол-во баллов'
+                    }
+                }
+            },
+            scoreSocial: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
+                        message: 'Введите корректное кол-во баллов'
+                    }
+                }
+            },
+            scoreLiterature: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
+                        message: 'Введите корректное кол-во баллов'
+                    }
+                }
+            },
+
+        }
+    });
+
+    $('#extranceTestForm').bootstrapValidator({
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            hbResult: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^(100|[1-9]?[0-9])$/,
+                        message: 'Введите корректное кол-во подтягиваний к турнику (0-100)'
+                    }
+                }
+            },
+            run100mResult: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^\d+(,\d+)?$/,
+                        message: 'Введите корректное время'
+                    }
+                }
+            },
+            run3kmResult: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^\d+(,\d+)?$/,
+                        message: 'Введите корректное время'
+                    }
+                }
+            },
+            prof_group: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^[1-4]$/,
+                        message: 'Введите корректное время'
+                    }
+                }
+            },
+        }
+    });
+
+
     $('#region').change(
         function () {
             $.getJSON("http://localhost:8000/cities", {
@@ -226,5 +465,107 @@ $(document).ready(function () {
             });
         });
 
+    $('#firstPriorityFaculty').change(
+        function () {
+            $.getJSON("http://localhost:8000/user/specialties", {
+                facultyId: $(this).val(),
+                ajax: 'true'
+            }, function (data) {
+                $('#specialtyDiv1').html('');
+                var html = '<span class="input-group-addon"><i' +
+                    ' class="glyphicon glyphicon-home"></i></span>';
+                html += '<select name="firstPriority" class="form-control"' +
+                    ' required id="firstPriority" data-bv-field="firstPriority">';
+                var len = data.length;
+                html += '<option>...</option>';
+                for (var i = 0; i < len; i++) {
+                    html += '<option value="';
+                    html += data[i].specialtyId;
+                    html += '">';
+                    html += data[i].specialtyName;
+                    html += '</option>';
+                }
+                html += '</select>';
+                $('#specialtyDiv1').html(html);
+            });
+        });
+
+    $('#secondPriorityFaculty').change(
+        function () {
+            $.getJSON("http://localhost:8000/user/specialties", {
+                facultyId: $(this).val(),
+                ajax: 'true'
+            }, function (data) {
+                $('#specialtyDiv2').html('');
+                var html = '<span class="input-group-addon"><i' +
+                    ' class="glyphicon glyphicon-home"></i></span>';
+                html += '<select name="secondPriority" class="form-control"' +
+                    ' required id="secondPriority" data-bv-field="secondPriority">';
+                var len = data.length;
+                html += '<option>...</option>';
+                for (var i = 0; i < len; i++) {
+                    html += '<option value="';
+                    html += data[i].specialtyId;
+                    html += '">';
+                    html += data[i].specialtyName;
+                    html += '</option>';
+                }
+                html += '</select>';
+                $('#specialtyDiv2').html(html);
+            });
+        });
+
+    $('#thirdPriorityFaculty').change(
+        function () {
+            $.getJSON("http://localhost:8000/user/specialties", {
+                facultyId: $(this).val(),
+                ajax: 'true'
+            }, function (data) {
+                $('#specialtyDiv3').html('');
+                var html = '<span class="input-group-addon"><i' +
+                    ' class="glyphicon glyphicon-home"></i></span>';
+                html += '<select name="thirdPriority" class="form-control"' +
+                    ' required id="thirdPriority" data-bv-field="thirdPriority">';
+                var len = data.length;
+                html += '<option>...</option>';
+                for (var i = 0; i < len; i++) {
+                    html += '<option value="';
+                    html += data[i].specialtyId;
+                    html += '">';
+                    html += data[i].specialtyName;
+                    html += '</option>';
+                }
+                html += '</select>';
+                $('#specialtyDiv3').html(html);
+            });
+        });
+
+    $('#company').change(
+        function () {
+            $.getJSON("http://localhost:8000/user/platoons", {
+                companyId: $(this).val(),
+                ajax: 'true'
+            }, function (data) {
+                $('#platoonDiv').html('');
+                var html = '<span class="input-group-addon"><i' +
+                    ' class="glyphicon glyphicon-home"></i></span>';
+                html += '<select name="recruitPlatoon" class="form-control"' +
+                    ' required id="recruitPlatoon" data-bv-field="recruitPlatoon">';
+                var len = data.length;
+                html += '<option>...</option>';
+                for (var i = 0; i < len; i++) {
+                    html += '<option value="';
+                    html += data[i].platoonId;
+                    html += '">';
+                    html += data[i].platoonNumber;
+                    html += '</option>';
+                }
+                html += '</select>';
+                $('#platoonDiv').html(html);
+            });
+        });
+
     $('.mask-passport-number').mask('99 99 999999');
+    $('.mask-certificate-number').mask('999 9999 9999999');
+    $('.mask-year').mask('9999');
 });

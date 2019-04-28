@@ -18,4 +18,8 @@ public class AddressService {
     public Address getAddressByRecruitId(Long recruitId) {
         return this.addressRepository.findAddressByRecruitRecruitId(recruitId);
     }
+
+    public void addAddress(Address address) {
+        this.addressRepository.save(address);
+    }
 }

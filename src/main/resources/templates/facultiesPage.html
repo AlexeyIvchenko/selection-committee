@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link th:href="@{/css/bootstrapValidator.min.css}" rel="stylesheet">
+    <link th:href="@{/css/jquery-editable-select.min.css}" rel="stylesheet">
+    <link th:href="@{/css/dataTables.bootstrap.min.css}" rel="stylesheet">
+
+    <link href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap.min.css" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <title>Формирование учебных рот</title>
+</head>
+
+<body>
+<th:block th:include="/_menu"></th:block>
+<div class="container">
+    <div class="row">
+        <div class="col-md-10">
+            <div class="table-responsive">
+                <table id="facultyTable" class="table table-hover table-sm">
+                    <thead>
+                    <tr class="active">
+                        <th class="col-md-1 col-xs-1">Номер факультета</th>
+                        <th>Название факультета</th>
+                        <th>Форм.</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="faculty: ${facultiesList}">
+                        <td th:utext="${faculty.facultyId}">...</td>
+                        <td th:utext="${faculty.facultyName}">...</td>
+
+                        <td>
+                            <a th:href="@{/user/companyCreatePage/{facultyId}(facultyId=${faculty.facultyId})}"
+                               class="btn btn-primary btn-xs glyphicon glyphicon-edit" )></a>
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-2">
+
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+
+<script th:src="@{/js/bootstrapValidator.min.js}" src="../static/js/bootstrapValidator.min.js"
+        type="text/javascript"></script>
+<script th:src="@{/js/jquery-editable-select.min.js}" src="../static/js/jquery-editable-select.min.js"
+        type="text/javascript"></script>
+<script th:src="@{/js/jquery.maskedinput.min.js}" src="../static/js/jquery.maskedinput.min.js"
+        type="text/javascript"></script>
+
+
+<!--<script th:src="@{/js/jquery.dataTables.min.js}" src="../static/js/jquery.dataTables.min.js"-->
+<!--type="text/javascript"></script>-->
+<!--<script th:src="@{/js/dataTables.bootstrap.min.js}" src="../static/js/dataTables.bootstrap.min.js"-->
+<!--type="text/javascript"></script>-->
+
+<script th:src="@{/js/jquery.js}" src="../static/js/jquery.js" type="text/javascript"></script>
+<script th:src="@{/js/bootstrap.js}" src="../static/js/bootstrap.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+<script th:src="@{/js/bootstrap-confirm-delete.js}" src="../static/js/bootstrap-confirm-delete.js"
+        type="text/javascript"></script>
+<script th:src="@{/js/recruitsListPage.js}" src="../static/js/recruitsListPage.js" type="text/javascript"></script>
+<script th:src="@{/js/validation.js}" src="../static/js/validation.js" type="text/javascript"></script>
+
+</html>

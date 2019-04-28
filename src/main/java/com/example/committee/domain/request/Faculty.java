@@ -1,11 +1,14 @@
 package com.example.committee.domain.request;
 
+import com.example.committee.domain.personal.Company;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -38,9 +41,15 @@ public class Faculty {
     @Column(name = "score_literature")
     private short scoreLiterature;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "faculty", fetch = FetchType.EAGER)
     private Set<Specialty> specialties;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "ownerFaculty", fetch = FetchType.EAGER)
+    private Set<Company> companies;
+
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "military_education_id")
     private MilitaryEducation education;

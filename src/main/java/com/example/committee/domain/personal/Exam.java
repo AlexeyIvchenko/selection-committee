@@ -1,6 +1,6 @@
 package com.example.committee.domain.personal;
 
-import com.example.committee.domain.personal.Recruit;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,22 +20,27 @@ public class Exam {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long examId;
     @Column(name = "score_math")
-    private short scoreMath;
+    private byte scoreMath;
     @Column(name = "score_ruslang")
-    private short scoreRusLang;
+    private byte scoreRusLang;
     @Column(name = "score_physics")
-    private short scorePhysics;
+    private byte scorePhysics;
     @Column(name = "score_foreignlang")
-    private short scoreForeignLang;
+    private byte scoreForeignLang;
     @Column(name = "score_history")
-    private short scoreHistory;
+    private byte scoreHistory;
     @Column(name = "score_social")
-    private short scoreSocial;
+    private byte scoreSocial;
     @Column(name = "score_literature")
-    private short scoreLiterature;
+    private byte scoreLiterature;
     @Column(name = "exam_year")
     private short examYear;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "exam")
     private Recruit recruit;
+
+    public Exam(Long examId) {
+        this.examId = examId;
+    }
 }
