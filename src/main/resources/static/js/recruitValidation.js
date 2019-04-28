@@ -540,28 +540,28 @@ $(document).ready(function () {
             });
         });
 
-    $('#facultyCompanies').change(
+    $('#company').change(
         function () {
-            $.getJSON("http://localhost:8000/user/specialties", {
-                facultyId: $(this).val(),
+            $.getJSON("http://localhost:8000/user/platoons", {
+                companyId: $(this).val(),
                 ajax: 'true'
             }, function (data) {
-                $('#specialtyDiv3').html('');
+                $('#platoonDiv').html('');
                 var html = '<span class="input-group-addon"><i' +
                     ' class="glyphicon glyphicon-home"></i></span>';
-                html += '<select name="thirdPriority" class="form-control"' +
-                    ' required id="thirdPriority" data-bv-field="thirdPriority">';
+                html += '<select name="recruitPlatoon" class="form-control"' +
+                    ' required id="recruitPlatoon" data-bv-field="recruitPlatoon">';
                 var len = data.length;
                 html += '<option>...</option>';
                 for (var i = 0; i < len; i++) {
                     html += '<option value="';
-                    html += data[i].specialtyId;
+                    html += data[i].platoonId;
                     html += '">';
-                    html += data[i].specialtyName;
+                    html += data[i].platoonNumber;
                     html += '</option>';
                 }
                 html += '</select>';
-                $('#specialtyDiv3').html(html);
+                $('#platoonDiv').html(html);
             });
         });
 

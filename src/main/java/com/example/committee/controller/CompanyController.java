@@ -6,6 +6,7 @@ import com.example.committee.domain.personal.Recruit;
 import com.example.committee.domain.request.Faculty;
 import com.example.committee.domain.request.Request;
 import com.example.committee.service.*;
+import com.example.committee.utils.CascadingSelectHelper;
 import com.example.committee.utils.CompanyCreateHelper;
 import com.example.committee.utils.DateWorker;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -127,15 +129,58 @@ public class CompanyController {
         return "recruitsDistributionPage";
     }
 
-    @RequestMapping(value = "/user/recruitsInCompanies", method = RequestMethod.GET)
+    @PostMapping(value = "/user/showDistributionByFaculty")
+    public String showDistributionByFaculty(@RequestParam(value = "faculty") short facultyId, Model model) {
+        List<Company> companies = companyService.getCompaniesByFacultyAndYear(facultyId, (short) DateWorker.getCurrentYear());
+        List<Platoon> platoons = platoonService.getPlatoonsByCompaniesList(companies);
+        List<Recruit> recruits = recruitService.getRecruitsByPlatoonsList(platoons);
+        model.addAttribute("recruitsList", recruits);
+
+        List<Faculty> facultyList = facultyService.getAllFaculties();
+        model.addAttribute("facultyList", facultyList);
+        return "recruitsDistributionPage";
+    }
+
+    @GetMapping(value = "/user/moveRecruitPage/{recruitId}")
+    public String getMoveRecruitPage(@PathVariable("recruitId") Long recruitId, Model model) {
+        Request request = requestService.getRequestByRecruitIdAndPriority(recruitId, (short) 1);
+        Faculty faculty = request.getSpecialty().getFaculty();
+
+        List<Company> companies = companyService.getCompaniesByFacultyAndYear(faculty.getFacultyId(), (short) DateWorker.getCurrentYear());
+        model.addAttribute("companies", companies);
+
+        Recruit recruit = recruitService.findById(recruitId);
+        Platoon platoon = recruit.getPlatoon();
+        Company company = platoon.getCompany();
+        List<Platoon> platoons = platoonService.getPlatoonsByCompany(company);
+        model.addAttribute("platoonList", platoons);
+
+        CascadingSelectHelper cascadingSelectHelper = new CascadingSelectHelper();
+        cascadingSelectHelper.setRecruitPlatoon(platoon);
+        cascadingSelectHelper.setCompany(company);
+        model.addAttribute("cascadingSelectHelper", cascadingSelectHelper);
+
+        model.addAttribute("recruitId", recruitId);
+
+        return "moveRecruitPage";
+    }
+
+    @RequestMapping(value = "/user/platoons", method = RequestMethod.GET)
     public @ResponseBody
-    List<Recruit> findRecruitsInByFacultyCompanies(@RequestParam(value = "facultyId", required = true) short facultyId) {
-        //TODO: доделать каскадное обновление таблицы по выпадающему списку
+    List<Platoon> getPlatoonsByCompany(@RequestParam(value = "companyId", required = true) Long companyId) {
+        Company company = companyService.getCompanyById(companyId);
+        List<Platoon> platoons = platoonService.getPlatoonsByCompany(company);
+        return platoons;
     }
 
-    {
+    @PostMapping("user/moveRecruit/{recruitId}")
+    public String moveRecruit(@PathVariable("recruitId") Long recruitId, @Valid CascadingSelectHelper csh) {
+        Platoon platoon = csh.getRecruitPlatoon();
+        Recruit recruit = recruitService.findById(recruitId);
+        recruit.setPlatoon(platoon);
+        recruitService.addRecruit(recruit);
 
+        return "redirect:/user/recruitsDistributionPage";
     }
-
 
 }

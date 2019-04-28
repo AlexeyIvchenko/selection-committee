@@ -2,6 +2,8 @@ package com.example.committee.utils;
 
 import com.example.committee.domain.location.City;
 import com.example.committee.domain.location.Region;
+import com.example.committee.domain.personal.Company;
+import com.example.committee.domain.personal.Platoon;
 import com.example.committee.domain.request.Faculty;
 import com.example.committee.domain.request.MilitaryEducation;
 import lombok.AllArgsConstructor;
@@ -19,4 +21,7 @@ public class CascadingSelectHelper {
 
     MilitaryEducation militaryEducation;
     Faculty faculty;
+
+    Company company;
+    Platoon recruitPlatoon;
 }

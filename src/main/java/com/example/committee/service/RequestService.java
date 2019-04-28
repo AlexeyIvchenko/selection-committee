@@ -17,10 +17,6 @@ public class RequestService {
         this.requestRepository = requestRepository;
     }
 
-    public Request getRequestByRecruitId(Long recruitId) {
-        return this.requestRepository.findRequestByRecruitRecruitId(recruitId);
-    }
-
     public List<Request> getAllRequestsByRecruitId(Long recruitId) {
         return this.requestRepository.findAllRequestByRecruitRecruitId(recruitId);
     }
@@ -31,5 +27,9 @@ public class RequestService {
 
     public List<Request> getRequestsByPriorityAndSpecialty_Faculty_FacultyId(short priority, short facultyId) {
         return this.requestRepository.findRequestsByPriorityAndSpecialty_Faculty_FacultyId(priority, facultyId);
+    }
+
+    public Request getRequestByRecruitIdAndPriority(Long recruitId, short priority) {
+        return this.requestRepository.findRequestByRecruitRecruitIdAndPriority(recruitId, priority);
     }
 }

@@ -22,4 +22,8 @@ public class PlatoonService {
     public List<Platoon> getPlatoonsByCompaniesList(List<Company> companies) {
         return this.platoonRepository.findAllByCompanyIn(companies);
     }
+
+    public List<Platoon> getPlatoonsByCompany(Company company) {
+        return this.platoonRepository.findAllByCompany(company);
+    }
 }

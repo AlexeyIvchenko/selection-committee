@@ -11,4 +11,6 @@ public interface RequestRepository extends JpaRepository<Request, String> {
     List<Request> findAllRequestByRecruitRecruitId(Long recruitId);
 
     List<Request> findRequestsByPriorityAndSpecialty_Faculty_FacultyId(short priority, short facultyId);
+
+    Request findRequestByRecruitRecruitIdAndPriority(Long recruitId, short priority);
 }

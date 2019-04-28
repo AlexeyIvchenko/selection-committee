@@ -22,4 +22,8 @@ public class CompanyService {
     public List<Company> getCompaniesByFacultyAndYear(short facultyId, short year) {
         return this.companyRepository.findByOwnerFacultyFacultyIdAndCreateYear(facultyId, year);
     }
+
+    public Company getCompanyById(Long companyId) {
+        return this.companyRepository.findByCompanyId(companyId);
+    }
 }
