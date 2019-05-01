@@ -22,4 +22,9 @@ public class DateWorker {
         }
         return validExamYears;
     }
+
+    public static java.sql.Date getFirstDateInCurrentYear() {
+        String stringDate = getCurrentYear() + "-01" + "-01";
+        return java.sql.Date.valueOf(stringDate);
+    }
 }

@@ -31,8 +31,13 @@ public class Request {
 
     @Column(name = "priority")
     private short priority;
+
     @Column(name = "request_date")
     private Date requestDate;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "status_id")
+    private RequestStatus requestStatus;
 
     public Request(Recruit recruit, Specialty specialty, short priority, Date requestDate) {
         this.recruit = recruit;

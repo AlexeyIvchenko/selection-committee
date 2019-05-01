@@ -1,5 +1,6 @@
 package com.example.committee.domain.personal;
 
+import com.example.committee.domain.request.Faculty;
 import com.example.committee.domain.request.Request;
 import com.example.committee.domain.location.Address;
 import com.example.committee.domain.location.Office;
@@ -70,4 +71,41 @@ public class Recruit {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "recruit_platoon_id")
     private Platoon platoon;
+
+    public short sumExamScoreByFaculty(Faculty faculty) {
+        short resultScore = 0;
+
+        if (faculty.getScoreMath() != -1) {
+            resultScore += this.getExam().getScoreMath();
+        }
+        if (faculty.getScoreRusLang() != -1) {
+            resultScore += this.getExam().getScoreRusLang();
+        }
+        if (faculty.getScorePhysics() != -1) {
+            resultScore += this.getExam().getScorePhysics();
+        }
+        if (faculty.getScoreForeignLang() != -1) {
+            resultScore += this.getExam().getScoreForeignLang();
+        }
+        if (faculty.getScoreHistory() != -1) {
+            resultScore += this.getExam().getScoreHistory();
+        }
+        if (faculty.getScoreSocial() != -1) {
+            resultScore += this.getExam().getScoreSocial();
+        }
+        if (faculty.getScoreLiterature() != -1) {
+            resultScore += this.getExam().getScoreLiterature();
+        }
+        return resultScore;
+    }
+
+    private short sumExtranceTestScore() {
+        short resultScore = 0;
+        resultScore += this.extranceTest.getHorizontal_bar() + this.extranceTest.getRun100m() + this.extranceTest.getRun3km();
+        return resultScore;
+    }
+
+    public int sumTotalRecruitScore(Faculty faculty) {
+        return sumExamScoreByFaculty(faculty) + sumExtranceTestScore();
+    }
 }
