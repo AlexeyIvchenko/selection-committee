@@ -17,10 +17,15 @@
             </div>
             <div class="collapse navbar-collapse" id="navbar-main">
                 <ul class="nav navbar-nav">
-                    <li><a th:if="${#request.userPrincipal != null}" href="/user/recruitQuestionary">Добавить
-                        абитуриента</a></li>
-                    <li><a th:if="${#request.userPrincipal != null}" href="/user/recruitsListPage">Список
-                        абитуриентов</a></li>
+                    <li sec:authorize="hasRole('ROLE_USER')" class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Абитуриенты<span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/user/recruitQuestionary">Регистрация абитуриента</a></li>
+                            <li><a href="/user/recruitsListPage">Список абитуриентов</a></li>
+                        </ul>
+                    </li>
+
                     <li sec:authorize="hasRole('ROLE_USER')" class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Учебные роты<span
                                 class="caret"></span></a>
@@ -29,6 +34,8 @@
                             <li><a href="/user/recruitsDistributionPage">Списки учебных рот</a></li>
                         </ul>
                     </li>
+
+                    <li><a th:if="${#request.userPrincipal != null}" href="/user/enrollmentPage">Зачисление</a></li>
                 </ul>
 
                 <!-- Блок, расположенный справа -->

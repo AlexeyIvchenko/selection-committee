@@ -18,4 +18,8 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
     List<Request> findRequestsByPriorityAndRequestDateGreaterThan(short priority, Date date);
 
     Request findByRequestId(Long requestId);
+
+    List<Request> findRequestsByRequestStatusStatusIdAndRequestDateGreaterThan(byte statusId, Date date);
+
+    List<Request> findRequestsByRequestDateGreaterThan(Date date);
 }

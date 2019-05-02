@@ -11,6 +11,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RequestAndScore {
-    Request request;
-    int score;
+    private Request request;
+    private int score;
 }

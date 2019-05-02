@@ -34,11 +34,19 @@ public class RequestService {
         return this.requestRepository.findRequestByRecruitRecruitIdAndPriority(recruitId, priority);
     }
 
-    public List<Request> getRequestsByPriorityAndRequestYear(short priority, Date requestDate) {
-        return this.requestRepository.findRequestsByPriorityAndRequestDateGreaterThan(priority, requestDate);
+    public List<Request> getRequestsByPriorityAndRequestYear(short priority, Date date) {
+        return this.requestRepository.findRequestsByPriorityAndRequestDateGreaterThan(priority, date);
+    }
+
+    public List<Request> getRequestsByRequestYear(Date date) {
+        return this.requestRepository.findRequestsByRequestDateGreaterThan(date);
     }
 
     public Request getRequestById(Long requestId) {
         return this.requestRepository.findByRequestId(requestId);
+    }
+
+    public List<Request> getRequestsByStatusIdAndRequestYear(byte statusId, Date date) {
+        return this.requestRepository.findRequestsByRequestStatusStatusIdAndRequestDateGreaterThan(statusId, date);
     }
 }
