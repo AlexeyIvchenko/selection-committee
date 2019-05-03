@@ -29,118 +29,132 @@
 
                     <div class="container">
                         <div class="col-lg-9">
+                            <span class="center-block" th:text="${stopRequestMessage}"></span></p>
+                            <div th:if="${waitingRequests.size()!=0}">
+                                <form id="requestsForm" class="form-horizontal" th:action="@{/user/addRequests}"
+                                      th:object="${tsr}" method="post">
+                                    <fieldset>
+                                        <div th:if="${firstFacultySpecialtiesList.size()>0}">
+                                            <legend>Первый приоритет</legend>
 
-                            <form id="requestsForm" class="form-horizontal" th:action="@{/user/addRequests}"
-                                  th:object="${tsr}" method="post">
-                                <fieldset>
-                                    <legend>Первый приоритет</legend>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Факультет</label>
+                                                <div class="col-md-6  inputGroupContainer">
+                                                    <div class="input-group"> <span class="input-group-addon"><i
+                                                            class="glyphicon glyphicon-home"></i></span>
 
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label">Факультет</label>
-                                        <div class="col-md-6  inputGroupContainer">
-                                            <div class="input-group"> <span class="input-group-addon"><i
-                                                    class="glyphicon glyphicon-home"></i></span>
+                                                        <select name="firstPriorityFaculty" id="firstPriorityFaculty"
+                                                                class="form-control" required>
+                                                            <option th:each="faculty: ${facultyList}"
+                                                                    th:value="${faculty.getFacultyId()}"
+                                                                    th:text="${faculty.getFacultyName()}"></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                                                <select name="firstPriorityFaculty" id="firstPriorityFaculty"
-                                                        class="form-control" required>
-                                                    <option th:each="faculty: ${facultyList}"
-                                                            th:value="${faculty.getFacultyId()}"
-                                                            th:text="${faculty.getFacultyName()}"></option>
-                                                </select>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Специальность</label>
+                                                <div class="col-md-6  inputGroupContainer">
+                                                    <div id="specialtyDiv1" class="input-group">
+                                                        <select name="firstPriority" id="firstPriority"
+                                                                class="form-control"
+                                                                required>
+                                                            <option th:each="specialty: ${firstFacultySpecialtiesList}"
+                                                                    th:value="${specialty.getSpecialtyId()}"
+                                                                    th:text="${specialty.getSpecialtyName()}"></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label">Специальность</label>
-                                        <div class="col-md-6  inputGroupContainer">
-                                            <div id="specialtyDiv1" class="input-group">
-                                                <select name="firstPriority" id="firstPriority" class="form-control"
-                                                        required>
-                                                    <option th:each="specialty: ${firstFacultySpecialtiesList}"
-                                                            th:value="${specialty.getSpecialtyId()}"
-                                                            th:text="${specialty.getSpecialtyName()}"></option>
-                                                </select>
+
+                                        <div th:if="${firstFacultySpecialtiesList.size()>1}">
+                                            <legend>Второй приоритет</legend>
+
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Факультет</label>
+                                                <div class="col-md-6  inputGroupContainer">
+                                                    <div class="input-group"> <span class="input-group-addon"><i
+                                                            class="glyphicon glyphicon-home"></i></span>
+
+                                                        <select name="secondPriorityFaculty" id="secondPriorityFaculty"
+                                                                class="form-control" required>
+                                                            <option th:each="faculty: ${facultyList}"
+                                                                    th:value="${faculty.getFacultyId()}"
+                                                                    th:text="${faculty.getFacultyName()}"></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Специальность</label>
+                                                <div class="col-md-6  inputGroupContainer">
+                                                    <div id="specialtyDiv2" class="input-group">
+                                                        <select name="secondPriority" id="secondPriority"
+                                                                class="form-control"
+                                                                required>
+                                                            <option th:each="specialty: ${firstFacultySpecialtiesList}"
+                                                                    th:value="${specialty.getSpecialtyId()}"
+                                                                    th:text="${specialty.getSpecialtyName()}"></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <legend>Второй приоритет</legend>
 
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label">Факультет</label>
-                                        <div class="col-md-6  inputGroupContainer">
-                                            <div class="input-group"> <span class="input-group-addon"><i
-                                                    class="glyphicon glyphicon-home"></i></span>
+                                        <div th:if="${firstFacultySpecialtiesList.size()>2}">
+                                            <legend>Третий приоритет</legend>
 
-                                                <select name="secondPriorityFaculty" id="secondPriorityFaculty"
-                                                        class="form-control" required>
-                                                    <option th:each="faculty: ${facultyList}"
-                                                            th:value="${faculty.getFacultyId()}"
-                                                            th:text="${faculty.getFacultyName()}"></option>
-                                                </select>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Факультет</label>
+                                                <div class="col-md-6  inputGroupContainer">
+                                                    <div class="input-group"> <span class="input-group-addon"><i
+                                                            class="glyphicon glyphicon-home"></i></span>
+
+                                                        <select name="thirdPriorityFaculty" id="thirdPriorityFaculty"
+                                                                class="form-control" required>
+                                                            <option th:each="faculty: ${facultyList}"
+                                                                    th:value="${faculty.getFacultyId()}"
+                                                                    th:text="${faculty.getFacultyName()}"></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Специальность</label>
+                                                <div class="col-md-6  inputGroupContainer">
+                                                    <div id="specialtyDiv3" class="input-group">
+                                                        <select name="thirdPriority" id="thirdPriority"
+                                                                class="form-control"
+                                                                required>
+                                                            <option th:each="specialty: ${firstFacultySpecialtiesList}"
+                                                                    th:value="${specialty.getSpecialtyId()}"
+                                                                    th:text="${specialty.getSpecialtyName()}"></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label">Специальность</label>
-                                        <div class="col-md-6  inputGroupContainer">
-                                            <div id="specialtyDiv2" class="input-group">
-                                                <select name="secondPriority" id="secondPriority" class="form-control"
-                                                        required>
-                                                    <option th:each="specialty: ${firstFacultySpecialtiesList}"
-                                                            th:value="${specialty.getSpecialtyId()}"
-                                                            th:text="${specialty.getSpecialtyName()}"></option>
-                                                </select>
+
+                                        <input type="hidden" id="recruitId" name="recruitId" th:value="${recruitId}">
+
+                                        <!-- Button -->
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label"></label>
+                                            <div class="col-md-4">
+                                                <button type="submit" class="btn btn-warning">Сохранить <span
+                                                        class="glyphicon glyphicon-send"></span></button>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <legend>Третий приоритет</legend>
-
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label">Факультет</label>
-                                        <div class="col-md-6  inputGroupContainer">
-                                            <div class="input-group"> <span class="input-group-addon"><i
-                                                    class="glyphicon glyphicon-home"></i></span>
-
-                                                <select name="thirdPriorityFaculty" id="thirdPriorityFaculty"
-                                                        class="form-control" required>
-                                                    <option th:each="faculty: ${facultyList}"
-                                                            th:value="${faculty.getFacultyId()}"
-                                                            th:text="${faculty.getFacultyName()}"></option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label">Специальность</label>
-                                        <div class="col-md-6  inputGroupContainer">
-                                            <div id="specialtyDiv3" class="input-group">
-                                                <select name="thirdPriority" id="thirdPriority" class="form-control"
-                                                        required>
-                                                    <option th:each="specialty: ${firstFacultySpecialtiesList}"
-                                                            th:value="${specialty.getSpecialtyId()}"
-                                                            th:text="${specialty.getSpecialtyName()}"></option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <input type="hidden" id="recruitId" name="recruitId" th:value="${recruitId}">
-
-                                    <!-- Button -->
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label"></label>
-                                        <div class="col-md-4">
-                                            <button type="submit" class="btn btn-warning">Сохранить <span
-                                                    class="glyphicon glyphicon-send"></span></button>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </form>
+                                    </fieldset>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

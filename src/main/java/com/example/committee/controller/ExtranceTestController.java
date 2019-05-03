@@ -31,7 +31,7 @@ public class ExtranceTestController {
 
     @GetMapping("/user/extranceTestPage/{recruitId}")
     public String getExtranceTestPage(@ModelAttribute("extranceTestHelper") ExtranceTestHelper extranceTestHelper, @PathVariable("recruitId") Long recruitId, Model model) {
-        Recruit selectedRecruit = recruitService.findById(recruitId);
+        Recruit selectedRecruit = recruitService.getRecruitById(recruitId);
         ExtranceTest recruitExtranceTest = selectedRecruit.getExtranceTest();
         if (recruitExtranceTest != null) {
             ExtranceTestHelper eth = new ExtranceTestHelper();
@@ -52,7 +52,7 @@ public class ExtranceTestController {
 
     @PostMapping("/user/addExtranceTest/{recruitId}")
     public String addExtranceTest(@ModelAttribute("extranceTestHelper") ExtranceTestHelper extranceTestHelper, @PathVariable("recruitId") Long recruitId) {
-        Recruit selectedRecruit = recruitService.findById(recruitId);
+        Recruit selectedRecruit = recruitService.getRecruitById(recruitId);
         ExtranceTest recruitExtranceTest = selectedRecruit.getExtranceTest();
 
         byte hbScore = hbStandartService.getScoreByResult(extranceTestHelper.getHbResult());

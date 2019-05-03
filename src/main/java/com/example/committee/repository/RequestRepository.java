@@ -22,4 +22,6 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
     List<Request> findRequestsByRequestStatusStatusIdAndRequestDateGreaterThan(byte statusId, Date date);
 
     List<Request> findRequestsByRequestDateGreaterThan(Date date);
+
+    void deleteRequestsByRecruitRecruitId(Long recruitId);
 }

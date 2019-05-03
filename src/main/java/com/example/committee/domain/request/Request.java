@@ -21,11 +21,11 @@ public class Request {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long requestId;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "recruit_id")
     private Recruit recruit;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "specialty_id")
     private Specialty specialty;
 
@@ -35,14 +35,15 @@ public class Request {
     @Column(name = "request_date")
     private Date requestDate;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "status_id")
     private RequestStatus requestStatus;
 
-    public Request(Recruit recruit, Specialty specialty, short priority, Date requestDate) {
+    public Request(Recruit recruit, Specialty specialty, short priority, Date requestDate, RequestStatus requestStatus) {
         this.recruit = recruit;
         this.specialty = specialty;
         this.priority = priority;
         this.requestDate = requestDate;
+        this.requestStatus = requestStatus;
     }
 }

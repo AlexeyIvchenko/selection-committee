@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface RecruitRepository extends JpaRepository<Recruit, Long> {
     List<Recruit> findAllByPlatoonIn(List<Platoon> platoons);
+
+    Recruit findByRecruitId(Long recruitId);
 }

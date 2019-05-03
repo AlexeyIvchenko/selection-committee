@@ -96,7 +96,6 @@ public class ResultController {
                     //Добавляем в конец списка нераспределенных реквестов реквест абитуриента, но с приоритетом ниже на один (но не ниже 3)
                     addLowerPriorityRequestToList(currentRequest, requestAndScoreList);
                 }
-                //sortRequestAndScoreListByPriorityAndScore(requestAndScoreList);
             }
         }
 
@@ -124,7 +123,9 @@ public class ResultController {
     private void addLowerPriorityRequestToList(Request higherPriorityrequest, List<RequestAndScore> requestAndScoreList) {
         if (higherPriorityrequest.getPriority() < 3) {
             Request lowerPriorityRequest = requestService.getRequestByRecruitIdAndPriority(higherPriorityrequest.getRecruit().getRecruitId(), (short) (higherPriorityrequest.getPriority() + 1));
-            requestAndScoreList.add(transformRequestToRequestAndScore(lowerPriorityRequest));
+            if (lowerPriorityRequest != null) {
+                requestAndScoreList.add(transformRequestToRequestAndScore(lowerPriorityRequest));
+            }
         }
     }
 
