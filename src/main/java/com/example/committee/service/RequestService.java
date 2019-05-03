@@ -5,6 +5,7 @@ import com.example.committee.repository.RequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -31,5 +32,21 @@ public class RequestService {
 
     public Request getRequestByRecruitIdAndPriority(Long recruitId, short priority) {
         return this.requestRepository.findRequestByRecruitRecruitIdAndPriority(recruitId, priority);
+    }
+
+    public List<Request> getRequestsByPriorityAndRequestYear(short priority, Date date) {
+        return this.requestRepository.findRequestsByPriorityAndRequestDateGreaterThan(priority, date);
+    }
+
+    public List<Request> getRequestsByRequestYear(Date date) {
+        return this.requestRepository.findRequestsByRequestDateGreaterThan(date);
+    }
+
+    public Request getRequestById(Long requestId) {
+        return this.requestRepository.findByRequestId(requestId);
+    }
+
+    public List<Request> getRequestsByStatusIdAndRequestYear(byte statusId, Date date) {
+        return this.requestRepository.findRequestsByRequestStatusStatusIdAndRequestDateGreaterThan(statusId, date);
     }
 }

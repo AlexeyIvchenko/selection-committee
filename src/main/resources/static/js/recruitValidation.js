@@ -411,7 +411,7 @@ $(document).ready(function () {
                         message: 'Поле не может быть пустым'
                     },
                     regexp: {
-                        regexp: /^\d+(,\d+)?$/,
+                        regexp: /^[0-9]{1,2}([.][0-9]{1,2})?$/,
                         message: 'Введите корректное время'
                     }
                 }
@@ -422,7 +422,7 @@ $(document).ready(function () {
                         message: 'Поле не может быть пустым'
                     },
                     regexp: {
-                        regexp: /^\d+(,\d+)?$/,
+                        regexp: /^[0-9]{1,2}([.][0-9]{1,2})?$/,
                         message: 'Введите корректное время'
                     }
                 }
@@ -434,7 +434,7 @@ $(document).ready(function () {
                     },
                     regexp: {
                         regexp: /^[1-4]$/,
-                        message: 'Введите корректное время'
+                        message: 'Введите корректную группу профотбора'
                     }
                 }
             },

@@ -1,5 +1,6 @@
 package com.example.committee.domain.personal;
 
+import com.example.committee.domain.request.Faculty;
 import com.example.committee.domain.request.Request;
 import com.example.committee.domain.location.Address;
 import com.example.committee.domain.location.Office;
@@ -70,4 +71,58 @@ public class Recruit {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "recruit_platoon_id")
     private Platoon platoon;
+
+    public int sumExamOrCertificateScoreByFaculty(Faculty faculty) {
+        int resultScore = 0;
+        boolean isSPO = true;
+
+        if (faculty.getScoreMath() != -1) {
+            resultScore += this.getExam().getScoreMath();
+            isSPO = false;
+        }
+        if (faculty.getScoreRusLang() != -1) {
+            resultScore += this.getExam().getScoreRusLang();
+            isSPO = false;
+        }
+        if (faculty.getScorePhysics() != -1) {
+            resultScore += this.getExam().getScorePhysics();
+            isSPO = false;
+        }
+        if (faculty.getScoreForeignLang() != -1) {
+            resultScore += this.getExam().getScoreForeignLang();
+            isSPO = false;
+        }
+        if (faculty.getScoreHistory() != -1) {
+            resultScore += this.getExam().getScoreHistory();
+            isSPO = false;
+        }
+        if (faculty.getScoreSocial() != -1) {
+            resultScore += this.getExam().getScoreSocial();
+            isSPO = false;
+        }
+        if (faculty.getScoreLiterature() != -1) {
+            resultScore += this.getExam().getScoreLiterature();
+            isSPO = false;
+        }
+
+        if (isSPO) {
+            resultScore = (this.getCertificate().getScoreRusLang() + this.getCertificate().getScoreMath()
+                    + this.getCertificate().getScorePhysics() + this.getCertificate().getScoreSocial() +
+                    this.getCertificate().getScoreForeignLang() + this.getCertificate().getScorePhysicalCulture()) / 6;
+            //Умножение среднего балла на коэффициент значимости оценок в атестате (по сравнению с ФИЗО)
+            resultScore *= 50;
+        }
+
+        return resultScore;
+    }
+
+    private short sumExtranceTestScore() {
+        short resultScore = 0;
+        resultScore += this.extranceTest.getHorizontal_bar() + this.extranceTest.getRun100m() + this.extranceTest.getRun3km();
+        return resultScore;
+    }
+
+    public int sumTotalRecruitScore(Faculty faculty) {
+        return sumExamOrCertificateScoreByFaculty(faculty) + sumExtranceTestScore();
+    }
 }

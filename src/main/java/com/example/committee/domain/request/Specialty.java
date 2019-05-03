@@ -1,7 +1,5 @@
 package com.example.committee.domain.request;
 
-import com.example.committee.domain.request.Faculty;
-import com.example.committee.domain.request.Request;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
