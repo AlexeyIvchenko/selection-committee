@@ -47,7 +47,7 @@ public class EducationController {
             exam.setRecruit(selectedRecruit);
         }
         examService.addExam(exam);
-        return "redirect:/user/recruitsListPage";
+        return "redirect:/user/educationPage/" + recruitId;
     }
 
     @PostMapping("/user/addCertificate/{recruitId}")
@@ -60,6 +60,6 @@ public class EducationController {
             certificate.setRecruit(selectedRecruit);
         }
         certificateService.addCertificate(certificate);
-        return "redirect:/user/recruitsListPage";
+        return "redirect:/user/educationPage/" + recruitId;
     }
 }

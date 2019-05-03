@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -73,6 +74,7 @@ public class RecruitController {
     @GetMapping(value = "/user/recruitsListPage")
     public String getRecruitsListPage(Model model) {
         List<Recruit> recruitsList = recruitService.getAllRecruits();
+        Collections.sort(recruitsList, (rec1, rec2) -> rec2.getRecruitId().compareTo(rec1.getRecruitId()));
         model.addAttribute("recruitsList", recruitsList);
         return "recruitsListPage";
     }

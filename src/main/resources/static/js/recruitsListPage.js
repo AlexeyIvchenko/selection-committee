@@ -6,11 +6,12 @@ $(document).ready(function () {
             "lengthMenu": "Показывать по _MENU_ записей",
             "info": "Всего _TOTAL_ записей",
             "paginate": {
-                "first":      "Первый",
-                "last":       "Последний",
-                "next":       "Следующая",
-                "previous":   "Предыдущая"
+                "first": "Первый",
+                "last": "Последний",
+                "next": "Следующая",
+                "previous": "Предыдущая"
             },
-        }
+        },
+        "order": [[0, 'desc']]
     });
 });
