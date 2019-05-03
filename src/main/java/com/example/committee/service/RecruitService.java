@@ -26,8 +26,8 @@ public class RecruitService {
         return recruitRepository.findAll();
     }
 
-    public Recruit findById(Long recruitId) {
-        return recruitRepository.findById(recruitId).orElse(null);
+    public Recruit getRecruitById(Long recruitId) {
+        return recruitRepository.findByRecruitId(recruitId);
     }
 
     public void addRecruit(Recruit recruit) {

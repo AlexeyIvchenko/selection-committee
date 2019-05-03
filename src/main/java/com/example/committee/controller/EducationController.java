@@ -25,7 +25,7 @@ public class EducationController {
 
     @GetMapping("/user/educationPage/{recruitId}")
     public String getEducationPage(@ModelAttribute("exam") Exam exam, @ModelAttribute("certificate") Certificate certificate, @PathVariable("recruitId") Long recruitId, Model model) {
-        Recruit selectedRecruit = recruitService.findById(recruitId);
+        Recruit selectedRecruit = recruitService.getRecruitById(recruitId);
         if (selectedRecruit.getExam() != null) {
             model.addAttribute("exam", selectedRecruit.getExam());
             model.addAttribute("action", "edit");
@@ -39,7 +39,7 @@ public class EducationController {
 
     @PostMapping("/user/addExam/{recruitId}")
     public String addExam(@ModelAttribute("exam") Exam exam, @PathVariable("recruitId") Long recruitId) {
-        Recruit selectedRecruit = recruitService.findById(recruitId);
+        Recruit selectedRecruit = recruitService.getRecruitById(recruitId);
         if (selectedRecruit.getExam() != null) {
             exam.setExamId(selectedRecruit.getExam().getExamId());
         } else {
@@ -52,7 +52,7 @@ public class EducationController {
 
     @PostMapping("/user/addCertificate/{recruitId}")
     public String addCertificate(@ModelAttribute("certificate") Certificate certificate, @PathVariable("recruitId") Long recruitId) {
-        Recruit selectedRecruit = recruitService.findById(recruitId);
+        Recruit selectedRecruit = recruitService.getRecruitById(recruitId);
         if (selectedRecruit.getCertificate() != null) {
             certificate.setCertificateId(selectedRecruit.getCertificate().getCertificateId());
         } else {

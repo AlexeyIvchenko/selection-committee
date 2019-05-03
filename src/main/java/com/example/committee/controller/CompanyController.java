@@ -149,7 +149,7 @@ public class CompanyController {
         List<Company> companies = companyService.getCompaniesByFacultyAndYear(faculty.getFacultyId(), (short) DateWorker.getCurrentYear());
         model.addAttribute("companies", companies);
 
-        Recruit recruit = recruitService.findById(recruitId);
+        Recruit recruit = recruitService.getRecruitById(recruitId);
         Platoon platoon = recruit.getPlatoon();
         Company company = platoon.getCompany();
         List<Platoon> platoons = platoonService.getPlatoonsByCompany(company);
@@ -176,7 +176,7 @@ public class CompanyController {
     @PostMapping("user/moveRecruit/{recruitId}")
     public String moveRecruit(@PathVariable("recruitId") Long recruitId, @Valid CascadingSelectHelper csh) {
         Platoon platoon = csh.getRecruitPlatoon();
-        Recruit recruit = recruitService.findById(recruitId);
+        Recruit recruit = recruitService.getRecruitById(recruitId);
         recruit.setPlatoon(platoon);
         recruitService.addRecruit(recruit);
 

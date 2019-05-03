@@ -33,9 +33,7 @@ public class RecruitController {
     @Autowired
     private AddressService addressService;
     @Autowired
-    private ExamService examService;
-    @Autowired
-    private CertificateService certificateService;
+    private RequestService requestService;
 
     @GetMapping("/user/recruitQuestionary")
     public String showRecruitForm(@ModelAttribute("recruitForm") Recruit recruitForm, Model model) {
@@ -87,7 +85,7 @@ public class RecruitController {
 
     @GetMapping(value = "/user/editPage/{recruitId}")
     public String getRecruitEditPage(@PathVariable("recruitId") Long recruitId, Model model) {
-        Recruit recruit = recruitService.findById(recruitId);
+        Recruit recruit = recruitService.getRecruitById(recruitId);
         model.addAttribute("recruit", recruit);
 
         List<Nationality> nationalitiesList = nationalityService.getAllNationalities();
@@ -102,21 +100,24 @@ public class RecruitController {
     }
 
     @PostMapping("/user/editRecruit/{recruitId}")
-    public String editRecruitInfo(@PathVariable("recruitId") Long recruitId, @Valid Recruit recruit) {
-        Passport editedPassport = recruit.getPassport();
-        editedPassport.setPassportId(recruitId);
+    public String editRecruitInfo(@PathVariable("recruitId") Long recruitId, @Valid Recruit editedRecruit) {
+        Recruit recruitFromBase = recruitService.getRecruitById(recruitId);
+
+        Passport editedPassport = editedRecruit.getPassport();
+        editedPassport.setPassportId(recruitFromBase.getPassport().getPassportId());
         passportService.addPassport(editedPassport);
 
-        Address editedAddress = recruit.getAddress();
-        editedAddress.setAddressId(recruitId);
+        Address editedAddress = editedRecruit.getAddress();
+        editedAddress.setAddressId(recruitFromBase.getAddress().getAddressId());
         addressService.addAddress(editedAddress);
 
-        Exam exam = examService.getExamByRecruitId(recruitId);
-        recruit.setExam(exam);
-        Certificate certificate = certificateService.getCertificateByRecruitId(recruitId);
-        recruit.setCertificate(certificate);
+        editedRecruit.setExam(recruitFromBase.getExam());
+        editedRecruit.setCertificate(recruitFromBase.getCertificate());
+        editedRecruit.setRequests(recruitFromBase.getRequests());
+        editedRecruit.setExtranceTest(recruitFromBase.getExtranceTest());
+        editedRecruit.setPlatoon(recruitFromBase.getPlatoon());
 
-        recruitService.addRecruit(recruit);
+        recruitService.addRecruit(editedRecruit);
         return "redirect:/user/recruitsListPage";
     }
 }

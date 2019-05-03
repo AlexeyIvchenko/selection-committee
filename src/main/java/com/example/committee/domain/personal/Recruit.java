@@ -61,7 +61,7 @@ public class Recruit {
     @JoinColumn(name = "recruit_certificate_id")
     private Certificate certificate;
 
-    @OneToMany(mappedBy = "recruit", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "recruit", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Request> requests;
 
     @OneToOne(cascade = CascadeType.ALL)
