@@ -4,15 +4,21 @@ import com.example.committee.domain.location.Address;
 import com.example.committee.domain.location.City;
 import com.example.committee.domain.location.Office;
 import com.example.committee.domain.location.Region;
-import com.example.committee.domain.personal.*;
+import com.example.committee.domain.personal.Nationality;
+import com.example.committee.domain.personal.Passport;
+import com.example.committee.domain.personal.Recruit;
 import com.example.committee.service.*;
 import com.example.committee.utils.CascadingSelectHelper;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.Collections;
 import java.util.List;
 
@@ -32,8 +38,8 @@ public class RecruitController {
     private PassportService passportService;
     @Autowired
     private AddressService addressService;
-    @Autowired
-    private RequestService requestService;
+
+    private static final Logger log = Logger.getLogger(RecruitController.class);
 
     @GetMapping("/user/recruitQuestionary")
     public String showRecruitForm(@ModelAttribute("recruitForm") Recruit recruitForm, Model model) {
@@ -78,8 +84,11 @@ public class RecruitController {
     }
 
     @GetMapping(value = "/user/deleteRecruit")
-    public String deleteRecruit(@RequestParam(name = "recruitId") Long recruitId) {
+    public String deleteRecruit(@RequestParam(name = "recruitId") Long recruitId, Principal principal) {
+        Recruit recruit = recruitService.getRecruitById(recruitId);
         recruitService.deleteRecruitById(recruitId);
+        //Запись события в log-файл
+        logEvent(principal, "info", "Удалено личное дело абитериента (" + recruit.getSurname() + " " + recruit.getName() + " " + recruit.getSecondName() + ")");
         return "redirect:/user/recruitsListPage";
     }
 
@@ -100,7 +109,7 @@ public class RecruitController {
     }
 
     @PostMapping("/user/editRecruit/{recruitId}")
-    public String editRecruitInfo(@PathVariable("recruitId") Long recruitId, @Valid Recruit editedRecruit) {
+    public String editRecruitInfo(@PathVariable("recruitId") Long recruitId, @Valid Recruit editedRecruit, Principal principal) {
         Recruit recruitFromBase = recruitService.getRecruitById(recruitId);
 
         Passport editedPassport = editedRecruit.getPassport();
@@ -118,6 +127,24 @@ public class RecruitController {
         editedRecruit.setPlatoon(recruitFromBase.getPlatoon());
 
         recruitService.addRecruit(editedRecruit);
+        //Запись события в log-файл
+        Recruit recruit = recruitService.getRecruitById(recruitId);
+        logEvent(principal, "info", "Изменено личное дело абитериента (" + recruit.getSurname() + " " + recruit.getName() + " " + recruit.getSecondName());
         return "redirect:/user/recruitsListPage";
+    }
+
+    private void logEvent(Principal principal, String logType, String logMessage) {
+        User loginedUser = (User) ((Authentication) principal).getPrincipal();
+        switch (logType) {
+            case "info": {
+                log.info("<" + loginedUser.getUsername() + ">" + logMessage);
+                break;
+            }
+            case "error": {
+                log.error("<" + loginedUser.getUsername() + ">" + logMessage);
+                break;
+            }
+
+        }
     }
 }
