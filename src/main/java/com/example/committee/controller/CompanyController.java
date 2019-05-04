@@ -5,6 +5,7 @@ import com.example.committee.domain.personal.Platoon;
 import com.example.committee.domain.personal.Recruit;
 import com.example.committee.domain.request.Faculty;
 import com.example.committee.domain.request.Request;
+import com.example.committee.domain.request.Specialty;
 import com.example.committee.service.*;
 import com.example.committee.utils.CascadingSelectHelper;
 import com.example.committee.utils.CompanyCreateHelper;
@@ -30,6 +31,8 @@ public class CompanyController {
     private CompanyService companyService;
     @Autowired
     private PlatoonService platoonService;
+    @Autowired
+    private SpecialtyService specialtyService;
 
     @GetMapping(value = "/user/facultiesPage")
     public String getFacultiesPage(Model model) {

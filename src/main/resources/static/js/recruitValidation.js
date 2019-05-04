@@ -565,6 +565,31 @@ $(document).ready(function () {
             });
         });
 
+    $('#faculty').change(
+        function () {
+            $.getJSON("http://localhost:8000/user/specialtiesNew", {
+                facultyId: $(this).val(),
+                ajax: 'true'
+            }, function (data) {
+                $('#specialtyDiv').html('');
+                var html = '<span class="input-group-addon"><i' +
+                    ' class="glyphicon glyphicon-home"></i></span>';
+                html += '<select name="specialty" class="form-control"' +
+                    ' required id="specialty" data-bv-field="specialty">';
+                var len = data.length;
+                html += '<option>...</option>';
+                for (var i = 0; i < len; i++) {
+                    html += '<option value="';
+                    html += data[i].specialtyId;
+                    html += '">';
+                    html += data[i].specialtyName;
+                    html += '</option>';
+                }
+                html += '</select>';
+                $('#specialtyDiv').html(html);
+            });
+        });
+
     $('.mask-passport-number').mask('99 99 999999');
     $('.mask-certificate-number').mask('999 9999 9999999');
     $('.mask-year').mask('9999');

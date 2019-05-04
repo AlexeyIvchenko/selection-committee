@@ -32,4 +32,8 @@ public class ExtranceTest {
     @OneToOne(mappedBy = "extranceTest")
     private Recruit recruit;
 
+    public short sumScoreFIZO() {
+        return (short) (run100m + run3km + horizontal_bar);
+    }
+
 }
