@@ -130,8 +130,7 @@
                                                 <div class="col-md-6  inputGroupContainer">
                                                     <div id="specialtyDiv3" class="input-group">
                                                         <select name="thirdPriority" id="thirdPriority"
-                                                                class="form-control"
-                                                                required>
+                                                                class="form-control" required>
                                                             <option th:each="specialty: ${firstFacultySpecialtiesList}"
                                                                     th:value="${specialty.getSpecialtyId()}"
                                                                     th:text="${specialty.getSpecialtyName()}"></option>

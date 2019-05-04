@@ -1,12 +1,20 @@
 package com.example.committee.service;
 
+import com.example.committee.domain.personal.Recruit;
 import com.example.committee.domain.request.Request;
+import com.example.committee.domain.request.Specialty;
 import com.example.committee.repository.RequestRepository;
+import com.example.committee.utils.DateWorker;
+import com.example.committee.utils.ReportHelper;
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -44,15 +52,17 @@ public class RequestService {
         return this.requestRepository.findRequestsByRequestDateGreaterThan(date);
     }
 
-    public Request getRequestById(Long requestId) {
-        return this.requestRepository.findByRequestId(requestId);
-    }
-
     public List<Request> getRequestsByStatusIdAndRequestYear(byte statusId, Date date) {
         return this.requestRepository.findRequestsByRequestStatusStatusIdAndRequestDateGreaterThan(statusId, date);
     }
 
-    public void deleteRequestsByRecruitId(Long recruitId) {
-        this.requestRepository.deleteRequestsByRecruitRecruitId(recruitId);
+    public JRDataSource getDataSource(Specialty specialty) {
+        List<Request> requests = requestRepository.findRequestsBySpecialtyAndRequestDateGreaterThan(specialty, DateWorker.getFirstDateInCurrentYear());
+        List<ReportHelper> reportHelpers = new ArrayList<>();
+        for (int i = 0; i < requests.size(); i++) {
+            reportHelpers.add(new ReportHelper(requests.get(i), i + 1));
+        }
+        Collection<ReportHelper> list = reportHelpers;
+        return new JRBeanCollectionDataSource(list);
     }
 }

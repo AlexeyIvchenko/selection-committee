@@ -1,16 +1,18 @@
 package com.example.committee.controller;
 
 import com.example.committee.domain.personal.Recruit;
+import com.example.committee.domain.request.Faculty;
 import com.example.committee.domain.request.Request;
 import com.example.committee.domain.request.RequestStatus;
 import com.example.committee.domain.request.Specialty;
 import com.example.committee.service.*;
+import com.example.committee.utils.CascadingSelectHelper;
 import com.example.committee.utils.DateWorker;
 import com.example.committee.utils.RequestAndScore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,6 +26,8 @@ public class ResultController {
     private SpecialtyService specialtyService;
     @Autowired
     private RequestStatusService requestStatusService;
+    @Autowired
+    private FacultyService facultyService;
 
 
     @GetMapping(value = "/user/enrollmentPage")
@@ -34,9 +38,25 @@ public class ResultController {
         List<Request> requests = requestService.getRequestsByStatusIdAndRequestYear((byte) 1, DateWorker.getFirstDateInCurrentYear());
         List<RequestAndScore> requestAndScoreList = transformRequestsListToRequestAndScoreList(requests);
         model.addAttribute("preliminaryList", requestAndScoreList);
+
+        List<Faculty> facultyList = facultyService.getAllFaculties();
+        model.addAttribute("facultyList", facultyList);
+
+        List<Specialty> firstFacultySpecialtiesList = specialtyService.getAllSpecialtiesInFaculty(facultyList.get(0));
+        model.addAttribute("firstFacultySpecialtiesList", firstFacultySpecialtiesList);
+
+        model.addAttribute("cascadingSelectHelper", new CascadingSelectHelper());
+
         return "enrollmentPage";
     }
 
+    @RequestMapping(value = "/user/specialtiesNew", method = RequestMethod.GET)
+    public @ResponseBody
+    List<Specialty> findSpecialtiesByFaculty(@RequestParam(value = "facultyId", required = true) short facultyId) {
+        Faculty faculty = facultyService.getFacultyById(facultyId);
+        List<Specialty> specialtiesList = specialtyService.getAllSpecialtiesInFaculty(faculty);
+        return specialtiesList;
+    }
 
     @GetMapping(value = "/user/clearPreliminaryLists")
     public String clearPreliminaryLists() {

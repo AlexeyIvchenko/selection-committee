@@ -1,13 +1,13 @@
 package com.example.committee.repository;
 
 import com.example.committee.domain.request.Request;
+import com.example.committee.domain.request.Specialty;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.sql.Date;
 import java.util.List;
 
 public interface RequestRepository extends JpaRepository<Request, Long> {
-    Request findRequestByRecruitRecruitId(Long recruitId);
 
     List<Request> findAllRequestByRecruitRecruitId(Long recruitId);
 
@@ -17,11 +17,9 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
 
     List<Request> findRequestsByPriorityAndRequestDateGreaterThan(short priority, Date date);
 
-    Request findByRequestId(Long requestId);
-
     List<Request> findRequestsByRequestStatusStatusIdAndRequestDateGreaterThan(byte statusId, Date date);
 
     List<Request> findRequestsByRequestDateGreaterThan(Date date);
 
-    void deleteRequestsByRecruitRecruitId(Long recruitId);
+    List<Request> findRequestsBySpecialtyAndRequestDateGreaterThan(Specialty specialty, Date date);
 }

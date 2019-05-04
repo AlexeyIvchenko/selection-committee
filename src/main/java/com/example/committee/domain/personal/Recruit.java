@@ -1,16 +1,17 @@
 package com.example.committee.domain.personal;
 
-import com.example.committee.domain.request.Faculty;
-import com.example.committee.domain.request.Request;
 import com.example.committee.domain.location.Address;
 import com.example.committee.domain.location.Office;
-import lombok.*;
-import org.hibernate.annotations.DynamicUpdate;
+import com.example.committee.domain.request.Faculty;
+import com.example.committee.domain.request.Request;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
-import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
