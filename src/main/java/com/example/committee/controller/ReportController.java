@@ -1,5 +1,6 @@
 package com.example.committee.controller;
 
+import com.example.committee.domain.request.Faculty;
 import com.example.committee.service.RecruitService;
 import com.example.committee.service.ReportService;
 import com.example.committee.service.RequestService;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.InputStream;
 
 @Controller
@@ -30,8 +30,29 @@ public class ReportController {
     @ResponseBody
     public HttpEntity<byte[]> getRecruitReportPdf(@ModelAttribute("cascadingSelectHelper") CascadingSelectHelper cascadingSelectHelper) throws JRException {
 
+        String pathToReportFile = "";
+        Faculty faculty = cascadingSelectHelper.getFaculty();
+        switch (faculty.getFacultyId()) {
+            case 1:
+            case 3: {
+                pathToReportFile = "/reports/faculty1Report.jrxml";
+                break;
+            }
+            case 2: {
+                pathToReportFile = "/reports/faculty2Report.jrxml";
+                break;
+            }
+            case 4: {
+                pathToReportFile = "/reports/faculty4Report.jrxml";
+                break;
+            }
+            case 5: {
+                pathToReportFile = "/reports/faculty5Report.jrxml";
+                break;
+            }
+        }
 
-        InputStream inputStream = this.getClass().getResourceAsStream("/reports/recruitsReport.jrxml");
+        InputStream inputStream = this.getClass().getResourceAsStream(pathToReportFile);
         JasperReport jasperReport = JasperCompileManager.compileReport(inputStream);
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, requestService.getDataSource(cascadingSelectHelper.getSpecialty()));
 

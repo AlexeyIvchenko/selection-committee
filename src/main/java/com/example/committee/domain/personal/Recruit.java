@@ -117,6 +117,12 @@ public class Recruit {
         return resultScore;
     }
 
+    public double getAverageCertificateScore() {
+        return (this.getCertificate().getScoreRusLang() + this.getCertificate().getScoreMath()
+                + this.getCertificate().getScorePhysics() + this.getCertificate().getScoreSocial() +
+                this.getCertificate().getScoreForeignLang() + this.getCertificate().getScorePhysicalCulture()) / 6;
+    }
+
     private short sumExtranceTestScore() {
         short resultScore = 0;
         resultScore += this.extranceTest.getHorizontal_bar() + this.extranceTest.getRun100m() + this.extranceTest.getRun3km();

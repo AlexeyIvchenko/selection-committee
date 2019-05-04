@@ -32,17 +32,18 @@ public class ReportHelper {
     private String scoreLiterature;
     private String scoreFizo;
     private String totalScore;
+    private String averageCertificateScore;
     private String decision;
 
     public ReportHelper(Request request, int number) {
         Recruit recruit = request.getRecruit();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        this.currentDate = dateFormat.format(DateWorker.getCurrentDate());
+        this.currentDate = dateFormat.format(DateWorker.getCurrentDate()) + "г.";
         this.faculty = request.getSpecialty().getFaculty().getFacultyName();
         this.specialty = request.getSpecialty().getSpecialtyName();
         this.number = String.valueOf(number);
         this.fio = recruit.getSurname() + " " + recruit.getName() + " " + recruit.getSecondName();
-        this.birthday = dateFormat.format(recruit.getBirthday());
+        this.birthday = dateFormat.format(recruit.getBirthday()) + "г.";
         this.office = recruit.getOffice().getOfficeName();
         this.prof_group = String.valueOf(recruit.getExtranceTest().getProf_group());
         this.scoreMath = String.valueOf(recruit.getExam().getScoreMath());
@@ -54,6 +55,7 @@ public class ReportHelper {
         this.scoreLiterature = String.valueOf(recruit.getExam().getScoreLiterature());
         this.scoreFizo = String.valueOf(recruit.getExtranceTest().sumScoreFIZO());
         this.totalScore = String.valueOf(recruit.sumTotalRecruitScore(request.getSpecialty().getFaculty()));
+        this.averageCertificateScore = String.valueOf(recruit.getAverageCertificateScore());
         this.decision = request.getRequestStatus().getStatusName();
     }
 

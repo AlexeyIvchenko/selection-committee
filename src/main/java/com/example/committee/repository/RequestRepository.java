@@ -1,6 +1,7 @@
 package com.example.committee.repository;
 
 import com.example.committee.domain.request.Request;
+import com.example.committee.domain.request.RequestStatus;
 import com.example.committee.domain.request.Specialty;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -21,5 +22,5 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
 
     List<Request> findRequestsByRequestDateGreaterThan(Date date);
 
-    List<Request> findRequestsBySpecialtyAndRequestDateGreaterThan(Specialty specialty, Date date);
+    List<Request> findRequestsBySpecialtyAndRequestDateGreaterThanAndRequestStatus(Specialty specialty, Date date, RequestStatus requestStatus);
 }
