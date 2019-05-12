@@ -42,9 +42,10 @@ public class ResultController {
         List<Faculty> facultyList = facultyService.getAllFaculties();
         model.addAttribute("facultyList", facultyList);
 
-        List<Specialty> firstFacultySpecialtiesList = specialtyService.getAllSpecialtiesInFaculty(facultyList.get(0));
-        model.addAttribute("firstFacultySpecialtiesList", firstFacultySpecialtiesList);
-
+        if (facultyList.size() != 0) {
+            List<Specialty> firstFacultySpecialtiesList = specialtyService.getAllSpecialtiesInFaculty(facultyList.get(0));
+            model.addAttribute("firstFacultySpecialtiesList", firstFacultySpecialtiesList);
+        }
         model.addAttribute("cascadingSelectHelper", new CascadingSelectHelper());
 
         return "enrollmentPage";

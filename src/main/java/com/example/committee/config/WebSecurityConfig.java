@@ -9,7 +9,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 
 @Configuration
 @EnableWebSecurity
@@ -34,7 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable();
 
-        http.authorizeRequests().antMatchers("/", "/login", "/logout", "/main").permitAll()
+        http.authorizeRequests().antMatchers("/", "/login", "/logout").permitAll()
 
                 .antMatchers("/user/**").access("hasAuthority('ROLE_USER')")
 
@@ -45,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().and().formLogin()//
                 .loginProcessingUrl("/j_spring_security_check")
                 .loginPage("/login")//
-                .defaultSuccessUrl("/main")//
+                .defaultSuccessUrl("/user/info")//
                 .failureUrl("/login?error=true")//
                 .usernameParameter("username")//
                 .passwordParameter("password")

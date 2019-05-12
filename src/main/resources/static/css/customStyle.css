@@ -1,0 +1,8 @@
+.rightSeparator {
+    border-right: 1px dashed #333;
+}
+
+.withoutDots {
+    list-style-type: none;
+    padding: 0;
+}

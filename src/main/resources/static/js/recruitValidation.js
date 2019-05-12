@@ -1,5 +1,61 @@
 $(document).ready(function () {
 
+    $('#userForm').bootstrapValidator({
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            userLogin: {
+                message: 'Имя введено некорректно',
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$/,
+                        message: 'Логин может содержать буквы, цифры и знак подчеркивания'
+                    }
+
+                }
+            },
+            userPassword: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    identical: {
+                        field: 'confirmPassword',
+                        message: 'Пароли не совпадают'
+                    },
+                    regexp: {
+                        regexp: /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[А-ЯЁA-Z])(?=.*[а-яеa-z]).*$/,
+                        message: 'Введите надежный пароль'
+                    }
+                }
+            },
+            confirmPassword: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    identical: {
+                        field: 'userPassword',
+                        message: 'Пароли не совпадают'
+                    }
+                }
+            },
+            roles: {
+                validators: {
+                    notEmpty: {
+                        message: 'Выберите роль пользователя'
+                    }
+                }
+            },
+        }
+    });
+
     $('#registerForm').bootstrapValidator({
         message: 'This value is not valid',
         feedbackIcons: {
@@ -593,4 +649,6 @@ $(document).ready(function () {
     $('.mask-passport-number').mask('99 99 999999');
     $('.mask-certificate-number').mask('999 9999 9999999');
     $('.mask-year').mask('9999');
+
+    $('.delete').bootstrap_confirm_delete();
 });

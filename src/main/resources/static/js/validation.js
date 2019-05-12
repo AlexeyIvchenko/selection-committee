@@ -69,6 +69,4 @@ $(document).ready(function () {
             $("#form1").unbind('submit').submit();
         }
     });
-
-    $('.delete').bootstrap_confirm_delete();
 });

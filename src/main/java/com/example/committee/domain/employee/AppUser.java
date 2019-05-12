@@ -30,8 +30,6 @@ public class AppUser {
     private String userName;
     @Column(name = "user_secondname")
     private String userSecondName;
-    @Column(name = "online_status")
-    private boolean online;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
             joinColumns = {@JoinColumn(name = "user_id")},

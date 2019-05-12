@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
     <title>User Info</title>
 </head>
 <body>
@@ -17,7 +17,7 @@
 <div th:if="${userInfo != null}" th:utext="${userInfo}"></div>
 
 </body>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/popper.min.js"></script>
+<script th:src="@{/js/jquery.js}" src="../static/js/jquery.js" type="text/javascript"></script>
+<script th:src="@{/js/bootstrap.js}" src="../static/js/bootstrap.js" type="text/javascript"></script>
+<script th:src="@{/js/popper.js}" src="../static/js/popper.js" type="text/javascript"></script>
 </html>

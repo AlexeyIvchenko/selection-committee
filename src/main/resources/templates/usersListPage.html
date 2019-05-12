@@ -2,7 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/customStyle.css}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link th:href="@{/css/bootstrapValidator.min.css}" rel="stylesheet">
+    <link th:href="@{/css/dataTables.bootstrap.min.css}" rel="stylesheet">
+
+    <link href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap.min.css" rel="stylesheet">
 
     <meta charset="UTF-8">
     <title>Список пользователей приложения</title>
@@ -12,93 +18,116 @@
 <th:block th:include="/_menu"></th:block>
 <div class="container">
     <div class="row">
+        <div class="col-md-4 rightSeparator">
+            <form id="userForm" th:action="@{/admin/addUser}" th:object="${userForm}" method="POST">
+                <div class="form-group">
+                    <label class="control-label" for="userLogin">Логин пользователя:</label>
+                    <input type="text" class="form-control" id="userLogin" name="userLogin"
+                           th:field="*{userLogin}" required/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="userPassword">Пароль пользователя:</label>
+                    <input type="password" class="form-control" id="userPassword" name="userPassword"
+                           aria-describedby="inputSuccess2Status" th:field="*{userPassword}" required/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="confirmPassword">Проверка пароля:</label>
+                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+                           aria-describedby="inputSuccess2Status" required/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="userLogin">Фамилия:</label>
+                    <input type="text" class="form-control" id="userSurname" name="userSurname"
+                           th:field="*{userSurname}" required/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="userLogin">Имя:</label>
+                    <input type="text" class="form-control" id="userName" name="userName"
+                           th:field="*{userName}" required/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="userLogin">Отчество:</label>
+                    <input type="text" class="form-control" id="userSecondName" name="userSecondName"
+                           th:field="*{userSecondName}" required/>
+                </div>
 
-        <form id="form1" th:action="@{/admin/addUser}" th:object="${userForm}" method="POST">
-            <div class="form-group has-feedback nameBlock">
-                <label class="control-label" for="userLogin">Логин сотрудника:</label>
-                <input type="text" class="form-control" id="userLogin" name="userLogin"
-                       aria-describedby="inputSuccess2Status"
-                       th:field="*{userLogin}"/>
-                <span id="loginMessage"></span>
+                <!--<select th:field="*{roleId}">-->
+                <!--<option th:each="role: ${rolesList}"-->
+                <!--th:value="${role.getRoleId()}"-->
+                <!--th:text="${role.getRoleName()}"></option>-->
+                <!--</select>-->
+
+                <label class="control-label" for="rolesCheckbox">Роли пользователя:</label>
+                <ul id="rolesCheckbox">
+                    <li class="list-group-item" th:each="role: ${rolesList}">
+                        <input type="checkbox" id="role" th:field="*{roles}" th:value="${role.roleId}" required/>
+                        <label th:text="${role.roleDescription}"></label>
+                    </li>
+                </ul>
+
+                <div class="form-group">
+                    <button class="btn btn-success" type="submit">Добавить</button>
+                </div>
+
+            </form>
+        </div>
+        <hr class="hidden-lg hidden-md">
+        <div class="col-md-8">
+            <div class="table-responsive">
+                <table id="usersTable" class="table table-hover table-sm">
+                    <thead>
+                    <tr class="active">
+                        <th>Логин</th>
+                        <th>Фамилия</th>
+                        <th>Имя</th>
+                        <th>Отчество</th>
+                        <th>Права</th>
+                        <th>Изменить</th>
+                        <th>Удалить</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="user: ${usersList}">
+                        <td th:utext="${user.userLogin}">...</td>
+                        <td th:utext="${user.userSurname}">...</td>
+                        <td th:utext="${user.userName}">...</td>
+                        <td th:utext="${user.userSecondName}">...</td>
+
+                        <td>
+                            <ul class="withoutDots">
+                                <li th:each="role: ${user.getRoles()}" th:text="${role.getRoleDescription()}"></li>
+                            </ul>
+                        </td>
+
+                        <td>
+                            <a th:href="@{/admin/deleteUser(userId=${user.userId})}"
+                               class="btn btn-primary btn-xs glyphicon glyphicon-edit delete" )></a>
+                        </td>
+
+                        <td>
+                            <a th:href="@{/admin/deleteUser(userId=${user.userId})}"
+                               class="btn btn-danger btn-xs glyphicon glyphicon-trash delete" )></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="form-group has-feedback passwordBlock">
-                <label class="control-label" for="userPassword">Пароль сотрудника:</label>
-                <input type="text" class="form-control" id="userPassword" name="userPassword"
-                       aria-describedby="inputSuccess2Status" th:field="*{userPassword}"/>
-                <span id="passwordMessage"></span>
-            </div>
-            <div class="form-group has-feedback rePassBlock">
-                <label class="control-label" for="rePassword">Проверка пароля:</label>
-                <input type="text" class="form-control" id="rePassword" name="rePassword"
-                       aria-describedby="inputSuccess2Status"/>
-                <span id="rePassMessage"></span>
-            </div>
-
-
-            <!--<select th:field="*{roleId}">-->
-            <!--<option th:each="role: ${rolesList}"-->
-            <!--th:value="${role.getRoleId()}"-->
-            <!--th:text="${role.getRoleName()}"></option>-->
-            <!--</select>-->
-            <div>
-                <li th:each="role: ${rolesList}">
-                    <input type="checkbox" id="role" th:field="*{roles}" th:value="${role.roleId}"/>
-                    <label th:text="${role.roleName}"></label>
-                </li>
-                <span id="roleMessage"></span>
-            </div>
-
-
-            <!-- <input type="submit" name="submit" id="submit" value="Добавить" /> -->
-            <button class="btn btn-success" type="submit" id="addUserBtn">Добавить</button>
-        </form>
-    </div>
-
-    <div class="row">
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <tr class="active">
-                    <th>Идентификатор</th>
-                    <th>Логин</th>
-                    <th>Пароль</th>
-                    <th>Онлайн</th>
-                    <th>Права</th>
-                    <th>Удалить</th>
-
-                </tr>
-                <tr th:each="user: ${usersList}">
-                    <td th:utext="${user.userId}">...</td>
-                    <td th:utext="${user.userLogin}">...</td>
-                    <td th:utext="${user.userPassword}">...</td>
-
-                    <td th:if="${user.isOnline()} == true" th:utext="Online">...</td>
-                    <td th:if="${user.isOnline()} != true" th:utext="Offline">...</td>
-
-                    <td>
-                        <ul>
-                            <li th:each="role: ${user.getRoles()}" th:text="${role.getRoleDescription()}"></li>
-                        </ul>
-                    </td>
-
-                    <td>
-                        <a th:href="@{/admin/deleteUser(userId=${user.userId})}"
-                           class="btn btn-danger delete" )>Удалить</a>
-                    </td>
-
-                </tr>
-            </table>
         </div>
     </div>
-
 </div>
 </body>
 
 <script th:src="@{/js/jquery.js}" src="../static/js/jquery.js" type="text/javascript"></script>
 <script th:src="@{/js/bootstrap.js}" src="../static/js/bootstrap.js" type="text/javascript"></script>
-<script th:src="@{/js/popper.js}" src="../static/js/popper.js" type="text/javascript"></script>
+
+<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+
+<script th:src="@{/js/bootstrapValidator.min.js}" src="../static/js/bootstrapValidator.min.js"
+        type="text/javascript"></script>
 <script th:src="@{/js/bootstrap-confirm-delete.js}" src="../static/js/bootstrap-confirm-delete.js"
         type="text/javascript"></script>
-<script th:src="@{/js/validation.js}" src="../static/js/validation.js" type="text/javascript"></script>
-
+<script th:src="@{/js/customTable.js}" src="../static/js/customTable.js" type="text/javascript"></script>
+<script th:src="@{/js/recruitValidation.js}" src="../static/js/recruitValidation.js" type="text/javascript"></script>
 
 </html>

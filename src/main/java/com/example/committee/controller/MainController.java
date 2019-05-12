@@ -23,7 +23,7 @@ public class MainController {
     @Autowired
     private AppRoleService appRoleService;
 
-    @GetMapping(value = "/userInfo")
+    @GetMapping(value = "/user/info")
     public String userInfoPage(Model model, Principal principal) {
         if (principal == null) {
             return "login";
@@ -66,7 +66,6 @@ public class MainController {
     @PostMapping(value = "/admin/addUser")
     public String addUser(@ModelAttribute("userForm") AppUser user) {
         user.setUserPassword(new BCryptPasswordEncoder().encode(user.getUserPassword()));
-        user.setOnline(false);
         appUserService.addUser(user);
 
         return "redirect:/admin/usersListPage";
@@ -81,11 +80,6 @@ public class MainController {
     public String logoutSuccessfulPage(Model model) {
         model.addAttribute("title", "Logout");
         return "logoutSuccessfulPage";
-    }
-
-    @GetMapping(value = "/main")
-    public String userInfo(Model model, Principal principal) {
-        return "main";
     }
 
     @GetMapping(value = "/403")
