@@ -56,6 +56,49 @@ $(document).ready(function () {
         }
     });
 
+    $('#editPasswordForm').bootstrapValidator({
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            oldPassword: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    }
+                }
+            },
+            newPassword: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    identical: {
+                        field: 'confirmPassword',
+                        message: 'Пароли не совпадают'
+                    },
+                    regexp: {
+                        regexp: /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[А-ЯЁA-Z])(?=.*[а-яеa-z]).*$/,
+                        message: 'Введите надежный пароль'
+                    }
+                }
+            },
+            confirmPassword: {
+                validators: {
+                    notEmpty: {
+                        message: 'Поле не может быть пустым'
+                    },
+                    identical: {
+                        field: 'newPassword',
+                        message: 'Пароли не совпадают'
+                    }
+                }
+            }
+        }
+    });
+
     $('#registerForm').bootstrapValidator({
         message: 'This value is not valid',
         feedbackIcons: {

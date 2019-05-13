@@ -50,7 +50,7 @@
                             <li><a href="#">Ссылка</a></li>
                         </ul>
                     </li>
-                    <li><a th:if="${#request.userPrincipal != null}" href="/userInfo">Личный кабинет</a></li>
+                    <li><a th:if="${#request.userPrincipal != null}" href="/user/info">Личный кабинет</a></li>
                     <li><a th:if="${#request.userPrincipal == null}" th:href="@{/login}">Авторизация</a></li>
                     <li><a th:if="${#request.userPrincipal != null}" th:href="@{/logout}">Выход</a></li>
                 </ul>

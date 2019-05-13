@@ -22,7 +22,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return bCryptPasswordEncoder;
     }
 
-
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
@@ -50,10 +49,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("password")
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/logoutSuccessful");
     }
-
-//    @Bean
-//    public SpringSecurityDialect springSecurityDialect(){
-//        SpringSecurityDialect dialect = new SpringSecurityDialect();
-//        return dialect;
-//    }
 }

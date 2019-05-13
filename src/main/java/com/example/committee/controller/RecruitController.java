@@ -96,7 +96,7 @@ public class RecruitController {
         model.addAttribute("officesList", officesList);
         model.addAttribute("citiesList", citiesList);
 
-        return "editInfoPage";
+        return "editRecruitInfoPage";
     }
 
     @PostMapping("/user/editRecruit/{recruitId}")
