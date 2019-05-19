@@ -41,17 +41,6 @@ public class MainController {
         return "userInfo";
     }
 
-    @GetMapping(value = "/admin")
-    public String adminPage(Model model, Principal principal) {
-
-        User loginedUser = (User) ((Authentication) principal).getPrincipal();
-
-        String userInfo = WebUtils.toString(loginedUser);
-        model.addAttribute("userInfo", userInfo);
-
-        return "adminPage";
-    }
-
     @GetMapping(value = {"/admin/usersListPage"})
     public String getUsersListPage(@ModelAttribute("userForm") AppUser user, Model model) {
         List<AppUser> usersList = appUserService.getAllUsers();

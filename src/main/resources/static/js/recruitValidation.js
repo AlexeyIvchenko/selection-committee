@@ -543,7 +543,7 @@ $(document).ready(function () {
 
     $('#region').change(
         function () {
-            $.getJSON("http://localhost:8000/cities", {
+            $.getJSON("http://192.168.0.102:8000/cities", {
                 regionId: $(this).val(),
                 ajax: 'true'
             }, function (data) {
@@ -566,7 +566,7 @@ $(document).ready(function () {
 
     $('#firstPriorityFaculty').change(
         function () {
-            $.getJSON("http://localhost:8000/user/specialties", {
+            $.getJSON("http://192.168.0.102:8000/user/specialties", {
                 facultyId: $(this).val(),
                 ajax: 'true'
             }, function (data) {
@@ -591,7 +591,7 @@ $(document).ready(function () {
 
     $('#secondPriorityFaculty').change(
         function () {
-            $.getJSON("http://localhost:8000/user/specialties", {
+            $.getJSON("http://192.168.0.102:8000/user/specialties", {
                 facultyId: $(this).val(),
                 ajax: 'true'
             }, function (data) {
@@ -616,7 +616,7 @@ $(document).ready(function () {
 
     $('#thirdPriorityFaculty').change(
         function () {
-            $.getJSON("http://localhost:8000/user/specialties", {
+            $.getJSON("http://192.168.0.102:8000/user/specialties", {
                 facultyId: $(this).val(),
                 ajax: 'true'
             }, function (data) {
@@ -641,7 +641,7 @@ $(document).ready(function () {
 
     $('#company').change(
         function () {
-            $.getJSON("http://localhost:8000/user/platoons", {
+            $.getJSON("http://192.168.0.102:8000/user/platoons", {
                 companyId: $(this).val(),
                 ajax: 'true'
             }, function (data) {
@@ -666,7 +666,7 @@ $(document).ready(function () {
 
     $('#faculty').change(
         function () {
-            $.getJSON("http://localhost:8000/user/specialtiesNew", {
+            $.getJSON("http://192.168.0.102:8000/user/specialtiesNew", {
                 facultyId: $(this).val(),
                 ajax: 'true'
             }, function (data) {
