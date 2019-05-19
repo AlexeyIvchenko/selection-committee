@@ -5,6 +5,7 @@ import com.example.committee.repository.AppRoleRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AppRoleService {
@@ -16,5 +17,9 @@ public class AppRoleService {
 
     public List<AppRole> getAllRoles() {
         return this.appRoleRepository.findAll();
+    }
+
+    public Optional<AppRole> getRoleById(Long roleId) {
+        return this.appRoleRepository.findById(roleId);
     }
 }

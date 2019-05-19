@@ -96,7 +96,12 @@ public class MainController {
     public String editUserInfo(@PathVariable("userId") Long userId, @Valid AppUser editedUser) {
         AppUser userFromBase = appUserService.getUserById(userId);
         editedUser.setUserId(userFromBase.getUserId());
+        editedUser.setUserPassword(userFromBase.getUserPassword());
         appUserService.addUser(editedUser);
+
+        if (userFromBase.getRoles().contains(appRoleService.getRoleById(Long.valueOf(1)).get())) {
+            return "redirect:/login";
+        }
         return "redirect:/admin/usersListPage";
     }
 
