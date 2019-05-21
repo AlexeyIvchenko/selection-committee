@@ -1,7 +1,5 @@
 package com.example.committee.controller;
 
-import com.example.committee.domain.employee.AppRole;
-import com.example.committee.domain.employee.AppUser;
 import com.example.committee.domain.request.Faculty;
 import com.example.committee.service.RecruitService;
 import com.example.committee.service.ReportService;
@@ -13,14 +11,11 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.InputStream;
-import java.util.List;
 
 @Controller
 public class ReportController {

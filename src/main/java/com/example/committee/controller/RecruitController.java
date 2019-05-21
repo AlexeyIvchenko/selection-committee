@@ -32,8 +32,6 @@ public class RecruitController {
     private PassportService passportService;
     @Autowired
     private AddressService addressService;
-    @Autowired
-    private RequestService requestService;
 
     @GetMapping("/user/recruitQuestionary")
     public String showRecruitForm(@ModelAttribute("recruitForm") Recruit recruitForm, Model model) {
@@ -61,7 +59,7 @@ public class RecruitController {
         return "redirect:/user/recruitQuestionary";
     }
 
-    @RequestMapping(value = "/cities", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/cities", method = RequestMethod.GET)
     public @ResponseBody
     List<City> findAllCities(@RequestParam(value = "regionId", required = true) Long regionId) {
         Region region = regionService.getRegionById(regionId);
