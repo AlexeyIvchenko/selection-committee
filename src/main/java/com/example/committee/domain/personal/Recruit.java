@@ -47,6 +47,10 @@ public class Recruit {
     private Nationality nationality;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "recruit_category_id")
+    private Category category;
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "recruit_office_id")
     private Office office;
 
@@ -72,6 +76,9 @@ public class Recruit {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "recruit_platoon_id")
     private Platoon platoon;
+
+    @Column(name = "registration_year")
+    private short registrationYear;
 
     public int sumExamOrCertificateScoreByFaculty(Faculty faculty) {
         int resultScore = 0;

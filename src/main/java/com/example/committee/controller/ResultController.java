@@ -48,6 +48,8 @@ public class ResultController {
         }
         model.addAttribute("cascadingSelectHelper", new CascadingSelectHelper());
 
+        model.addAttribute("validYears", DateWorker.getValidYears());
+
         return "enrollmentPage";
     }
 
@@ -191,8 +193,6 @@ public class ResultController {
                 Integer examScore2 = Integer.valueOf(ras2.getRequest().getRecruit().sumExamOrCertificateScoreByFaculty(ras2.getRequest().getSpecialty().getFaculty()));
                 return examScore2.compareTo(examScore1);
             }
-
-
         });
         return requestAndScoreList;
     }
@@ -215,7 +215,6 @@ public class ResultController {
                     Integer examScore2 = Integer.valueOf(ras2.getRequest().getRecruit().sumExamOrCertificateScoreByFaculty(ras2.getRequest().getSpecialty().getFaculty()));
                     return examScore2.compareTo(examScore1);
                 }
-
             }
         });
         return requestAndScoreList;

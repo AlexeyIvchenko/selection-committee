@@ -13,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.InputStream;
@@ -26,9 +27,11 @@ public class ReportController {
     @Autowired
     private RequestService requestService;
 
+    private static final String PATH_TO_STATISTIC_REPORT = "/reports/StatisticReport.jrxml";
+
     @GetMapping(value = "/user/exportToPDFCompetitionList", produces = MediaType.APPLICATION_PDF_VALUE)
     @ResponseBody
-    public HttpEntity<byte[]> getRecruitReportPdf(@ModelAttribute("cascadingSelectHelper") CascadingSelectHelper cascadingSelectHelper) throws JRException {
+    public HttpEntity<byte[]> getCompetitionList(@ModelAttribute("cascadingSelectHelper") CascadingSelectHelper cascadingSelectHelper) throws JRException {
 
         String pathToReportFile = "";
         Faculty faculty = cascadingSelectHelper.getFaculty();
@@ -55,6 +58,24 @@ public class ReportController {
         InputStream inputStream = this.getClass().getResourceAsStream(pathToReportFile);
         JasperReport jasperReport = JasperCompileManager.compileReport(inputStream);
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, requestService.getDataSource(cascadingSelectHelper.getSpecialty()));
+
+        final byte[] data = reportService.getReportPdf(jasperPrint);
+
+        HttpHeaders header = new HttpHeaders();
+        header.setContentType(MediaType.APPLICATION_PDF);
+        header.set(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=recruitReport.pdf");
+        header.setContentLength(data.length);
+
+        return new HttpEntity<byte[]>(data, header);
+    }
+
+    @GetMapping(value = "/user/exportToPDFStatistic", produces = MediaType.APPLICATION_PDF_VALUE)
+    @ResponseBody
+    public HttpEntity<byte[]> getStatistic(@RequestParam(name = "registrationYear") short registrationYear) throws JRException {
+
+        InputStream inputStream = this.getClass().getResourceAsStream(PATH_TO_STATISTIC_REPORT);
+        JasperReport jasperReport = JasperCompileManager.compileReport(inputStream);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, recruitService.getDataSource(registrationYear));
 
         final byte[] data = reportService.getReportPdf(jasperPrint);
 

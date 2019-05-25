@@ -14,7 +14,7 @@ public class DateWorker {
         return new java.sql.Date(new Date().getTime());
     }
 
-    public static List<Integer> getValidExamYears() {
+    public static List<Integer> getValidYears() {
         List<Integer> validExamYears = new ArrayList<>();
         int currentYear = getCurrentYear();
         for (int i = currentYear; i > currentYear - 5; i--) {

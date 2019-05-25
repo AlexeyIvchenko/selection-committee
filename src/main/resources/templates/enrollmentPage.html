@@ -39,6 +39,7 @@
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#firsttab" data-toggle="tab">Конкурсные списки</a></li>
                 <li><a href="#secondtab" data-toggle="tab">Приказы о зачислении</a></li>
+                <li><a href="#thirdtab" data-toggle="tab">Статистика</a></li>
             </ul>
 
             <div class="tab-content">
@@ -153,6 +154,34 @@
                                 Сформировать приказ о зачислении
                             </button>
                         </div>
+                    </form>
+                </div>
+                <div class="tab-pane active" id="thirdtab">
+                    <br>
+                    <form id="exportForm3" class="form-horizontal"
+                          th:action="@{/user/exportToPDFStatistic}" method="get">
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Специальность</label>
+                            <div class="col-md-10  inputGroupContainer">
+                                <div id="yearDiv" class="input-group"><span
+                                        class="input-group-addon"><i
+                                        class="glyphicon glyphicon-home"></i></span>
+
+                                    <select name="registrationYear" id="registrationYear"
+                                            class="form-control" required>
+                                        <option th:each="year: ${validYears}"
+                                                th:value="${year}"
+                                                th:text="${year}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+
+                        <button name="submit" type="submit" class="btn btn-default" value="submit">
+                            Сформировать статистику
+                        </button>
                     </form>
                 </div>
             </div>

@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="84feeac3-d1f7-4503-84bf-fc3fa153df55">
+    <property name="com.jaspersoft.studio.unit." value="pixel"/>
+    <property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+    <property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+    <property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+    <property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+    <property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+    <property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+    <property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+    <property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+    <queryString>
+        <![CDATA[]]>
+    </queryString>
+    <field name="currentDate" class="java.lang.String"/>
+    <field name="militaryDistrictName" class="java.lang.String"/>
+    <field name="civilMaleCount" class="java.lang.String"/>
+    <field name="contractMaleCount" class="java.lang.String"/>
+    <field name="conscriptMaleCount" class="java.lang.String"/>
+    <field name="civilFemaleCount" class="java.lang.String"/>
+    <field name="contractFemaleCount" class="java.lang.String"/>
+    <field name="conscriptFemaleCount" class="java.lang.String"/>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="81" splitType="Stretch">
+            <staticText>
+                <reportElement x="82" y="34" width="647" height="46" uuid="20c523d1-34bc-467b-ab5b-444d79b1f80f"/>
+                <textElement textAlignment="Center" markup="none">
+                    <font fontName="DejaVu Sans" size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[СВЕДЕНИЯ О КОЛИЧЕСТВЕ ПОСТУПИВШИХ В ВОЕННОЕ УЧИЛИЩЕ ЛИЧНЫХ ДЕЛ
+АБИТУРИЕНТОВ ПО СОСТОЯНИЮ НА __________________]]></text>
+            </staticText>
+            <textField>
+                <reportElement stretchType="RelativeToTallestObject" x="474" y="39" width="150" height="30" uuid="fa196600-427d-46a4-992e-522fe078bfa2"/>
+                <box leftPadding="10">
+                    <pen lineColor="#FFFFFF"/>
+                </box>
+                <textElement verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" size="11" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{currentDate}]]></textFieldExpression>
+            </textField>
+        </band>
+    </title>
+    <columnHeader>
+        <band height="71" splitType="Stretch">
+            <staticText>
+                <reportElement x="82" y="0" width="117" height="70" uuid="1f55384e-de3c-47a9-baa8-39479c50cecd"/>
+                <box>
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="1.0"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" isBold="true" isItalic="false" isUnderline="false"/>
+                </textElement>
+                <text><![CDATA[Округ]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="199" y="0" width="111" height="70" uuid="87bc347c-06d1-44fb-836a-c1ec1b65167b"/>
+                <box>
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="1.0"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" isBold="true" isItalic="false" isUnderline="false"/>
+                </textElement>
+                <text><![CDATA[Гражданские мужского пола (в т.ч. из запаса)]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="310" y="0" width="149" height="30" uuid="e631f10f-f1a4-4622-88d8-c90a8e56f7c9"/>
+                <box>
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="1.0"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" isBold="true" isItalic="false" isUnderline="false"/>
+                </textElement>
+                <text><![CDATA[Военнослужащие мужского пола]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="459" y="0" width="101" height="70" uuid="d3b30f28-eb2a-49ac-9029-58d75296c2fd"/>
+                <box>
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="1.0"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" isBold="true" isItalic="false" isUnderline="false"/>
+                </textElement>
+                <text><![CDATA[Гражданские женского пола]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="560" y="0" width="169" height="30" uuid="1d3ecb54-4e4c-4266-b94c-9a9591a07e11"/>
+                <box>
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="1.0"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+                    <font fontName="DejaVu Sans" isBold="true" isItalic="false" isUnderline="false"/>
+                </textElement>
+                <text><![CDATA[Военнослужащие женского пола]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="310" y="30" width="79" height="40" uuid="e386188b-fe28-4773-ac8b-2a83e63940bf"/>
+                <box>
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="1.0"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" isBold="true" isItalic="false" isUnderline="false"/>
+                </textElement>
+                <text><![CDATA[Контрактная служба]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="389" y="30" width="70" height="40" uuid="a0d99b29-36ff-4e26-bd8a-0521813de6fb"/>
+                <box>
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="1.0"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" isBold="true" isItalic="false" isUnderline="false"/>
+                </textElement>
+                <text><![CDATA[Срочная служба]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="560" y="30" width="89" height="40" uuid="01061eeb-5333-4579-b85c-a43c18f016b1"/>
+                <box>
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="1.0"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" isBold="true" isItalic="false" isUnderline="false"/>
+                </textElement>
+                <text><![CDATA[Контрактная служба]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="649" y="30" width="80" height="40" uuid="4e25db02-1eff-4a98-b016-a9081fee3cb1"/>
+                <box>
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="1.0"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" isBold="true" isItalic="false" isUnderline="false"/>
+                </textElement>
+                <text><![CDATA[Срочная служба]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="37" splitType="Stretch">
+            <textField>
+                <reportElement stretchType="RelativeToTallestObject" x="82" y="-1" width="117" height="38" uuid="5d1d4f14-d2a6-41a9-a400-e97dcfaaa9bf"/>
+                <box leftPadding="10">
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="1.0"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{militaryDistrictName}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement stretchType="RelativeToTallestObject" x="199" y="-1" width="111" height="38" uuid="e049aba1-80ca-4a0f-b18c-16f2d70900c4"/>
+                <box leftPadding="10">
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="1.0"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{civilMaleCount}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement stretchType="RelativeToTallestObject" x="310" y="-1" width="79" height="38" uuid="30bc8ec5-2d8c-41db-bea4-364ea6129981"/>
+                <box leftPadding="10">
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="1.0"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{contractMaleCount}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement stretchType="RelativeToTallestObject" x="459" y="-1" width="101" height="38" uuid="3151d29b-d213-43d2-a5f8-bccd9e99e549"/>
+                <box leftPadding="10">
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="1.0"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{civilFemaleCount}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement stretchType="RelativeToTallestObject" x="560" y="-1" width="89" height="38" uuid="9f2e66a4-3be9-49f6-8f5e-6b9403be28ba"/>
+                <box leftPadding="10">
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="1.0"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{contractFemaleCount}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement stretchType="RelativeToTallestObject" x="389" y="-1" width="70" height="38" uuid="ec4e83af-e63a-42d2-a0f8-5bdaf82de103"/>
+                <box leftPadding="10">
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="1.0"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{conscriptMaleCount}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement stretchType="RelativeToTallestObject" x="649" y="-1" width="80" height="38" uuid="aff7f2ed-0f70-41be-bd2f-3ea12a72eba5"/>
+                <box leftPadding="10">
+                    <topPen lineWidth="1.0"/>
+                    <leftPen lineWidth="1.0"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{conscriptFemaleCount}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+</jasperReport>
