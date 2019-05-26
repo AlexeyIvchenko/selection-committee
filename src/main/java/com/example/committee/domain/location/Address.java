@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,13 +29,21 @@ public class Address {
 
     @Column(name = "village_name")
     private String villageName;
+
     @Column(name = "street_name")
     private String streetName;
+
     @Column(name = "house_number")
-    private int houseNumber;
+    private String houseNumber;
+
     @Column(name = "block_number")
+    @Min(1)
+    @Max(99)
     private int blockNumber;
+
     @Column(name = "apartment_number")
+    @Min(1)
+    @Max(999)
     private int apartmentNumber;
 
     @JsonIgnore

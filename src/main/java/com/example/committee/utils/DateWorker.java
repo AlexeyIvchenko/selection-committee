@@ -3,11 +3,11 @@ package com.example.committee.utils;
 import java.util.*;
 
 public class DateWorker {
-    public static int getCurrentYear() {
+    public static short getCurrentYear() {
         Calendar calendar = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
         calendar.setTime(new Date());
 
-        return calendar.get(Calendar.YEAR);
+        return (short) calendar.get(Calendar.YEAR);
     }
 
     public static java.sql.Date getCurrentDate() {

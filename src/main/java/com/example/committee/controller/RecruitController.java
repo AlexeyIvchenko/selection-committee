@@ -7,13 +7,16 @@ import com.example.committee.domain.location.Region;
 import com.example.committee.domain.personal.*;
 import com.example.committee.service.*;
 import com.example.committee.utils.CascadingSelectHelper;
+import com.example.committee.utils.DateWorker;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -36,32 +39,33 @@ public class RecruitController {
     private PassportService passportService;
     @Autowired
     private AddressService addressService;
+    @Autowired
+    private CategoryService categoryService;
 
     private static final Logger log = Logger.getLogger(RecruitController.class);
 
     @GetMapping("/user/recruitQuestionary")
     public String showRecruitForm(@ModelAttribute("recruitForm") Recruit recruitForm, Model model) {
-        List<Nationality> nationalitiesList = nationalityService.getAllNationalities();
-        List<Region> regionsList = regionService.getAllRegions();
-        List<Office> officesList = officeService.getAllOffices();
-        List<City> citiesList = cityService.getAllCities();
-        //List<Integer> examYearsList = DateWorker.getValidExamYears();
-
-        CascadingSelectHelper cascadingSelectHelper = new CascadingSelectHelper();
-        model.addAttribute("cascadingSelectHelper", cascadingSelectHelper);
-
-        model.addAttribute("nationalitiesList", nationalitiesList);
-        model.addAttribute("regionsList", regionsList);
-        model.addAttribute("officesList", officesList);
-        model.addAttribute("citiesList", citiesList);
-        //model.addAttribute("validExamYears", examYearsList);
+        model.addAttribute("categoriesList", categoryService.getAllCategories());
+        model.addAttribute("nationalitiesList", nationalityService.getAllNationalities());
+        model.addAttribute("regionsList", regionService.getAllRegions());
+        model.addAttribute("officesList", officeService.getAllOffices());
+        model.addAttribute("citiesList", cityService.getAllCities());
+        model.addAttribute("message");
 
         return "recruitQuestionaryPage";
     }
 
     @PostMapping("/user/addRecruit")
-    public String addRecruit(@ModelAttribute("recruitForm") Recruit recruit) {
+    public String addRecruit(@ModelAttribute("recruitForm") @Valid Recruit recruit, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("recruitForm", recruit);
+            redirectAttributes.addFlashAttribute("message", "Проверьте корректность введенных данных!");
+            return "redirect:/user/recruitQuestionary";
+        }
+        recruit.setRegistrationYear(DateWorker.getCurrentYear());
         recruitService.addRecruit(recruit);
+        redirectAttributes.addFlashAttribute("message", "Личное дело абитуриента зарегистрировано!");
         return "redirect:/user/recruitQuestionary";
     }
 
@@ -95,19 +99,23 @@ public class RecruitController {
         Recruit recruit = recruitService.getRecruitById(recruitId);
         model.addAttribute("recruit", recruit);
 
-        List<Nationality> nationalitiesList = nationalityService.getAllNationalities();
-        List<Office> officesList = officeService.getAllOffices();
-        List<City> citiesList = cityService.getAllCities();
-
-        model.addAttribute("nationalitiesList", nationalitiesList);
-        model.addAttribute("officesList", officesList);
-        model.addAttribute("citiesList", citiesList);
+        model.addAttribute("categoriesList", categoryService.getAllCategories());
+        model.addAttribute("nationalitiesList", nationalityService.getAllNationalities());
+        model.addAttribute("officesList", officeService.getAllOffices());
+        model.addAttribute("regionsList", regionService.getAllRegions());
+        model.addAttribute("citiesList", cityService.getAllCities());
+        model.addAttribute("validYears", DateWorker.getValidYears());
+        model.addAttribute("wrongData");
 
         return "editRecruitInfoPage";
     }
 
     @PostMapping("/user/editRecruit/{recruitId}")
-    public String editRecruitInfo(@PathVariable("recruitId") Long recruitId, @Valid Recruit editedRecruit, Principal principal) {
+    public String editRecruitInfo(@PathVariable("recruitId") Long recruitId, @Valid Recruit editedRecruit, BindingResult bindingResult, RedirectAttributes redirectAttributes, Principal principal) {
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("wrongData", "Измененные данные были введены некорректно!");
+            return "redirect:/user/editPage/" + recruitId;
+        }
         Recruit recruitFromBase = recruitService.getRecruitById(recruitId);
 
         Passport editedPassport = editedRecruit.getPassport();

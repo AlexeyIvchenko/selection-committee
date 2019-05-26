@@ -33,15 +33,15 @@
                                   th:action="@{/user/addExtranceTest/{recruitId}(recruitId=${recruitId})}"
                                   th:object="${extranceTestHelper}" method="post">
                                 <fieldset>
+                                    <span id="extranceTestMessage" class="center-block"
+                                          th:text="${extranceTestMessage}"></span></p>
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">Подтягивание к перекладине</label>
                                         <div class="col-md-6  inputGroupContainer">
                                             <div class="input-group"> <span class="input-group-addon"><i
                                                     class="glyphicon glyphicon-education"></i></span>
-                                                <input class="form-control"
-                                                       th:field="*{hbResult}"
-                                                       type="text"
-                                                       required>
+                                                <input id="hbResult" class="form-control"
+                                                       th:field="*{hbResult}" type="text" required>
                                             </div>
                                         </div>
                                     </div>
@@ -51,9 +51,8 @@
                                         <div class="col-md-6  inputGroupContainer">
                                             <div class="input-group"> <span class="input-group-addon"><i
                                                     class="glyphicon glyphicon-education"></i></span>
-                                                <input class="form-control"
-                                                       th:field="*{run100mResult}" type="text"
-                                                       required>
+                                                <input id="run100mResult" class="form-control"
+                                                       th:field="*{run100mResult}" type="text" required>
                                             </div>
                                         </div>
                                     </div>
@@ -64,7 +63,7 @@
                                         <div class="col-md-6  inputGroupContainer">
                                             <div class="input-group"> <span class="input-group-addon"><i
                                                     class="glyphicon glyphicon-education"></i></span>
-                                                <input class="form-control"
+                                                <input id="run3kmResult" class="form-control"
                                                        th:field="*{run3kmResult}" type="text">
                                             </div>
                                         </div>
@@ -75,7 +74,7 @@
                                         <div class="col-md-6  inputGroupContainer">
                                             <div class="input-group"> <span class="input-group-addon"><i
                                                     class="glyphicon glyphicon-education"></i></span>
-                                                <input class="form-control"
+                                                <input id="prof_group" class="form-control"
                                                        th:field="*{prof_group}" type="text">
                                             </div>
                                         </div>
@@ -85,8 +84,8 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label"></label>
                                         <div class="col-md-4">
-                                            <button type="submit" class="btn btn-warning">Сохранить <span
-                                                    class="glyphicon glyphicon-send"></span></button>
+                                            <button id="submitNewName" type="submit" class="btn btn-warning">Сохранить
+                                                <span class="glyphicon glyphicon-send"></span></button>
                                         </div>
                                     </div>
                                 </fieldset>

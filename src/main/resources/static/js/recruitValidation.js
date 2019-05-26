@@ -115,7 +115,7 @@ $(document).ready(function () {
                     },
                     stringLength: {
                         min: 2,
-                        max: 30,
+                        max: 36,
                         message: 'Фамилия должна содержать от 2 до 30 символов'
                     },
                     regexp: {
@@ -132,7 +132,7 @@ $(document).ready(function () {
                     },
                     stringLength: {
                         min: 2,
-                        max: 30,
+                        max: 36,
                         message: 'Имя должно содержать от 2 до 30 символов'
                     },
                     regexp: {
@@ -146,7 +146,7 @@ $(document).ready(function () {
                 validators: {
                     stringLength: {
                         min: 2,
-                        max: 30,
+                        max: 36,
                         message: 'Отчество должно содержать от 2 до 30 символов'
                     },
                     regexp: {
@@ -259,7 +259,7 @@ $(document).ready(function () {
                     }
                 }
             },
-            apartmentNumber: {
+            "address[apartmentNumber]": {
                 message: 'Номер квартиры введен некорректно',
                 validators: {
                     regexp: {
@@ -400,8 +400,8 @@ $(document).ready(function () {
                         message: 'Поле не может быть пустым'
                     },
                     regexp: {
-                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
-                        message: 'Введите корректное кол-во баллов'
+                        regexp: /^[2-5]$/,
+                        message: 'Введите оценку от 2 до 5'
                     }
                 }
             },
@@ -411,8 +411,8 @@ $(document).ready(function () {
                         message: 'Поле не может быть пустым'
                     },
                     regexp: {
-                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
-                        message: 'Введите корректное кол-во баллов'
+                        regexp: /^[2-5]$/,
+                        message: 'Введите оценку от 2 до 5'
                     }
                 }
             },
@@ -422,8 +422,8 @@ $(document).ready(function () {
                         message: 'Поле не может быть пустым'
                     },
                     regexp: {
-                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
-                        message: 'Введите корректное кол-во баллов'
+                        regexp: /^[2-5]$/,
+                        message: 'Введите оценку от 2 до 5'
                     }
                 }
             },
@@ -433,8 +433,8 @@ $(document).ready(function () {
                         message: 'Поле не может быть пустым'
                     },
                     regexp: {
-                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
-                        message: 'Введите корректное кол-во баллов'
+                        regexp: /^[2-5]$/,
+                        message: 'Введите оценку от 2 до 5'
                     }
                 }
             },
@@ -444,8 +444,8 @@ $(document).ready(function () {
                         message: 'Поле не может быть пустым'
                     },
                     regexp: {
-                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
-                        message: 'Введите корректное кол-во баллов'
+                        regexp: /^[2-5]$/,
+                        message: 'Введите оценку от 2 до 5'
                     }
                 }
             },
@@ -455,8 +455,8 @@ $(document).ready(function () {
                         message: 'Поле не может быть пустым'
                     },
                     regexp: {
-                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
-                        message: 'Введите корректное кол-во баллов'
+                        regexp: /^[2-5]$/,
+                        message: 'Введите оценку от 2 до 5'
                     }
                 }
             },
@@ -466,8 +466,8 @@ $(document).ready(function () {
                         message: 'Поле не может быть пустым'
                     },
                     regexp: {
-                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
-                        message: 'Введите корректное кол-во баллов'
+                        regexp: /^[2-5]$/,
+                        message: 'Введите оценку от 2 до 5'
                     }
                 }
             },
@@ -477,8 +477,8 @@ $(document).ready(function () {
                         message: 'Поле не может быть пустым'
                     },
                     regexp: {
-                        regexp: /^[0-9]$|^[1-9][0-9]$|^(100)$/,
-                        message: 'Введите корректное кол-во баллов'
+                        regexp: /^[2-5]$/,
+                        message: 'Введите оценку от 2 до 5'
                     }
                 }
             },
@@ -691,7 +691,7 @@ $(document).ready(function () {
 
     var address =
 
-    $('.mask-passport-number').mask('99 99 999999');
+        $('.mask-passport-number').mask('99 99 999999');
     $('.mask-certificate-number').mask('999 9999 9999999');
     $('.mask-year').mask('9999');
 

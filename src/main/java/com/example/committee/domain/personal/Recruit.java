@@ -10,6 +10,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.sql.Date;
 import java.util.List;
 
@@ -24,13 +27,26 @@ public class Recruit {
     @Column(name = "recruit_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long recruitId;
+
     @Column(name = "recruit_surname")
+    @NotNull
+    @Size(min = 2, max = 36)
+    @Pattern(regexp = "^[А-ЯA-Z][а-яa-zА-ЯA-Z\\-]{0,}(\\s[А-ЯA-Z][а-яa-zА-ЯA-Z\\-]{1,})?$")
     private String surname;
+
     @Column(name = "recruit_name")
+    @NotNull
+    @Size(min = 2, max = 36)
+    @Pattern(regexp = "^[А-ЯA-Z][а-яa-zА-ЯA-Z\\-]{0,}(\\s[А-ЯA-Z][а-яa-zА-ЯA-Z\\-]{1,})?$")
     private String name;
+
     @Column(name = "recruit_secondname")
+    @Size(min = 2, max = 36)
+    @Pattern(regexp = "^[А-ЯA-Z][а-яa-zА-ЯA-Z\\-]{0,}(\\s[А-ЯA-Z][а-яa-zА-ЯA-Z\\-]{1,})?$")
     private String secondName;
+
     @Column(name = "recruit_birthday")
+    @NotNull
     private Date birthday;
 
     @OneToOne(cascade = {CascadeType.ALL})
@@ -38,8 +54,11 @@ public class Recruit {
     private Passport passport;
 
     @Column(name = "recruit_sex")
+    @NotNull
     private boolean sex;
+
     @Column(name = "recruit_family_status")
+    @NotNull
     private boolean familyStatus;
 
     @ManyToOne(fetch = FetchType.EAGER)

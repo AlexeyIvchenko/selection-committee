@@ -42,16 +42,15 @@
                                     <form id="examForm" class="form-horizontal"
                                           th:action="@{/user/addExam/{recruitId}(recruitId=${recruitId})}"
                                           th:object="${exam}" method="post">
+                                        <span id="examMessage" class="center-block" th:text="${examMessage}"></span></p>
                                         <fieldset>
                                             <div class="form-group">
                                                 <label class="col-md-4 control-label">Математика</label>
                                                 <div class="col-md-6  inputGroupContainer">
                                                     <div class="input-group"> <span class="input-group-addon"><i
                                                             class="glyphicon glyphicon-education"></i></span>
-                                                        <input class="form-control"
-                                                               th:field="*{scoreMath}"
-                                                               type="text"
-                                                               required>
+                                                        <input id="scoreMath" class="form-control"
+                                                               th:field="*{scoreMath}" type="text" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -61,9 +60,9 @@
                                                 <div class="col-md-6  inputGroupContainer">
                                                     <div class="input-group"> <span class="input-group-addon"><i
                                                             class="glyphicon glyphicon-education"></i></span>
-                                                        <input class="form-control"
-                                                               th:field="*{scoreRusLang}" type="text"
-                                                               required>
+                                                        <input id="scoreRusLang" class="form-control"
+                                                               th:field="*{scoreRusLang}"
+                                                               type="text" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -74,8 +73,9 @@
                                                 <div class="col-md-6  inputGroupContainer">
                                                     <div class="input-group"> <span class="input-group-addon"><i
                                                             class="glyphicon glyphicon-education"></i></span>
-                                                        <input class="form-control"
-                                                               th:field="*{scorePhysics}" type="text">
+                                                        <input id="scorePhysics" class="form-control"
+                                                               th:field="*{scorePhysics}"
+                                                               type="text">
                                                     </div>
                                                 </div>
                                             </div>
@@ -85,7 +85,7 @@
                                                 <div class="col-md-6  inputGroupContainer">
                                                     <div class="input-group"> <span class="input-group-addon"><i
                                                             class="glyphicon glyphicon-education"></i></span>
-                                                        <input class="form-control"
+                                                        <input id="scoreForeignLang" class="form-control"
                                                                th:field="*{scoreForeignLang}"
                                                                type="text">
                                                     </div>
@@ -96,7 +96,7 @@
                                                 <div class="col-md-6  inputGroupContainer">
                                                     <div class="input-group"> <span class="input-group-addon"><i
                                                             class="glyphicon glyphicon-education"></i></span>
-                                                        <input class="form-control"
+                                                        <input id="scoreHistory" class="form-control"
                                                                th:field="*{scoreHistory}" type="text">
                                                     </div>
                                                 </div>
@@ -106,7 +106,7 @@
                                                 <div class="col-md-6  inputGroupContainer">
                                                     <div class="input-group"> <span class="input-group-addon"><i
                                                             class="glyphicon glyphicon-education"></i></span>
-                                                        <input class="form-control"
+                                                        <input id="scoreSocial" class="form-control"
                                                                th:field="*{scoreSocial}" type="text">
                                                     </div>
                                                 </div>
@@ -116,7 +116,7 @@
                                                 <div class="col-md-6  inputGroupContainer">
                                                     <div class="input-group"> <span class="input-group-addon"><i
                                                             class="glyphicon glyphicon-education"></i></span>
-                                                        <input class="form-control"
+                                                        <input id="scoreLiterature" class="form-control"
                                                                th:field="*{scoreLiterature}" type="text">
                                                     </div>
                                                 </div>
@@ -127,17 +127,17 @@
                                                 <div class="col-md-6  inputGroupContainer">
                                                     <div class="input-group"> <span class="input-group-addon"><i
                                                             class="glyphicon glyphicon-education"></i></span>
-                                                        <input class="form-control mask-year"
-                                                               th:field="*{examYear}"
-                                                               type="text">
+                                                        <input id="examYear" class="form-control mask-year"
+                                                               th:field="*{examYear}" type="text">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-md-4 control-label"></label>
                                                 <div class="col-md-4">
-                                                    <button type="submit" class="btn btn-warning">Сохранить <span
-                                                            class="glyphicon glyphicon-send"></span></button>
+                                                    <button id="submitBtn" type="submit" class="btn btn-warning">
+                                                        Сохранить <span class="glyphicon glyphicon-send"></span>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </fieldset>
@@ -148,13 +148,15 @@
                                     <form id="certificateForm" class="form-horizontal"
                                           th:action="@{/user/addCertificate/{recruitId}(recruitId=${recruitId})}"
                                           th:object="${certificate}" method="post">
+                                        <span class="center-block" th:text="${certificateMessage}"></span></p>
                                         <fieldset>
                                             <div class="form-group">
                                                 <label class="col-md-4 control-label">Номер аттестата</label>
                                                 <div class="col-md-6  inputGroupContainer">
                                                     <div class="input-group"> <span class="input-group-addon"><i
                                                             class="glyphicon glyphicon-education"></i></span>
-                                                        <input class="form-control mask-certificate-number"
+                                                        <input id="certificateNumber"
+                                                               class="form-control mask-certificate-number"
                                                                placeholder="Код Серия Номер"
                                                                th:field="*{certificateNumber}" type="text">
                                                     </div>
@@ -166,8 +168,9 @@
                                                 <div class="col-md-6  inputGroupContainer">
                                                     <div class="input-group"> <span class="input-group-addon"><i
                                                             class="glyphicon glyphicon-education"></i></span>
-                                                        <input class="form-control" th:field="*{scoreMath}" type="text"
-                                                               required>
+                                                        <input id="scoreMathCert" class="form-control"
+                                                               th:field="*{scoreMath}"
+                                                               type="text" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -253,8 +256,8 @@
                                             <div class="form-group">
                                                 <label class="col-md-4 control-label"></label>
                                                 <div class="col-md-4">
-                                                    <button type="submit" class="btn btn-warning">Сохранить <span
-                                                            class="glyphicon glyphicon-send"></span></button>
+                                                    <button id="submitBtnCert" type="submit" class="btn btn-warning">
+                                                        Сохранить <span class="glyphicon glyphicon-send"></span></button>
                                                 </div>
                                             </div>
 
