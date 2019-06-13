@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="84feeac3-d1f7-4503-84bf-fc3fa153df55">
+    <queryString>
+        <![CDATA[]]>
+    </queryString>
+    <field name="currentDate" class="java.lang.String"/>
+    <field name="faculty" class="java.lang.String"/>
+    <field name="specialty" class="java.lang.String"/>
+    <field name="number" class="java.lang.String"/>
+    <field name="fio" class="java.lang.String"/>
+    <field name="birthday" class="java.lang.String"/>
+    <field name="office" class="java.lang.String"/>
+    <field name="prof_group" class="java.lang.String"/>
+    <field name="scoreMath" class="java.lang.String"/>
+    <field name="scoreRusLang" class="java.lang.String"/>
+    <field name="scorePhysics" class="java.lang.String"/>
+    <field name="scoreForeignLang" class="java.lang.String"/>
+    <field name="scoreHistory" class="java.lang.String"/>
+    <field name="scoreSocial" class="java.lang.String"/>
+    <field name="scoreLiterature" class="java.lang.String"/>
+    <field name="scoreFizo" class="java.lang.String"/>
+    <field name="totalScore" class="java.lang.String"/>
+    <field name="decision" class="java.lang.String"/>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="256" splitType="Stretch">
+            <staticText>
+                <reportElement x="90" y="0" width="390" height="80" uuid="4f7749ba-2171-42cb-bd13-afb727e20268"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" isBold="true" isItalic="false"/>
+                </textElement>
+                <text><![CDATA[Рязанское высшее воздушно-десантное командное училище имени генерала армии В.Ф.Маргелова]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="51" y="120" width="77" height="17" uuid="000ddf06-6bcc-4993-9549-e277405666f1"/>
+                <textElement>
+                    <font fontName="DejaVu Sans" isBold="true"/>
+                </textElement>
+                <text><![CDATA[г. Рязань]]></text>
+            </staticText>
+            <textField>
+                <reportElement stretchType="RelativeToTallestObject" x="410" y="122" width="110" height="13" uuid="47a0caae-d3b3-44b7-bf2d-2d789baf1f3d"/>
+                <box leftPadding="10">
+                    <pen lineWidth="1.0" lineColor="#FFFFFF"/>
+                </box>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" size="9" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{currentDate}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement stretchType="RelativeToTallestObject" x="50" y="230" width="470" height="13" uuid="8029d809-0e4c-41e3-b06b-fe950699bf7a"/>
+                <box leftPadding="10">
+                    <pen lineWidth="1.0" lineColor="#FFFFFF"/>
+                </box>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{specialty}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="255" y="90" width="60" height="17" uuid="d67bceab-fb56-46e8-93c6-7dcc470dad7c"/>
+                <textElement>
+                    <font fontName="DejaVu Sans" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Приказ]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="51" y="150" width="189" height="17" uuid="e558b8c2-3bca-4b88-bf7f-f969dcb64d3d"/>
+                <textElement>
+                    <font fontName="DejaVu Sans" isBold="true"/>
+                </textElement>
+                <text><![CDATA[О зачислении на обучение]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="50" y="180" width="470" height="70" uuid="22cda442-1ee6-419a-a90d-e7966d96ced1"/>
+                <textElement textAlignment="Justified">
+                    <font fontName="DejaVu Sans" isBold="true"/>
+                </textElement>
+                <text><![CDATA[ПРИКАЗЫВАЮ:
+1. Зачислить с 1 сентября 2019 года на первый курс очной формы обучения в РВВДКУ на места, финансируемые из средств федерального бюджета, абитуриентов успешно прошедших вступительны испытания:]]></text>
+            </staticText>
+        </band>
+    </title>
+    <columnHeader>
+        <band height="52" splitType="Stretch">
+            <staticText>
+                <reportElement x="51" y="30" width="77" height="17" uuid="a8127a0d-1d37-45ee-b82e-b3bf74fda681"/>
+                <textElement>
+                    <font fontName="DejaVu Sans" isBold="true"/>
+                </textElement>
+                <text><![CDATA[№]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="239" y="30" width="77" height="17" uuid="7b98a9f9-1253-4964-8ff4-6802ab27a6ba"/>
+                <textElement>
+                    <font fontName="DejaVu Sans" isBold="true"/>
+                </textElement>
+                <text><![CDATA[ФИО]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="420" y="30" width="130" height="17" uuid="79ae9da6-a91c-4457-a2b2-53b602d23e04"/>
+                <textElement>
+                    <font fontName="DejaVu Sans" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Количество баллов]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="39" splitType="Stretch">
+            <textField>
+                <reportElement stretchType="RelativeToTallestObject" x="50" y="0" width="48" height="20" uuid="5d1d4f14-d2a6-41a9-a400-e97dcfaaa9bf"/>
+                <box leftPadding="10">
+                    <pen lineWidth="0.0"/>
+                </box>
+                <textElement verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{number}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement stretchType="RelativeToTallestObject" x="180" y="0" width="160" height="20" uuid="e049aba1-80ca-4a0f-b18c-16f2d70900c4"/>
+                <box leftPadding="10">
+                    <pen lineWidth="0.0"/>
+                </box>
+                <textElement verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{fio}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement stretchType="RelativeToTallestObject" x="420" y="0" width="79" height="20" uuid="7b53634f-88fa-4483-8ff5-2f79b6a6b79b"/>
+                <box leftPadding="10">
+                    <pen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{totalScore}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+</jasperReport>

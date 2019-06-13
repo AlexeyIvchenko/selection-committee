@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link th:href="@{/css/bootstrapValidator.min.css}" rel="stylesheet">
+
+
+    <meta charset="UTF-8">
+    <title>Добавление анкетных данных абитуриента</title>
+</head>
+
+<body>
+<th:block th:include="_menu"></th:block>
+
+<div class="w3-content" style="max-width:1600px">
+
+    <!-- Grid -->
+    <div class="w3-row w3-padding w3-border">
+
+        <!-- Blog entries -->
+        <div class="w3-col l12 s12">
+
+            <!-- Blog entry -->
+            <div class="w3-container w3-white w3-margin w3-padding-large">
+
+                <div class="select-boxes">
+
+                    <div class="container">
+                        <div class="col-lg-9">
+
+                            <form id="facultyForm" class="form-horizontal"
+                                  th:action="@{/admin/addFaculty/{facultyId}(facultyId=${facultyId})}"
+                                  th:object="${faculty}" method="post">
+
+                                <fieldset>
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Название факультета</label>
+                                        <div class="col-md-6  inputGroupContainer">
+                                            <div class="input-group"> <span class="input-group-addon"><i
+                                                    class="glyphicon glyphicon-education"></i></span>
+                                                <input id="facultyName" class="form-control"
+                                                       th:field="*{facultyName}" type="text" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Образование</label>
+                                        <div class="col-md-6  inputGroupContainer">
+                                            <div class="input-group"> <span class="input-group-addon"><i
+                                                    class="glyphicon glyphicon-user"></i></span>
+
+                                                <select name="education" class="form-control"
+                                                        th:field="*{education}"
+                                                        required>
+                                                    <option th:each="education: ${educationList}"
+                                                            th:value="${education.getEducationId()}"
+                                                            th:text="${education.getEducationName()}"></option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Набор граждан женского пола</label>
+                                        <div class="col-md-6  inputGroupContainer">
+                                            <div class="input-group">
+                                                <label class="radio-inline">
+                                                    <input th:field="*{girlAccess}" name="girlAccess" type="radio"
+                                                           value="true"
+                                                           required>Открыт
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input th:field="*{girlAccess}" name="girlAccess" type="radio"
+                                                           value="false"
+                                                           required>Закрыт
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Математика</label>
+                                        <div class="col-md-6  inputGroupContainer">
+                                            <div class="input-group"> <span class="input-group-addon"><i
+                                                    class="glyphicon glyphicon-education"></i></span>
+                                                <input id="scoreMath" class="form-control"
+                                                       th:field="*{scoreMath}" type="text" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Русский</label>
+                                        <div class="col-md-6  inputGroupContainer">
+                                            <div class="input-group"> <span class="input-group-addon"><i
+                                                    class="glyphicon glyphicon-education"></i></span>
+                                                <input id="scoreRusLang" class="form-control"
+                                                       th:field="*{scoreRusLang}" type="text" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Физика</label>
+                                        <div class="col-md-6  inputGroupContainer">
+                                            <div class="input-group"> <span class="input-group-addon"><i
+                                                    class="glyphicon glyphicon-education"></i></span>
+                                                <input id="scorePhysics" class="form-control"
+                                                       th:field="*{scorePhysics}"
+                                                       type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Иностранный язык</label>
+                                        <div class="col-md-6  inputGroupContainer">
+                                            <div class="input-group"> <span class="input-group-addon"><i
+                                                    class="glyphicon glyphicon-education"></i></span>
+                                                <input id="scoreForeignLang" class="form-control"
+                                                       th:field="*{scoreForeignLang}"
+                                                       type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">История</label>
+                                        <div class="col-md-6  inputGroupContainer">
+                                            <div class="input-group"> <span class="input-group-addon"><i
+                                                    class="glyphicon glyphicon-education"></i></span>
+                                                <input id="scoreHistory" class="form-control"
+                                                       th:field="*{scoreHistory}" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Обществознание</label>
+                                        <div class="col-md-6  inputGroupContainer">
+                                            <div class="input-group"> <span class="input-group-addon"><i
+                                                    class="glyphicon glyphicon-education"></i></span>
+                                                <input id="scoreSocial" class="form-control"
+                                                       th:field="*{scoreSocial}" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Литература</label>
+                                        <div class="col-md-6  inputGroupContainer">
+                                            <div class="input-group"> <span class="input-group-addon"><i
+                                                    class="glyphicon glyphicon-education"></i></span>
+                                                <input id="scoreLiterature" class="form-control"
+                                                       th:field="*{scoreLiterature}" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label"></label>
+                                        <div class="col-md-4">
+                                            <button id="submitBtn" type="submit" class="btn btn-warning">
+                                                Сохранить <span class="glyphicon glyphicon-send"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script th:src="@{/js/jquery.js}" src="../static/js/jquery.js" type="text/javascript"></script>
+<script th:src="@{/js/bootstrap.js}" src="../static/js/bootstrap.js" type="text/javascript"></script>
+
+
+<script th:src="@{/js/bootstrapValidator.min.js}" src="../static/js/bootstrapValidator.min.js"
+        type="text/javascript"></script>
+<script th:src="@{/js/jquery.maskedinput.min.js}" src="../static/js/jquery.maskedinput.min.js"
+        type="text/javascript"></script>
+<script th:src="@{/js/recruitValidation.js}" src="../static/js/recruitValidation.js" type="text/javascript"></script>
+
+
+</html>

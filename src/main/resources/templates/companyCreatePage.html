@@ -49,8 +49,7 @@
             <div th:text="${requestsCountMessage}">
             </div>
             <form class="form-horizontal"
-                  th:action="@{/user/createCompanies/{facultyId}(facultyId=${facultyId})}"
-                  th:object="${companyCreateHelper}" method="post">
+                  th:action="@{/user/createCompanies/{facultyId}(facultyId=${facultyId})}" method="post">
 
                 <div class="form-group">
                     <label class="col-md-4 control-label">Количество рот для факультета</label>
@@ -58,8 +57,7 @@
                         <div class="input-group"> <span class="input-group-addon"><i
                                 class="glyphicon glyphicon-user"></i></span>
 
-                            <select name="companiesCount" class="form-control"
-                                    th:field="*{companiesCount}"
+                            <select name="companiesCount" id="companiesCount" class="form-control"
                                     required>
                                 <option th:value="1" th:text="1"></option>
                                 <option th:value="2" th:text="2"></option>
